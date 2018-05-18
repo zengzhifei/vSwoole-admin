@@ -1,0 +1,729 @@
+<include file="Public/head" />
+<include file="Public/top" />
+<div class="clearfix">
+	<div class="page-container">
+	<include file="Public/left" />
+	
+	    <div class="page-content-wrapper">
+<!--图片上传需要引入的js-->
+<script type="text/javascript" src="__PUBLIC__/static/uploadify/jquery.uploadify.min.js"></script>
+
+
+
+
+<script src="__PUBLIC__/Home/interact/js/jquery.form.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	imgvote();
+});
+</script>
+<style>
+
+.div4_1 {
+    float: left;
+    margin-left: 20px;
+    position: relative;
+}
+.inputstyle_1 {
+    cursor: pointer;
+    font-size: 30px;
+    height: 30px;
+    left: 0;
+    opacity: 0;
+    outline: medium none;
+    position: absolute;
+    top: 0;
+    width: 81px;
+}
+</style>
+<!-- BEGIN CONTAINER -->
+<!-- <div class="page-container"> -->
+	<!-- <div class="page-content-wrapper"> -->
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							 Widget settings form goes here
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn blue">Save changes</button>
+							<button type="button" class="btn default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE HEADER-->
+			<!-- BEGIN PAGE HEAD -->
+			<!-- <div class="page-head">
+				BEGIN PAGE TITLE
+				<div class="page-title">
+					<h1>Form Validation <small>form validation</small></h1>
+				</div>
+			</div> -->
+			<!-- END PAGE HEAD -->
+			<!-- BEGIN PAGE BREADCRUMB -->
+			<!-- <ul class="page-breadcrumb breadcrumb">
+				<li>
+					<a href="index.html">Home</a>
+					<i class="fa fa-circle"></i>
+				</li>
+				<li>
+					<a href="#">Form Stuff</a>
+					<i class="fa fa-circle"></i>
+				</li>
+				<li>
+					<a href="#">Form Validation</a>
+				</li>
+			</ul> -->
+			<!-- END PAGE BREADCRUMB -->
+			<!-- END PAGE HEADER-->
+			<!-- BEGIN PAGE CONTENT-->
+			<!-- <ul class="page-breadcrumb breadcrumb">
+				<li>
+					<a href="index.html">首页</a>
+					<i class="fa fa-circle"></i>
+				</li>
+				<li>
+					<a href="{:addons_url('Vote://Vote/index')}">微投票</a>
+					<i class="fa fa-circle"></i>
+				</li>
+				<li>
+					<a href="#">编辑投票</a>
+				</li>
+			</ul> -->
+			<div class="row">
+				<div class="col-md-12">
+					<!-- BEGIN VALIDATION STATES-->
+					<div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-gift"></i>投票设置
+							</div>
+							<div class="tools">
+								<!-- <a href="javascript:;" class="collapse">
+								</a>
+								<a href="#portlet-config" data-toggle="modal" class="config">
+								</a>
+								<a href="javascript:;" class="reload">
+								</a>
+								<a href="javascript:;" class="remove">
+								</a> -->
+								<button class="btn btn-default" onclick="jumpurl()" type="button">返回</button>
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<!-- BEGIN FORM-->
+							<form  id="form_sample_1"  class="form-horizontal">
+								<input type="hidden" name="uid" value="{$voteinfo.uid}">
+								<input type="hidden" name="type" value="{$voteinfo.type}">
+								<input type="hidden" name="voteid" value="{$voteinfo.id}">
+								<input type="hidden" name="removeOption" value="">
+								<div class="form-body">
+									<div class="alert alert-danger display-hide">
+										<button class="close" data-close="alert"></button>
+										您填写的表单信息有误，请检查一下！
+									</div>
+									<div class="alert alert-success display-hide">
+										<button class="close" data-close="alert"></button>
+										信息无误，验证通过！
+									</div>
+								<div class="form-group " style="margin-top:10px;">
+										<label class="control-label col-md-3">关键词</label>
+										<div class="col-md-9">
+											<input type="text" placeholder="关键词" class="form-control input-inline input-medium" name="keyword" value="{$voteinfo.keyword}">
+											<span class="required" style="color:red">* </span>
+											<span class="help-inline">
+											活动的关键词不能重复，且不建议包含标点符号 多个关键词用空格分开</span>
+										</div>
+								</div> 
+								<div class="form-group">
+										<label class="control-label col-md-3">投票标题</label>
+										<div class="col-md-9">
+											<input type="text" name="title" placeholder="投票标题" class="form-control input-inline input-medium" value="{$voteinfo.title}">
+											<span class="required" style="color:red">* </span>
+											<span class="help-inline">
+											不能超过18个字</span>
+										</div>
+								</div> 
+								<div class="form-group">
+										<label class="control-label col-md-3">时间设置</label>
+										<div class="col-md-9">
+											<div style="float:left" class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+												<input type="text" class="form-control" name="from" value="{$voteinfo.starttime|date='m/d/Y',###}">
+												<span class="input-group-addon">到</span>
+												<input type="text" class="form-control" name="to" value="{$voteinfo.endtime|date='m/d/Y',###}">
+											</div>
+											<span class="required" style="color:red;margin-left:5px;">* </span>
+											<span class="help-inline">
+											结束时间不能小于开始时间</span>
+										</div>
+								</div> 
+								
+									<div class="form-group">
+										<label class="control-label col-md-3">投票图片</label>
+										<div class="col-md-9">
+										   <div class="upload-img-box" id="litpic_show" style="float:left;padding-right:1px;">
+										   <if condition="$vimginfo">
+										    <img width="120" height="120" src="{$vimginfo.path}"/>
+										   </if>
+										   </div>
+											<div class="controls uploadrow" title="点击修改图片" style="width:100px;height:32px;background:url(__PUBLIC__/Home/interact/images/shangchuan.png) no-repeat;float:left;overflow:hidden">
+                            					<input type="file" id="upload_picture_picurl">
+                            					<input type="hidden" name="picurl" id="cover_id_picurl"/>
+                          					</div>
+                          					<input type="hidden" name="pic_id" id="pic_id"  value="{$vimginfo.id}" />
+                          					<!-- <input name="voteimgurl" type="hidden" id="voteimgurl_pid" > -->
+                          					<script type="text/javascript">
+												//上传图片
+							    				/* 初始化上传插件 */
+
+												$("#upload_picture_picurl").uploadify({
+							        				"height"          : 32,
+							        				"swf"             : "__PUBLIC__/static/uploadify/uploadify.swf",
+							        				"fileObjName"     : "download",
+							        				"buttonText"      : "",
+							        				"uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+							        				"width"           : 100,
+							        				'removeTimeout'	  : 1,
+							        				'fileTypeExts'	  : '*.jpg; *.png; *.gif;',
+							        				"onUploadStart"   : function(file){
+							        					var element = {};
+							        					element.uid = "{$voteinfo.uid}";
+							        					/*
+							        					 element.uname = 'xxx';
+							        					*/
+							        					$("#upload_picture_picurl").uploadify('settings','formData',element);
+							        				},
+							        				"onUploadSuccess" : uploadPicturepicurl
+							        			});
+												function uploadPicturepicurl(file, data){
+													var data = eval("(" + data +")");
+													//console.log(testdata);
+							    					//var data = $.parseJSON(data);
+							    					var src = '';
+							        				if(data.status){
+							        					$("#cover_id_picurl").val(data.id);
+							        					src = data.url || '__ROOT__' + data.path;
+							        					/*$("#cover_id_picurl").parent().find('.upload-img-box').show().html(
+							        						'<div class="upload-pre-item"><img width="120" height="120" src="' + src + '"/></div>'
+							        					);*/
+							        					$("#litpic_show").show().html('<img width="120" height="120" src="' + src + '"/>');
+														$("#pic_id").val(data.id);
+							        					$('.weixin-cover-pic').attr('src',src);
+							        				} else {
+							        					$(".alert-danger").show().html(
+							        						'<button class="close" data-close="alert"></button>'+data.info+'请重新选择图片'	
+							        					)
+							        					/*updateAlert(data.info);
+							        					setTimeout(function(){
+							                				$('#top-alert').find('button').click();
+							               					$(that).removeClass('disabled').prop('disabled',false);
+							            					},1500);*/
+							        				}
+							    			    }
+												</script>    
+											<button  class="btn btn-default BrowerPicture" data-toggle="modal"  type="button" rel="{$voteinfo.uid}" style="margin-left:5px;">选择站内图片</button>	        
+											<span class="required" style="color:red">* </span>
+											<span class="help-inline">
+											建议尺寸:宽540像素,高300像素或等比图片</span>
+										</div>
+								</div> 
+									<div class="form-group">
+										<label class="col-md-3 control-label">图片显示</label>
+										<div class="col-md-9">
+											<div class="radio-list">
+												<label class="radio-inline">
+												<input type="radio" name="img_isshow" id="optionsRadios21" value="1" <if condition="$voteinfo.img_isshow eq 1"> checked</if>>显示在投票页面</label>
+												<label class="radio-inline">
+												<input type="radio" name="img_isshow" id="optionsRadios22" value="2" <if condition="$voteinfo.img_isshow eq 2"> checked</if>>不显示在投票页面</label>											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">投票说明</label>
+										<div class="col-md-9">
+											<textarea rows="3" class="form-control input-inline input-medium" name="remark">{$voteinfo.remark}</textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">文字/图片投票</label>
+										<div class="col-md-9">
+											<div class="radio-list">
+												<label class="radio-inline">
+												<input type="radio" name="type" id="optionsRadios33" value="1" <if condition="$voteinfo.type eq 1"> checked</if> onclick="imgvote()">文字投票</label>
+												<label class="radio-inline">
+												<input type="radio" name="type" id="optionsRadios34" value="2" <if condition="$voteinfo.type eq 2"> checked</if> onclick="imgvote()">图片投票</label>											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">投票选项</label>
+										<div class="col-md-9">
+											<button  class="btn btn-default" onclick="addopt();"  type="button">添加选项</button>
+											<style>
+									        .add_list_table{margin:10px 0px 5px 0px;}
+											.add_list td {padding: 10px 5px;background-color: #f4f4f4;}
+											 .add_list input {margin-bottom: 0;}
+									        </style>
+											
+											<table cellspacing="1" cellpadding="0" class="add_list_table" id="option_list">
+												<tbody>
+												<if condition="$optionlist">
+      												<tr style="" class="add_list add_list_head">
+        												<td>标题</td>
+        												<td>排序</td>
+        												<td>初始票数</td>
+        												<td style="display:none;" name="pictureVote">图片链接地址</td>
+        												<td style="display:none;" name="pictureVote">图片跳转地址</br>以http://开头</td>
+        												<td>操作</td>
+      													</tr>
+      													<foreach name="optionlist" item="vo">
+		            										<tr class="add_list">
+		            										    <input type="hidden" name="option_id[{$key+1}]" value="{$vo.id}">
+		            											<td><input type="text"  class="form-control input-inline input-medium" name="option_title[{$key+1}]" value="{$vo.title}"></td>
+		            											<td><input type="text"  class="form-control input-xsmall" name="option_order[{$key+1}]" value="{$vo.order}"></td>
+		            											<td><input type="text"  class="form-control input-xsmall" name="option_initvotenum[{$key+1}]" value="{$vo.init_votnum}"></td>
+		            											<!-- <td <if condition="$voteinfo.type eq 2"><else/>style="display:none" </if> name="pictureVote"><input type="hidden"  value="{$vo.imgurl}" id="pic_id_{$key+1}" name="option_imgurlid[{$key+1}]"><input type="text" value="{$vo.imginfo.path}" id="imgurl_{$key+1}"  class="form-control input-xsmall" name="option_imgurl[{$key+1}]"  style="float:left"><button style="float:left;" data-toggle="modal" data-target="#stack{$key+1}" class="btn btn-default" type="button" >浏览</button></td>
+		            											<td <if condition="$voteinfo.type eq 2"><else/>style="display:none" </if> name="pictureVote"><input type="text"  class="form-control input-xsmall" name="option_img_jumpurl[{$key+1}]"> -->
+		            											<td style="display:none;" name="pictureVote"><input type="hidden"  value="{$vo.imgurl}" id="pic_id_{$key+1}" name="option_imgurlid[{$key+1}]"><input type="text" value="{$vo.imginfo.path}" id="imgurl_{$key+1}"  class="form-control input-xsmall" name="option_imgurl[{$key+1}]"  style="float:left"><button style="float:left;" data-toggle="modal" data-target="#stack{$key+1}" class="btn btn-default" type="button" >浏览</button></td>
+		            											<td style="display:none;" name="pictureVote"><input type="text"  class="form-control input-xsmall" name="option_img_jumpurl[{$key+1}]">
+		            											<td><button class="btn btn-danger" onclick="delOpt(this,{$vo.id})"  type="button">删除</button></td>
+		            										</tr>
+		            										<script>
+		            											$(function(){
+		            												creatHtml({$key+1});
+		            											})
+		            										</script>
+            											</foreach>
+            										</if>
+            									</tbody>
+            								</table>
+										
+										
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">单选/多选</label>
+										<div class="col-md-9">
+											<div class="radio-list">
+												<label class="radio-inline">
+												<input type="radio" name="optioned_type" id="optionsRadios23" value="1" <if condition="$voteinfo.optioned_type eq 1"> checked</if>>单选</label>
+												<label class="radio-inline">
+												<input type="radio" name="optioned_type" id="optionsRadios24" value="2" <if condition="$voteinfo.optioned_type eq 2"> checked</if>>多选</label>											</div>
+										</div>
+									</div>
+									
+									<div class="form-group" id="option_maxnum" <if condition="$voteinfo.optioned_type eq 1"> style="display:none"</if>>
+										<label class="col-md-3 control-label">多选最多选择数</label>
+										<div class="col-md-9">
+											<select class="form-control input-inline input-medium" name="option_number">
+												
+											</select>
+									</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">投票结果</label>
+										<div class="col-md-9">
+											<div class="radio-list">
+												<label class="radio-inline">
+												<input type="radio" name="result_show" id="optionsRadios25" value="1" <if condition="$voteinfo.result_show eq 1"> checked</if>>投票前可见</label>
+												<label class="radio-inline">
+												<input type="radio" name="result_show" id="optionsRadios26" value="2" <if condition="$voteinfo.result_show eq 2"> checked</if>>投票后可见</label>	
+												<label class="radio-inline">
+												<input type="radio" name="result_show" id="optionsRadios27" value="3" <if condition="$voteinfo.result_show eq 3"> checked</if>>投票结束后可见</label>										</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">投票结果</label>
+										<div class="col-md-9">
+											<div class="radio-list">
+												<label class="radio-inline">
+												<input type="radio" name="result_order" id="optionsRadios28" value="1" <if condition="$voteinfo.result_order eq 1"> checked</if>>是</label>
+												<label class="radio-inline">
+												<input type="radio" name="result_order" id="optionsRadios29" value="2" <if condition="$voteinfo.result_order eq 2"> checked</if>>否</label>											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3">每人每天最多投票次数</label>
+										<div class="col-md-9">
+											<input type="text" value="{$voteinfo.peverday_maxnum}" class="form-control input-inline input-medium" name="peverday_maxnum">
+										</div>
+								</div>
+								<div class="form-group">
+										<label class="control-label col-md-3">活动期间最多投票次数</label>
+										<div class="col-md-9">
+											<input type="text" value="{$voteinfo.voteperson_maxnum}" class="form-control input-inline input-medium" name="voteperson_maxnum">
+										</div>
+								</div>
+								<div class="form-group">
+										<label class="control-label col-md-3" style="height:100px;line-height:98px;">投票样式</label>
+										<div class="col-md-9">
+											<select class="form-control input-inline input-medium" name="vote_style">
+												<foreach name="template" item="v">
+												   <if condition="$v[code] eq $voteinfo[vote_style]">
+													    <option selected value="{$v.code}" rel="{$key}" sou="{$v.source}">{$v.title}</option>
+													<else />
+													    <option  value="{$v.code}" rel="{$key}" sou="{$v.source}">{$v.title}</option>
+													</if>
+												</foreach>
+											</select>
+											<foreach name="template" item="vo">
+											  <if condition="$vo[code] eq $voteinfo[vote_style]">
+												  <img name="icon_{$vo.code}" src="{$vo.icon}" width=55 height=100>
+												<else />
+												   <img name="icon_{$vo.code}" src="{$vo.icon}" style="display:none" width=55 height=100>
+												</if>
+											</foreach>
+											<input type="hidden" name="source" id="source" value="{$voteinfo['source']}"/>
+										</div>
+									</div>
+									<!-- <div class="form-group">
+										<label class="col-md-3 control-label">投票分享后是否抽奖</label>
+										<div class="col-md-9">
+											<div class="radio-list">
+												<label class="radio-inline">
+												<input type="radio" name="is_lucky" id="optionsRadios30" value="1" <if condition="$voteinfo.is_lucky eq 1"> checked</if>>是</label>
+												<label class="radio-inline">
+												<input type="radio" name="is_lucky" id="optionsRadios31" value="2" <if condition="$voteinfo.is_lucky eq 2"> checked</if>>否</label>	
+											</div>
+										</div>
+									</div> -->
+									<div class="form-group">
+										<label class="col-md-3 control-label">是否强制用户注册后投票</label>
+										<div class="col-md-9">
+											<div class="radio-list">
+												<label class="radio-inline">
+												<input type="radio" name="is_register" id="optionsRadios32" value="1" <if condition="$voteinfo.is_register eq 1"> checked</if>>是</label>
+												<label class="radio-inline">
+												<input type="radio" name="is_register" id="optionsRadios33" value="2" <if condition="$voteinfo.is_register eq 2"> checked</if>>否</label>	
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-actions">
+									<div class="row">
+										<div class="col-md-offset-4  col-md-7">
+											<button type="submit" class="btn blue" >提交</button>
+											<button type="reset" class="btn default">重置</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							<!-- END FORM-->
+						</div>
+					</div>
+					<!-- END VALIDATION STATES-->
+				</div>
+			</div>
+			<!-- END PAGE CONTENT-->
+		</div>
+		</div>
+		</div>
+		</div>
+	<!-- </div> -->
+	<!-- END CONTENT -->
+<!-- </div> -->
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<script type="text/javascript" src="__PUBLIC__/Home/static/theme/assets/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+<!-- END PAGE LEVEL STYLES -->
+<script>
+function creatHtml(id){
+	var iframurl = "{:U('Home/Public/iframBrowseFile',array('stype'=>'picture','uid'=>$uid))}";
+	    iframurl = iframurl.replace(".html","")
+    	iframurl = iframurl+"/op/"+id;
+	var creathtml ='<div id="stack'+id+'" class="modal fade" tabindex="-1" data-width="400"><div class="modal-dialog"><div class="modal-content">';
+		creathtml+='<div class="modal-header"><div class="interact_close" ><a class="interact_remove" data-dismiss="modal"></a></div><h4 class="modal-title"><i class="fa fa-reorder"></i>&nbsp;图片选择</h4></div>';
+		creathtml+='<div class="modal-body"><div class="row"><div class="col-md-12"><div class="tabbable tabbable-tabdrop">';
+		//creathtml+='<ul class="nav nav-tabs"><li class="active"><a href="#tab1_'+id+'" data-toggle="tab">本地上传</a></li><li><a href="#tab2_'+id+'" data-toggle="tab">图库选择</a></li><li><a href="#tab3_'+id+'" data-toggle="tab">网络图片</a></li></ul>';
+		creathtml+='<ul class="nav nav-tabs"><li class="active"><a href="#tab1_'+id+'" data-toggle="tab">本地上传</a></li><li><a href="#tab2_'+id+'" data-toggle="tab">图库选择</a></li><li><a href="#tab3_'+id+'" data-toggle="tab">网络图片</a></li></ul>';
+		creathtml+='<div class="tab-content">';
+		//creathtml+='<div class="tab-pane active" id="tab1_'+id+'"><input type="text" class="form-control input-inline input-medium" style="float:left;margin-right:5px;" id="fpicurl_'+id+'" rel="'+id+'"><div class="controls uploadrow" style="width:100px;height:32px;background:url(__PUBLIC__/Home/interact/images/shangchuan.png) no-repeat;float:left;overflow:hidden"><input type="file" class="uploadImage" id="upload_picture_'+id+'"></div></div>';
+		creathtml+='<div class="tab-pane active" id="tab1_'+id+'"><input type="text" class="form-control input-inline input-medium" style="float:left;" id="fpicurl_'+id+'" value="" rel="'+id+'"><form role="form" class="form-horizontal" method="post" enctype="multipart/form-data" id="upjpg_'+id+'"><input type="hidden" name="uid" value="{$uid}"><div class="div4_1"><input id="s_file_name_'+id+'" type="hidden" value=""><img alt="" src="__PUBLIC__/Home/interact/images/liune.jpg"><input rel="'+id+'" id="file_'+id+'" class="inputstyle_1" type="file" name="download" onchange="uploadimg(this)"><span style="margin-left:13px;color:red;" id="check_file_'+id+'" class="check_group"></span></div></from></div>';
+		creathtml+='<div class="tab-pane" id="tab2_'+id+'"><iframe id="iframBrowsefile_'+id+'" name="iframBrowsefile_'+id+'" src="'+iframurl+'" height="330" width="560" frameborder=0  marginheight=0 marginwidth=0  ></iframe></div>';
+		creathtml+='<div class="tab-pane" id="tab3_'+id+'"><label class="control-label col-md-3">图片地址：</label><div class="col-md-8"><input type="text" class="form-control input-inline input-medium" rel="'+id+'"><span style="margin-left:13px;color:red;" id="check_file_'+id+'" class="check_group"></span></div></div>';
+		creathtml+='</div></div></div></div></div>';
+		creathtml+='<div class="modal-footer"><button type="button"  onclick="sumbimg('+id+')" class="btn blue">确认</button><button type="button" data-dismiss="modal" class="btn">关闭</button></div></div></div></div>';
+		$(".page-content").append(creathtml);
+}
+function uploadimg(obj){
+	var id = $(obj).attr('rel');
+		str=$(obj).val(); 
+		var k = str.substr(str.indexOf("."));
+		if(k == '.jpg' || k == '.JPG' || k == '.PNG' || k == '.png' || k =='.gif' || k == '.GIF'){
+			$("#check_file_"+id).html("");
+			$("#upjpg_"+id).ajaxSubmit({
+				type: 'post',
+		        url: "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+		        dataType: 'json',
+				success: function(data) {
+					//alert(data.status)
+					if(data.status){
+						$("#s_file_name_"+id).val(data.id);
+    					src = data.url || '{$Think.config.BASE_URL}__ROOT__' + data.path;
+    					
+    					$("#fpicurl_"+id).val(src);
+    					$("#pic_id_"+id).val(data.id);
+					}else{
+						$(".alert-danger").show().html(
+								'<button class="close" data-close="alert"></button>'+data.info+'请重新选择图片'	
+						);
+					}
+				},
+				error:function(xhr){
+					
+				}
+			});
+		}else{
+			$("#check_file_"+id).html("文件格式错误");
+		}
+}
+	function addopt(){
+		imgvote();
+		var optionsRadios33=$("#optionsRadios33").attr('checked');
+		var optionsRadios34=$("#optionsRadios34").attr('checked');
+		var i = 1;
+		$('.btn-danger').each(function(){
+			i++;
+		});
+		var id = i;
+		var html = '<tr class="add_list">';
+			html+= '<td><input type="text" class="form-control input-inline input-medium" name="option_title['+id+']" value=""></td>';
+			html+= '<td><input type="text" class="form-control input-xsmall" name="option_order['+id+']" value="'+i+'" ></td>';
+			html+= '<td><input type="text" class="form-control input-xsmall" name="option_initvotenum['+id+']" value="0"></td>';
+			if(optionsRadios34 == 'checked'){
+				html+= '<td name="pictureVote"><input type="hidden" id="pic_id_'+id+'" name="option_imgurlid['+id+']"><input type="text" id="imgurl_'+id+'"  class="form-control input-xsmall" name="option_imgurl['+id+']"  style="float:left"><button style="float:left;" data-toggle="modal" data-target="#stack'+id+'" class="btn btn-default" type="button">浏览</button></td>';
+				html+= '<td name="pictureVote"><input type="text"  class="form-control input-xsmall" name="option_img_jumpurl['+id+']"></td>';
+			}else if(optionsRadios33 == 'checked'){
+				html+= '<td style="display:none;" name="pictureVote"><input type="hidden" id="pic_id_'+id+'" name="option_imgurlid['+id+']"><input type="text" id="imgurl_'+id+'"  class="form-control input-xsmall" name="option_imgurl['+id+']" style="float:left"><button data-toggle="modal" data-target="#stack'+id+'" style="float:left;" class="btn btn-default" type="button">浏览</button></td>';
+				html+= '<td style="display:none;" name="pictureVote"><input type="text"  class="form-control input-xsmall" name="option_img_jumpurl['+id+']" ></td>';
+			}
+			html+= '<td><button class="btn btn-danger" onclick="delOpt(this,false)"  type="button">删除</button></td>';
+			html+= '</tr>';
+		$('#option_list').append(html);
+		creatHtml(id);
+		addselect();
+		
+	}
+	function delOpt(obj,optionid){
+		if(optionid){
+    	    var optionidstr = $("[name='removeOption']").val();
+    		if(optionidstr){
+    			optionid = optionidstr+','+optionid;
+    			$("[name='removeOption']").val(optionid);
+    		}else{
+    			$("[name='removeOption']").val(optionid);
+    		}
+    		$(obj).parents('tr').remove();
+    		addselect();
+    	}else{
+    		$(obj).parents('tr').remove();
+    		addselect();
+    	}
+		
+	}
+	function sumbimg(id){
+		//var id = $(".active > input:first").attr('rel');
+		var imgurl = $(".active").find("input").first().val();
+		    if(imgurl){
+			    var divid =  $(".active").find("input").first().parent().parent().attr('id');
+			    if(divid == 'tab3_1'){
+			    	$("#pic_id_"+id).val(imgurl);
+			    }
+			    $("#imgurl_"+id).val(imgurl);
+			    $(".in").hide();
+			    $("#stack"+id);
+			    $("#fpicurl_"+id).val('');
+		    }else{
+		    	$(".active").find("#check_file_"+id).html("图片不能为空");
+		    }
+	}
+	function imgvote(){
+		var optionsRadios33=$("#optionsRadios33").attr('checked');
+		var optionsRadios34=$("#optionsRadios34").attr('checked');
+		if(optionsRadios33 == 'checked'){
+			$("[name='pictureVote']").hide();
+		}else if(optionsRadios34 == 'checked'){
+			$("[name='pictureVote']").show();
+		}
+	}
+	$(function(){
+		addselect();
+		$("[name='removeOption']").val('');
+		//imgvote();
+	});
+	
+	
+	function formsubmit(){
+		var data=$("#form_sample_1").serialize();
+		$.ajax({
+			url:"{:U('Vote/saveVote')}",
+			data:data,
+			type:"POST",
+			dataType:"json",
+			success:function(msg){
+				if(msg.status == 1){
+					var msg = msg.info+",页面在三秒后自动跳转!!!";
+					$.confirm({title:msg,modal: true, level:"success",buttons: {  
+						   "确定": {
+							   "class":"green",
+							   "action":function() {
+								   jumpurl();
+							   }
+						   }
+					   }  
+					});
+					setTimeout("jumpurl()",3000);
+				}else{
+					var msg=msg.info+"请重新提交";
+					$.confirm({title:msg,modal: true, level:"danger",buttons: {  
+						   "确定": {
+							   "class":"green",
+							   "action":function() {
+							   }
+						   }
+					   }  
+					});
+				}
+			}
+		});
+		return false;
+	}
+	function jumpurl(){
+		var url = "{:U('Vote/index')}";
+		location.href=url;
+	}
+	$(function(){
+		$("[name='optioned_type']").click(function(){
+			var option_type = $(this).val();
+			if(option_type == 2){
+				$("#option_maxnum").show();
+			}else{
+				$("#option_maxnum").hide();
+			}
+		});
+	})
+	function addselect(){
+		var i=0;
+		$(".add_list").each(function(){
+			i++;
+		});
+		//i = i-1;
+		var type= {$voteinfo.optioned_type};
+		if(type==2){
+			var s = {$voteinfo.option_number};
+		}else{
+			var s = 1;
+		}
+		
+		var html='';
+		for(var key=1;key<i;key++){
+    		if(key==s){
+    			html += '<option selected value="'+key+'" >'+key+'</option>'
+    		}else{
+    			html+='<option value="'+key+'" >'+key+'</option>';
+    		}
+    	}
+		$("[name='option_number']").html(html);
+	}
+	
+	jQuery(document).ready(function(){
+		$("[name='vote_style']").change(function(){
+			var source = $("[name='vote_style']").find("option:selected").attr("sou");
+			$("#source").val(source);
+			var code = $(this).val();
+			$(this).parent().find('img').hide();
+			$("[name='icon_"+code+"']").show();
+		})
+	})
+	
+	jQuery(document).ready(function(){
+		var form2 = $('#form_sample_1');
+        var error2 = $('.alert-danger', form2);
+        var success2 = $('.alert-success', form2);
+        form2.validate({
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-inline', // default input error message class
+            focusInvalid: false, // do not focus the last invalid input
+            ignore: "",
+            rules: {
+            	title: {
+                    minlength: 1,
+                    maxlength: 54,
+                    required: true
+                },
+                keyword: {
+                	minlength: 1,
+                    maxlength: 100,
+                    required: true,
+                },
+                remark: {
+                	minlength: 1,
+                    maxlength: 200,
+                },
+                from: {
+                    required: true,
+                    date: true
+                },
+                to: {
+                    required: true,
+                    date: true
+                },
+                ep_lucky_number: {
+                    number: true
+                },
+                peverday_maxnum: {
+                    number: true
+                },
+                voteperson_maxnum: {
+                    number: true
+                },
+                pic_id: {
+                    required: true,
+                },
+            },
+            invalidHandler: function (event, validator) { //display error alert on form submit              
+                success2.hide();
+                error2.show();
+            },
+
+            errorPlacement: function (error, element) { // render error placement for each input type
+                var icon = $(element).parent('.input-icon').children('i');
+                icon.removeClass('fa-check').addClass("fa-warning");  
+                icon.attr("data-original-title", error.text()).tooltip({'container': 'body'});
+            },
+
+            highlight: function (element) { // hightlight error inputs
+                $(element).closest('.form-group').addClass('has-error'); // set error class to the control group   
+            },
+
+            unhighlight: function (element) { // revert the change done by hightlight
+                
+            },
+
+            success: function (label, element) {
+                var icon = $(element).parent('.input-icon').children('i');
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success'); // set success class to the control group
+                icon.removeClass("fa-warning").addClass("fa-check");
+            },
+
+            submitHandler: function (form) {
+                success2.show();
+                error2.hide();
+                formsubmit();
+            }
+        });
+        return false;
+	});
+</script>
+
+
+
+<include file="Public/footer" />

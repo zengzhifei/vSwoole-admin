@@ -1,0 +1,340 @@
+<include file="Public/head"/>
+<include file="Public/top"/>
+<div class="clearfix">
+    <div class="page-container">
+        <include file="Public/left"/>
+
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="portlet-config"
+                     class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+                                <h4 class="modal-title">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                                Widget settings form goes here
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn blue" type="button">Save changes</button>
+                                <button data-dismiss="modal" class="btn default" type="button">Close</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+                <!-- BEGIN PAGE HEADER-->
+                <!-- BEGIN PAGE HEAD -->
+                <div class="page-head">
+                    <!-- BEGIN PAGE TITLE -->
+                    <!-- END PAGE TITLE -->
+                    <!-- BEGIN PAGE TOOLBAR -->
+                    <!--<div class="page-toolbar">
+                         BEGIN THEME PANEL
+                        <div class="btn-group btn-theme-panel">
+                            <a data-toggle="dropdown" class="btn dropdown-toggle" href="javascript:;">
+                            <i class="icon-settings"></i>
+                            </a>
+                            <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <h3>THEME</h3>
+                                        <ul class="theme-colors">
+                                            <li data-theme="default" class="theme-color theme-color-default active">
+                                                <span class="theme-color-view"></span>
+                                                <span class="theme-color-name">Dark Header</span>
+                                            </li>
+                                            <li data-theme="light" class="theme-color theme-color-light">
+                                                <span class="theme-color-view"></span>
+                                                <span class="theme-color-name">Light Header</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12 seperator">
+                                        <h3>LAYOUT</h3>
+                                        <ul class="theme-settings">
+                                            <li>
+                                                 Theme Style
+                                                <select class="layout-style-option form-control input-small input-sm">
+                                                    <option selected="selected" value="square">Square corners</option>
+                                                    <option value="rounded">Rounded corners</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Layout
+                                                <select class="layout-option form-control input-small input-sm">
+                                                    <option selected="selected" value="fluid">Fluid</option>
+                                                    <option value="boxed">Boxed</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Header
+                                                <select class="page-header-option form-control input-small input-sm">
+                                                    <option selected="selected" value="fixed">Fixed</option>
+                                                    <option value="default">Default</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Top Dropdowns
+                                                <select class="page-header-top-dropdown-style-option form-control input-small input-sm">
+                                                    <option value="light">Light</option>
+                                                    <option selected="selected" value="dark">Dark</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Sidebar Mode
+                                                <select class="sidebar-option form-control input-small input-sm">
+                                                    <option value="fixed">Fixed</option>
+                                                    <option selected="selected" value="default">Default</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Sidebar Menu
+                                                <select class="sidebar-menu-option form-control input-small input-sm">
+                                                    <option selected="selected" value="accordion">Accordion</option>
+                                                    <option value="hover">Hover</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Sidebar Position
+                                                <select class="sidebar-pos-option form-control input-small input-sm">
+                                                    <option selected="selected" value="left">Left</option>
+                                                    <option value="right">Right</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Footer
+                                                <select class="page-footer-option form-control input-small input-sm">
+                                                    <option value="fixed">Fixed</option>
+                                                    <option selected="selected" value="default">Default</option>
+                                                </select>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         END THEME PANEL
+                    </div> -->
+                    <!-- END PAGE TOOLBAR -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-edit"></i>服务器配置
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                    <tbody>
+                                    <tr>
+                                        <td style="vertical-align: middle;">推送消息</td>
+                                        <td style="float: left;">
+                                            <select class="form-control input-inline input-medium"
+                                                    name="ws-config-push-range">
+                                                <option value="">选择归档</option>
+                                                <foreach name="ranges" item="item" key="key">
+                                                    <option value="{$item.range_id}">{$item.range_name}</option>
+                                                </foreach>
+                                            </select>
+                                            <textarea type="text" name="ws-config-push-message" cols="50" rows="1"
+                                                      class="form-control input-inline" placeholder="禁止特殊符号"
+                                                      style="display: inline-block;"></textarea>
+                                            <button class="btn blue" type="button" id="ws-config-push-btn">确定</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>关闭连接</td>
+                                        <td style="float: left;">
+                                            <select class="form-control input-inline input-medium"
+                                                    name="ws-config-close-range">
+                                                <option value="">选择归档</option>
+                                                <foreach name="ranges" item="item" key="key">
+                                                    <option value="{$item.range_id}">{$item.range_name}</option>
+                                                </foreach>
+                                            </select>
+                                            <input type="text" name="ws-config-close-user" class="form-control"
+                                                   placeholder="客户端连接ID" style="display: inline-block;width: 390px;">
+                                            <button class="btn blue" type="button" id="ws-config-close-user-btn">确定
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>域名验证</td>
+                                        <td style="float: left;">
+                                            <input type="checkbox" name="ws-config-check-host-switch"
+                                                   config-val="{$configs.ENABLE-CHECK-HOST}"
+                                                   class="switch" checked/>
+                                            <input type="text" name="ws-config-check-host" class="form-control"
+                                                   value="{$configs.CHECK-HOST}"
+                                                   placeholder="域名地址" style="display: inline-block;width: 525px;">
+                                            <button class="btn blue" type="button" id="ws-config-check-host-btn">确定
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>IP验证</td>
+                                        <td style="float: left;">
+                                            <input type="checkbox" name="ws-config-check-ip-switch"
+                                                   config-val="{$configs.ENABLE-CHECK-IP}"
+                                                   class="switch" checked/>
+                                            <textarea type="text" name="ws-config-check-ip" cols="69" rows="1"
+                                                      class="form-control input-inline" placeholder="IP黑名单，多个IP用英文','隔开"
+                                                      style="display: inline-block;">{$configs.CHECK-IP}</textarea>
+                                            <button class="btn blue" type="button" id="ws-config-check-ip-btn">确定
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END EXAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+
+                <!-- END PAGE CONTENT-->
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        //推送
+        $("#ws-config-push-btn").on('click', function () {
+            var range_id = $("[name='ws-config-push-range']").val();
+            var push_message = $("[name='ws-config-push-message']").val();
+            if (!range_id || !push_message || push_message.match(/[\f|\n|\r|\t|\v|"]+/g)) {
+                Interact.error_report('归档未选择或推送消息为空(包含特殊符号)');
+            } else {
+                $.ajax({
+                    url: "{:U('WebSocket/sendMessage')}",
+                    type: 'POST',
+                    data: {range_id: range_id, message: push_message},
+                    dataType: 'JSON',
+                    success: function (res) {
+                        console.log(res);
+                        if (res.status === 1) {
+                            Interact.success_report('推送成功')
+                        } else {
+                            Interact.error_report('推送失败');
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e.statusText);
+                    }
+                })
+            }
+        })
+
+        //关闭连接
+        $("#ws-config-close-user-btn").on('click', function () {
+            var range_id = $("[name='ws-config-close-range']").val();
+            var user_id = $("[name='ws-config-close-user']").val();
+            if (!range_id || !user_id || !(new RegExp(/^\w+$/g)).test(user_id)) {
+                Interact.error_report('归档未选择或用户ID为空(包含特殊符号)');
+            } else {
+                $.ajax({
+                    url: "{:U('WebSocket/closeUser')}",
+                    type: 'POST',
+                    data: {range_id: range_id, user_id: user_id},
+                    dataType: 'JSON',
+                    success: function (res) {
+                        console.log(res);
+                        if (res.status === 1) {
+                            Interact.success_report('关闭成功')
+                        } else {
+                            Interact.error_report('关闭失败');
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e.statusText);
+                    }
+                })
+            }
+        })
+
+        //开关
+        $(".switch").bootstrapSwitch({
+            state: false,
+            onText: '开启',
+            offText: '关闭',
+            onInit: function () {
+                var $this = $(this);
+                var default_config_val = $(this).attr('config-val') && $(this).attr('config-val') == 'true' ? true : false;
+                setTimeout(function () {
+                    $this.bootstrapSwitch('state', default_config_val, true);
+                    $this.parents('.checker').removeClass("checker");
+                }, 100);
+            },
+            onSwitchChange: function (e, data) {
+                $(this).attr('ws-config-switch', data);
+            }
+        });
+
+        //设置域名
+        $("#ws-config-check-host-btn").on('click', function () {
+            var host_switch = $("[name='ws-config-check-host-switch']").attr('ws-config-switch');
+            var host = $("[name='ws-config-check-host']").val();
+            if (host && !(new RegExp(/^[a-zA-Z]+:\/\/[^\s\/]*$/)).test(host)) {
+                Interact.error_report('域名格式不正确')
+            } else {
+                $.ajax({
+                    url: "{:U('WebSocket/checkHost')}",
+                    type: 'POST',
+                    data: {switch: host_switch ? host_switch : false, host: host ? host : ''},
+                    dataType: 'JSON',
+                    success: function (res) {
+                        console.log(res);
+                        if (res.status === 1) {
+                            Interact.success_report('设置成功');
+                        } else {
+                            Interact.error_report('设置失败');
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e.statusText);
+                    }
+                })
+            }
+        })
+
+        //设置ip黑名单
+        $("#ws-config-check-ip-btn").on('click', function () {
+            var ip_switch = $("[name='ws-config-check-ip-switch']").attr('ws-config-switch');
+            var ip = $("[name='ws-config-check-ip']").val();
+            if (ip && !(new RegExp(/^(\d{1,3}\.{1}\d{1,3}\.{1}\d{1,3}\.{1}\d{1,3},?)+$/)).test(ip)) {
+                Interact.error_report('IP格式不正确')
+            } else {
+                $.ajax({
+                    url: "{:U('WebSocket/checkIp')}",
+                    type: 'POST',
+                    data: {switch: ip_switch ? ip_switch : false, ip: ip ? ip : ''},
+                    dataType: 'JSON',
+                    success: function (res) {
+                        console.log(res);
+                        if (res.status === 1) {
+                            Interact.success_report('设置成功');
+                        } else {
+                            Interact.error_report('设置失败');
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e.statusText);
+                    }
+                })
+            }
+        })
+    })
+</script>
+
+<include file="Public/footer"/>

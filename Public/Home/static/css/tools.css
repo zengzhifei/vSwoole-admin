@@ -1,0 +1,120 @@
+@CHARSET "UTF-8";
+#confirmOverlay{
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0;
+	left:0;
+	opacity: 0.7;
+	background-color:#808080;
+	filter: alpha(opacity=70);
+	z-index:20000;
+}
+
+#confirmBox{
+	width:460px;
+	position:fixed;
+	left:50%;
+	top:50%;
+	margin:-130px 0 0 -230px;
+	/*border: 1px solid rgba(99, 99, 99, 0.6);   2015.7.8×¢ÊÍ*/   
+	height:127px; /*2015.7.8ÐÂÔö*/
+	
+	-moz-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+	-webkit-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+	/*box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset; 2015.7.8×¢ÊÍ*/
+	z-index:20010;
+}
+
+.flowWindowOverlay{
+	width:100%;
+	height:100%; 
+	position:fixed;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	background-color:#333;
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	z-index:10000;
+
+}
+
+.flowWindow{
+	position:fixed;
+	
+	margin-left: auto;
+    margin-right: auto;
+	/* margin:-130px 0 0 -230px; */
+	border: 1px solid rgba(99, 99, 99, 0.6);
+	
+	-moz-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+	-webkit-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+	/*box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;*/
+	z-index:10010;
+}
+
+.flowWindow.size90per {
+	top:5%;
+	left:5%;
+	width:90%;
+	height:90%;
+}
+
+.flowWindow.size50per {
+	top:25%;
+	left:25%;
+	width:50%;
+	height:50%;
+}
+
+.flowWindow.size900p {
+	top:50%;
+	left:50%;
+	margin-top:-337px;
+	margin-left:-450px;
+	width:900px;
+	height:675px;
+}
+
+.flowWindow.size500p {
+	top:50%;
+	left:50%;
+	margin-top:-187px;
+	margin-left:-250px;
+	width:500px;
+	height:375px;
+}
+
+
+.flowWindow .flowWindow-content{
+	background-color:#fff;
+	padding: 0px 10px 10px 10px;
+	overflow-y:auto;
+	overflow-x:hidden;
+	width:100%;
+	height:90%;
+}
+
+.flowWindow .flowWindow-control{
+	background-color:#fff;
+	padding: 5px 5px 0px 5px;
+	
+}
+
+.flowWindow .flowWindow-control .btn-group{
+	float:right;
+}
+
+.flowWindow .flowWindow-control .remove-btn{
+	font-size:18px;
+}
+
+.flowWindow .flowWindow-bottom{
+	background-color:#fff;
+	padding: 5px;
+}
+.page-content .fixed{ position:fixed; z-index:9999; top:80px; height:50px; line-height:18px;opacity: 0.9;} 
+
+.form .alert{margin:0;}

@@ -1,0 +1,136 @@
+<include file="Public/uchead"/>
+<div class="bg_top_h_tile">
+  <div class="bg_top_owner">
+    <div id="page_body">
+    				<div class="column_wrapper">
+           				 <div class="col_w1000">
+                   	   <div class="logo"><img src="__PUBLIC__/Home/yonghuzhongxinindex_files/youxiang_1.jpg" width="990" height="86" /></div>
+                       <div class="zt">
+                            <div class="left_nav">
+                                    <div class="tp"><img src="{$Think.session.user_auth.uid|getFaceUrl=###,'120'}" onerror="javascript:this.src='__PUBLIC__/Home/yonghuzhongxinindex_files/youxiang_2_120.jpg'" height="120" width="120"></div>
+                                    <div class="vspace" style="height:53px"></div>
+                                    <div class="nav">
+                                           <include file="Index/zjleft"/>
+                                    </div>
+                                    <script>
+                                    $(document).ready(function(){
+$("#nav li").each(function(i)
+	{
+		$(this).mouseenter(function()
+		{
+			$(this).siblings("li").removeClass("cur").end().addClass("cur");
+		});
+	});
+});
+                                    </script>
+                            </div>
+                            <div class="right_nr">
+                            			<h3>我的投票</h3>
+                                  <ul id="dell">
+                                        <li style="cursor:pointer;" class="cur"><a>投票</a></li>
+                                  </ul>
+                                  <div class="shoucang">
+                                        <div class="shouc list_box2" id="sc0" style="display:block">
+                                              <h3><a href="" style="float:left">全部<i>{$count}</i>条投票 </a> <!-- <span style="float:right; padding-right:10px;"><a href="" onclick="messageShow('popMessage1');return false;">清空全部</a></span> --></h3>
+                                              <if condition="$count lt 1">
+                                              <div class="ts">
+                                        			<div class="tp1"><a href="javascript:void(0)" id="xxclose"></a></div>
+                                        			<p>
+                                              			<a href="">您还没有投票。</a><br /><br />
+                                              </p>
+                                              <span><p>去精彩的<a href="">去互动平台</a>看看吧</p></span>
+                                        			</div>
+                                              </if>
+                                              <ul>
+                                              	<foreach name="list" item="vo">
+                                              			<li>
+                                                    			<!-- <div class="tp1"><a onclick="messageShow('popMessage');return false;" style="cursor:pointer;"></a></div> -->
+                                                          <div class="img"><a href=""><img src="{$vo.imgpath}" width="122" height="92" /></a></div>
+                                                          <div class="text">
+                                                          			<h3><a href="">{$vo.title}</a></h3>
+                                                          			<p><a href="">参与的投票选项标题和参与次数：</a>
+                                                          			</br><a href="">
+                                                          				<foreach name="vo.optiondata" item="v">
+                                                          					{$v.title}:{$v.count}次&nbsp;&nbsp;
+                                                          				</foreach>
+                                                          			</a></p>
+                                                          </div>
+                                                    </li>
+                                                   </foreach>
+                                                    
+                                        			</ul>
+                                              <div class="vspace" style="height:40px"></div>
+                                              <div class="page">
+                                              				<!-- <span class="tpb_right">
+                                                      			<a class="tpb_btn_previous" href="">第一页</a>
+                                                      			&nbsp;<a class="tpb_btn" href=""><<上一页</a>
+                                                      			&nbsp;<span style=" display:inline-block;margin-top:-1px; *margin:0">
+	                                                      				<a class="su cur">1</a>&nbsp;
+	                                                      				<a href="" class="su">2</a>&nbsp;
+	                                                      				<a href="" class="su">3</a>&nbsp;
+	                                                      				<a href="" class="su">4</a>&nbsp;
+	                                                      				<a href="" class="su">5</a>&nbsp;
+                                                      			    </span>
+                                                      			    <a class="tpb_btn" href="">下一页>></a>&nbsp;
+																	<a class="tpb_btn_previous" href=""><i>最后一页</i></a>&nbsp;
+                                                      </span> -->
+                                                      {$page}
+                                              </div>
+                                        </div>
+                                  </div>
+<script>
+$(document).ready(function(){
+$("#dell li").each(function(i)
+	{
+		$(this).click(function()
+		{
+			$(this).siblings("li").removeClass("cur").end().addClass("cur");
+			$("#sc"+i).siblings(".shouc").css({"display":"none"}).end().css({"display":"block"});
+		});
+	});
+});
+</script>
+                      </div>
+            			 </div>
+            </div>
+    </div>
+    
+            <include file="Public/footer"/>
+  </div>
+  </div>
+</div>
+
+<div class="popBack" id="bodyBack"></div>
+<div class="popMessage" id="popMessage">
+  <div id="box">
+		<a href="" onclick="popHide('popMessage');return false;" class="close" title="关闭"></a>
+		<h1>删除参与的投票</h1>
+		<div class="text_box">
+        <p>确定删除你所参与的该条投票？</p>
+        <div class="kj"><a class="qd" href="">确定</a><a class="qx" href="">取消</a>
+        </div>
+    </div>
+	</div>
+</div>
+<div class="popMessage" id="popMessage1">
+	<div id="box">
+		<a href="" onclick="popHide('popMessage1');return false;" class="close" title="关闭"></a>
+		<h1>清空参与的投票</h1>
+		<div class="text_box">
+			<p>确定要清空你所参与的投票的所有记录吗？</p>
+			<div class="kj">
+				<a class="qd" href="#">确定</a>
+				<a class="qx" href="" onclick="popHide('popMessage1');return false;">取消</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="__PUBLIC__/Home/static/js/popwindow.js"></script>
+<script>
+$("#xxclose").click(function(){
+	$(".ts").hide();
+});
+</script>
+
+</body>
+</html>

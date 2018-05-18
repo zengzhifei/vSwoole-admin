@@ -1,0 +1,324 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="微盟、微信营销、微信代运营、微信定制开发、微信托管、微网站、微商城、微营销" name="Keywords">
+	<meta content="微盟，国内最大的微信公众智能服务平台，微盟八大微体系：微菜单、微官网、微会员、微活动、微商城、微推送、微服务、微统计，企业微营销必备。" name="Description">
+	<link rel="stylesheet" type="text/css" href="{$link}/css/common.css?v={:SITE_VERSION}" media="all">
+    <link rel="stylesheet" type="text/css" href="{$link}/css/survey.css?v={:SITE_VERSION}" media="all">
+	<script type="text/javascript" src="http://218.241.129.64/appplatform/mc/js/implante.js"></script>
+    <title>{$resinfo.title}</title>
+	
+
+
+    <!--[if lte IE 9]><script src="http://stc.weimob.com/src/watermark.js"></script><![endif]-->
+	<!--[if IE 7]><link href="http://stc.weimob.com/css/font_awesome_ie7.css" rel="stylesheet" /><![endif]-->
+</head>
+<body>
+	
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1,user-scalable=no,maximum-scale=1,initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="description" content="author:eric_wu">
+	<title></title>
+	<style>
+		.wrapper{
+			text-align: center;
+		}
+		.content-w1{
+			border: 1px solid #939393;
+		}
+		.content-w1,.content-w2,.content{
+			background-color: #e4e4e4;
+			border-bottom: 1px solid #939393;
+		}
+		.content-w1,.content-w2{
+			display: inline-block;
+			padding: 0px 0px 3px;
+		}
+		.content{
+			width: 266px;
+			margin: 0px auto;
+			padding: 0px 0px 10px;
+		}
+		.title{
+			font-size: 20px;
+			padding: 10px 18px 0px;
+		}
+		.connect{
+			width: 100%;
+			display: block;
+			margin: 10px 0px;
+		}
+		.desc-cont{
+			text-align: left;
+			padding: 0 18px;
+		}
+		.next-btn{
+			color: #FFF;
+			width: 120px;
+			display: block;
+			padding: 8px 22px;
+			font-size: 16px;
+			margin: 20px auto 0px;
+		}
+		.page-url{
+			margin-top: 30px;
+		}
+	</style>
+
+
+	<div class="wrapper">
+		<img class="bg" src="http://stc.weimob.com/img/surveymobile/bg.jpg">
+		<!--<img class="bg" src="__ROOT__{$imginfo.path}">-->
+		<div style="height: 25px;"></div>
+		<div class="content-w1">
+			<div class="content-w2">
+				<div class="content">
+					<div class="title">{$resinfo.title}</div>
+					<img class="connect" src="http://stc.weimob.com/img/surveymobile/connect.png">
+					<div class="desc-cont">{$resinfo.remark}</div>
+					<a class="next-btn" href="{:addons_url('Research://Show/topic', array('rid'=>$resinfo['id']))}" style="text-decoration:none;">马上开始</a>
+				</div>
+			</div>
+		</div>
+
+ 	<p class="page-url">
+		<a href="/weisite/home?pid=55560238&amp;bid=56202538&amp;wechatid=o1-Guw7wokGlpeRi8CPwiheYFdDY" target="_blank" class="page-url-link">由“轻应用”平台提供</a>
+	</p>
+	</div>
+
+    <!-- <script type="text/javascript" async="" src="http://tj.weimob.com/wtj.js?url=http%3A%2F%2Fwxa54efa46a5d2deaa.m.weimob.com%2Fsurveymobile%2FIndex%3Fid%3D15282%26bid%3D56202538%26pid%3D55560238%26wechatid%3Do1-Guw7wokGlpeRi8CPwiheYFdDY"><script src="http://m.weimob.com/weixinjs/getsignpackage?pid=55560238&amp;bid=" type="text/javascript"></script></script><script>
+            window.shareData = {
+            "imgUrl": "http://img.weimob.com/static/87/05/5a/image/20150728/20150728160435_82410.jpg",
+            "timeLineLink": "http://0.m.weimob.com/surveymobile/Index?id=15282&bid=56202538&pid=55560238&wechatid=fromUsername",
+            "sendFriendLink": "http://0.m.weimob.com/surveymobile/Index?id=15282&bid=56202538&pid=55560238&wechatid=fromUsername",
+            "weiboLink": "http://0.m.weimob.com/surveymobile/Index?id=15282&bid=56202538&pid=55560238&wechatid=fromUsername",
+            "tTitle": "调查",
+            "tContent": "调查",
+            "fTitle": "调查",
+            "fContent": "调查",
+            "wContent": "调查",
+            "callback": "shareCallBack",
+            "t_callback_func": "shareCallBack",
+            "f_callback_func": "shareCallBack"
+        };
+        
+        function shareCallBack(){
+        }
+    
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            // 发送给好友
+            WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                WeixinJSBridge.invoke('sendAppMessage', {
+                    "img_url": window.shareData.imgUrl,
+                    "img_width": "640",
+                    "img_height": "640",
+                    "link": window.shareData.sendFriendLink,
+                    "desc": window.shareData.fContent,
+                    "title": window.shareData.fTitle
+                }, function (res) {
+                    _report('send_msg', '111111');
+                })
+            });
+    
+            // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function (argv) {
+                WeixinJSBridge.invoke('shareTimeline', {
+                    "img_url": window.shareData.imgUrl,
+                    "img_width": "640",
+                    "img_height": "640",
+                    "link": window.shareData.timeLineLink,
+                    "desc": window.shareData.tContent,
+                    "title": window.shareData.tTitle
+                }, function (res) {
+                    _report('timeline', res.err_msg);
+                });
+            });
+    
+            // 分享到微博
+            WeixinJSBridge.on('menu:share:weibo', function (argv) {
+                WeixinJSBridge.invoke('shareWeibo', {
+                    "content": window.shareData.wContent,
+                    "url": window.shareData.weiboLink
+                }, function (res) {
+                    _report('weibo', res.err_msg);
+                });
+            });
+        }, false);
+    </script>
+    
+    <script type="text/javascript">
+    window.shareData = {
+    	"imgUrl": "http://img.weimob.com/static/87/05/5a/image/20150728/20150728160435_82410.jpg", 
+    	"timeLineLink": "http://0.m.weimob.com/surveymobile/Index?id=15282&bid=56202538&pid=55560238&wechatid=fromUsername",
+    	"sendFriendLink": "http://0.m.weimob.com/surveymobile/Index?id=15282&bid=56202538&pid=55560238&wechatid=fromUsername",
+    	"weiboLink": "http://0.m.weimob.com/surveymobile/Index?id=15282&bid=56202538&pid=55560238&wechatid=fromUsername",
+    	"tTitle": "调查",
+    	"tContent": "调查",
+    	"fTitle": "调查",
+    	"fContent": "调查",
+    	"wContent": "调查" 
+    };
+    </script>
+    <script type="text/javascript">
+    (function() {
+    	var wtj = document.createElement('script'); wtj.type = 'text/javascript'; wtj.async = true;
+    	wtj.src = 'http://tj.weimob.com/wtj.js?url=' + encodeURIComponent(location.href);
+    	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wtj, s);
+    })();
+    function weimobAfterShare(shareFromWechatId,sendFriendLink,shareToPlatform){
+    	var wmShare = document.createElement('script'); wmShare.type = 'text/javascript'; wmShare.async = true;
+    wmShare.src = 'http://tj.weimob.com/api-share.js?fromWechatId=' + shareFromWechatId + '&shareToPlatform=';
+    	wmShare.src += shareToPlatform + '&pid=55560238&sendFriendLink=' + encodeURIComponent(sendFriendLink);
+    var stj = document.getElementsByTagName('script')[0]; stj.parentNode.insertBefore(wmShare, stj);
+    }
+    
+    /**
+     * 默认分享出去的数据
+     *
+     */
+    function getShareImageUrl(){
+    
+    	var share_imgurl = "";
+    	if("" == share_imgurl){
+    		var shareImgObj = document.getElementsByClassName("shareImgUrl")[0];
+    		if('undefined' != typeof(shareImgObj)){
+    			share_imgurl = shareImgObj.src;
+    		}
+    	}
+    	return window.shareData.imgUrl || share_imgurl;
+    }
+    
+    window.shareData = window.shareData || {
+    		"timeLineLink": "http://0.m.weimob.com/surveymobile/Index?id=15282&bid=56202538&pid=55560238&wechatid=fromUsername",
+    	"sendFriendLink": "http://0.m.weimob.com/surveymobile/Index?id=15282&bid=56202538&pid=55560238&wechatid=fromUsername",
+    	"weiboLink": "http://0.m.weimob.com/surveymobile/Index?id=15282&bid=56202538&pid=55560238&wechatid=fromUsername",
+    	"tTitle": document.title,
+    	"tContent": document.title,
+    	"fTitle": document.title,
+    	"fContent": document.title,
+    	"wContent": document.title
+    }
+    
+    //loadChangeUrlChannel("timeLineLink","fc");
+    //loadChangeUrlChannel("sendFriendLink","f");
+    if(!window.pass_share){
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    	//loadChangeUrlChannel();
+    	// 发送给好友
+    	WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+    		WeixinJSBridge.invoke('sendAppMessage', { 
+    			"img_url": getShareImageUrl(),
+    			"img_width": "640",
+    			"img_height": "640",
+    			"link": window.shareData.sendFriendLink,
+    			"desc": window.shareData.fContent,
+    			"title": window.shareData.fTitle
+    		}, function (res) {
+    			if('send_app_msg:cancel' != res.err_msg){
+    				weimobAfterShare("o1-Guw7wokGlpeRi8CPwiheYFdDY",window.shareData.sendFriendLink,'appmessage');
+    			}
+    			_report('send_msg', res.err_msg);
+    		})
+    	});
+    
+    	// 分享到朋友圈
+    	WeixinJSBridge.on('menu:share:timeline', function (argv) {
+    		
+    		WeixinJSBridge.invoke('shareTimeline', {
+    			"img_url": getShareImageUrl(),
+    			"img_width": "640",
+    			"img_height": "640",
+    			"link": window.shareData.timeLineLink,
+    			"desc": window.shareData.tContent,
+    			"title": window.shareData.tTitle
+    		}, function (res) {
+    			if('share_timeline:cancel' != res.err_msg){
+    				//如果用户没有取消
+    				weimobAfterShare("o1-Guw7wokGlpeRi8CPwiheYFdDY",window.shareData.timeLineLink,'timeline');
+    			}
+    			_report('timeline', res.err_msg);
+    		});
+    	});
+    
+    	// 分享到微博
+    	WeixinJSBridge.on('menu:share:weibo', function (argv) {
+    		WeixinJSBridge.invoke('shareWeibo', {
+    			"content": window.shareData.wContent,
+    			"url": window.shareData.weiboLink
+    		}, function (res) {
+    			if('share_weibo:cancel' != res.err_msg){
+    				weimobAfterShare("o1-Guw7wokGlpeRi8CPwiheYFdDY",window.shareData.weiboLink,'weibo');
+    			}
+    			_report('weibo', res.err_msg);
+    		});
+    	});
+    }, false);
+    }
+    
+    </script>
+    <script type="text/javascript" src="http://kf.weimob.com/js/ChatFloat.js"></script>
+    <script type="text/javascript">
+    var str_domain = location.href.split('/',4)[2];
+    var boolIsTest = true;
+    if(str_domain == 'www.weimob.com' || str_domain.indexOf('m.weimob.com') > 0){
+    	boolIsTest = false;
+    }
+    //1.0 web
+    new ChatFloat({
+        AId: '55560238',
+        openid: "o1-Guw7wokGlpeRi8CPwiheYFdDY",
+    		top:150,
+    		right:0,
+    		IsTest:boolIsTest
+    });
+    </script>
+    
+    echo STATIC_DOMAIN."/src/jQuery.js?v=10101011
+    <script type="text/javascript" src="http://stc.weimob.com/src/st/share_channel.js?v=111111"></script>
+    <script type="text/javascript" src="http://stc.weimob.com/src/st/base64.js?v=10101010"></script>
+    <script type="text/javascript" src="http://stc.weimob.com/src/st/st.js?v=1438070838"></script>
+    <script type="text/javascript">
+     //var jq=$.noConflict();
+     //使用案例如###如若上线请到研发群找我@赵增煜###
+    st.push("_triggerEvent",{
+    		"is_statistic_on":"on", //开关
+    		"statisticServerPath": "http://statistic.weimob.com/wm.js", //统计地址
+    		"memcServerPath": "http://statistic.weimob.com/memc?cmd=get", //缓存地址
+    		"stat_action":"loadPage",  //统计动作类型
+    		"stat_optValue":""    //参数值
+    });
+    </script>
+    
+    weixin js sdk start
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="http://stc.weimob.com/src/share/weixin.js?v=10101010"></script>
+    <script type="text/javascript">
+    // alert(window.shareData.t_callback_func);
+    // alert('getShareImageUrl'+window.shareData.f_callback_func);
+    var imgUrl= getShareImageUrl();
+    _share.push("_shareEvent",{
+    		"is_share_on":"on", //开关
+    		"pid":55560238,
+    		"bid":"",
+    		"mUrl":"http://m.weimob.com",
+    		"optVal":
+    			{
+    			"shareLink": window.shareData.timeLineLink,
+    			"shareTitle": window.shareData.tTitle,
+    			"shareContent":window.shareData.tContent,
+    			"shareImg":window.shareData.imgUrl,
+            "t_callback_func":window.shareData.t_callback_func,
+            "f_callback_func":window.shareData.f_callback_func,
+    			"shareType":"",     
+    			"shareDataUrl":""
+    			}
+    });
+    </script>
+    weixin js sdk end
+    
+    <script src="http://statistic.weimob.com/wm.js?StatType=qudao&amp;url=http%3A%2F%2Fwxa54efa46a5d2deaa.m.weimob.com%2Fsurveymobile%2FIndex%3Fid%3D15282%26bid%3D56202538%26pid%3D55560238%26wechatid%3Do1-Guw7wokGlpeRi8CPwiheYFdDY&amp;stat_bid=&amp;stat_pid=&amp;stat_action_seq_id=&amp;stat_webtype=&amp;stat_module=&amp;stat_time=1438070857&amp;stat_action=loadPage&amp;stat_optValue=::&amp;stat_weimobID="></script> --></body></html>

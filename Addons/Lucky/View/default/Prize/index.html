@@ -1,0 +1,245 @@
+<include file="Pub/head" />
+<include file="Pub/top" />
+<div class="clearfix">
+    <div class="page-container">
+    <include file="Pub/left" />
+    
+        <div class="page-content-wrapper">
+        <div class="page-content">
+            <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="portlet-config" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+                            <h4 class="modal-title">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                             Widget settings form goes here
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn blue" type="button">Save changes</button>
+                            <button data-dismiss="modal" class="btn default" type="button">Close</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <!-- BEGIN PAGE HEADER-->
+            <!-- BEGIN PAGE HEAD -->
+            <div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <!-- END PAGE TITLE -->
+                <!-- BEGIN PAGE TOOLBAR -->
+                <!--<div class="page-toolbar">
+                     BEGIN THEME PANEL 
+                    <div class="btn-group btn-theme-panel">
+                        <a data-toggle="dropdown" class="btn dropdown-toggle" href="javascript:;">
+                        <i class="icon-settings"></i>
+                        </a>
+                        <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <h3>THEME</h3>
+                                    <ul class="theme-colors">
+                                        <li data-theme="default" class="theme-color theme-color-default active">
+                                            <span class="theme-color-view"></span>
+                                            <span class="theme-color-name">Dark Header</span>
+                                        </li>
+                                        <li data-theme="light" class="theme-color theme-color-light">
+                                            <span class="theme-color-view"></span>
+                                            <span class="theme-color-name">Light Header</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-12 seperator">
+                                    <h3>LAYOUT</h3>
+                                    <ul class="theme-settings">
+                                        <li>
+                                             Theme Style
+                                            <select class="layout-style-option form-control input-small input-sm">
+                                                <option selected="selected" value="square">Square corners</option>
+                                                <option value="rounded">Rounded corners</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Layout
+                                            <select class="layout-option form-control input-small input-sm">
+                                                <option selected="selected" value="fluid">Fluid</option>
+                                                <option value="boxed">Boxed</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Header
+                                            <select class="page-header-option form-control input-small input-sm">
+                                                <option selected="selected" value="fixed">Fixed</option>
+                                                <option value="default">Default</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Top Dropdowns
+                                            <select class="page-header-top-dropdown-style-option form-control input-small input-sm">
+                                                <option value="light">Light</option>
+                                                <option selected="selected" value="dark">Dark</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Mode
+                                            <select class="sidebar-option form-control input-small input-sm">
+                                                <option value="fixed">Fixed</option>
+                                                <option selected="selected" value="default">Default</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Menu
+                                            <select class="sidebar-menu-option form-control input-small input-sm">
+                                                <option selected="selected" value="accordion">Accordion</option>
+                                                <option value="hover">Hover</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Position
+                                            <select class="sidebar-pos-option form-control input-small input-sm">
+                                                <option selected="selected" value="left">Left</option>
+                                                <option value="right">Right</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Footer
+                                            <select class="page-footer-option form-control input-small input-sm">
+                                                <option value="fixed">Fixed</option>
+                                                <option selected="selected" value="default">Default</option>
+                                            </select>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     END THEME PANEL 
+                </div> -->
+                <!-- END PAGE TOOLBAR -->
+            </div>
+            
+ <div class="row">
+                
+                <div class="col-md-6" style="width:100%;">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-gift"></i>奖品列表
+                            </div>
+                            <div class="tools">
+                                <button class="btn btn-default" onclick="goback()" type="button">返回</button>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="tabbable-line">
+                                <ul class="nav nav-tabs ">
+                                    <li class="">
+                                        <a onclick="addurl(1)" data-toggle="tab" href="javascript:;" aria-expanded="false">
+                                        新增抽奖活动 </a>
+                                    </li>
+                                    <li class="">
+                                    
+                                        <a onclick="addurl2(1)" data-toggle="tab" href="javascript:;" aria-expanded="false">
+                                        参与情况 </a>
+                                    </li>
+                                    <li class="">
+                                        <a onclick="addurl3(1)" data-toggle="tab" href="javascript:;" aria-expanded="false">
+                                        中奖情况 </a>
+                                    </li>
+                                    <li class="active">
+                                        <a onclick="addurl4(1)" data-toggle="tab" href="javascript:;" aria-expanded=ture>
+                                        奖品列表 </a>
+                                    </li>
+                                    <li class="">
+                                        <a onclick="addurl5(1)" data-toggle="tab" href="javascript:;" aria-expanded="false">
+                                        数据统计 </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="tab_15_1" class="tab-pane active">
+                                        
+                                        <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                        <thead>
+                        <tr>
+                            <th>奖项</th>
+                            <th>奖品明细</th>
+                            <th>总数量</th>
+                            <th>中奖数量</th>
+                            <th>剩余数量</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <foreach name="list" item="pr">
+                        <tr>
+                            <td>{$pr.title}</td>
+                            <td>{$pr.name}</td>
+                            <td>{$pr.num}</td>
+                            <td>{$pr.lottery_num}</td>
+                            <td>{$pr.remain_num}</td>
+                        </tr>
+                        </foreach>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                            <div class="col-md-5 col-sm-12">
+                               <div class="dataTables_info" id="sample_editable_1_info" role="status" aria-live="polite">当前是第 {$p} 页  总页数 {$totalpage}</div>
+                            </div>
+                            <div class="col-md-7 col-sm-12">
+                            <div class="dataTables_paginate paging_simple_numbers" id="sample_editable_1_paginate">
+                            {$page}
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+    </div>
+    </div>
+    </div>
+      </div>
+       </div>
+        </div>
+        </div>
+        </div>
+<script>
+function addurl(type){
+    if(type == 1){
+        var url = "{:addons_url('Lucky://Lucky/modify')}";
+    }
+    location.href=url;
+}
+function addurl2(type){
+    if(type == 1){
+        var url = "{:addons_url('Lucky://User/index',array('lucky_id'=>$luck_id))}";
+    }
+    location.href=url;
+}
+function addurl3(type){
+    if(type == 1){
+        var url = "{:addons_url('Lucky://Log/index',array('lucky_id'=>$luck_id))}";
+    }
+    location.href=url;
+}
+function addurl4(type){
+    if(type == 1){
+        var url = "{:addons_url('Lucky://Prize/index',array('lucky_id'=>$luck_id))}";
+    }
+    location.href=url;
+}
+function addurl5(type){
+    if(type == 1){
+        var url = "{:addons_url('Lucky://Prize/statisticsprize',array('lucky_id'=>$luck_id))}";
+    }
+    location.href=url;
+}
+function goback(){
+    location.href = "{:addons_url('Lucky://Lucky/index')}";
+}
+</script>
+<include file="Pub/footer" />

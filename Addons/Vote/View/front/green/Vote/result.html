@@ -1,0 +1,81 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>微投票结果</title>
+  <meta name="viewport" content="width:640px,initial-scale=1,user-scalable=1">
+  <script type="text/javascript" src="{$link}/js/jQuery.js"></script>
+  <script type="text/javascript" src="{$link}/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+  <div id="chartContainer" style="height: 300px; width: 100%;">
+  </div>
+  <script type="text/javascript">
+	
+	var voteId = '' ;	// 默认id，若页面url之后无参数，则用这个id
+
+	var pageUrl = window.location.href;
+	if (pageUrl.indexOf("voteid=") != -1)
+	{
+		voteId = pageUrl.substr(pageUrl.indexOf("voteid=")+7,pageUrl.length);
+	}
+
+	// 1、请求接口
+	var getJSON = function(){
+		$.ajax({
+			url:"{:addons_url('Vote://Show/voteResult',array('voteid'=>$voteid))}",
+			type:"json",
+			//jsonp:"jsoncallback",
+			error:function(){
+				console.log("getJSON  error方法");
+			},
+			success:function(data){
+				if (data.status)
+				{
+					getJSONSucessHandler(data.data);
+				}else{
+					console.log("getJSON  获得数据异常");
+				}
+			}
+		});
+	}
+	getJSON();
+
+	var dataOptionsLabel = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N']
+
+	var getJSONSucessHandler = function(data){
+		var dataPointsData = '[';
+		for (var i=0;i<data.option.length; i++)
+		{ 
+			dataPointsData += '{"label": "'+data.option_title[i]+'", "y": '+data.option[i].votenumber+'}';
+			if (i!=data.option.length -1)
+			{
+				dataPointsData += ',';
+			}
+		}
+		dataPointsData += ']';
+		// 调用展示
+		show_chart(JSON.parse(dataPointsData));
+	}
+	// 2、展示chart
+	  var show_chart = function (dataPointsData) {
+		  //console.log("dataPointsData="+dataPointsData);
+		  var chart = new CanvasJS.Chart("chartContainer", {
+			  theme: "theme2",//theme1
+			  title:{
+				  text: "投票统计"
+			 },
+			   data: [
+			  {
+				  type: "column",
+				  dataPoints: dataPointsData
+			  }
+			  ]
+		  });
+		  chart.render();
+	  }
+  </script>
+  <style type="text/css">
+	.canvasjs-chart-credit{display:none;}
+  </style>
+</body>
+</html>

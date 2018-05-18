@@ -1,0 +1,294 @@
+﻿<include file="Public/head" />
+<include file="Public/top" />
+<div class="clearfix">
+	<div class="page-container">
+	<include file="Public/left" />
+	
+	    <div class="page-content-wrapper">
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="portlet-config" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							 Widget settings form goes here
+						</div>
+						<div class="modal-footer">
+							<button class="btn blue" type="button">Save changes</button>
+							<button data-dismiss="modal" class="btn default" type="button">Close</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<div class="page-head">
+			</div>
+			
+            <div class="row">
+            	<div class="col-md-12">
+                <div class="portlet box">
+                	<!-- <div class="portlet-title">
+                    </div> -->
+                	<div class="portlet-body form">
+							<form role="form" class="form-horizontal" method="POST" action="{:U('Process/index')}">
+								<div class="form-body">
+									<div class="form-group">
+										<label class="col-md-1 control-label">标题：</label>
+										<div class="col-md-2">
+											<input type="text" placeholder="标题" name="title" class="form-control input-small" value="{$title}">
+										</div>
+										
+										<label class="col-md-2 control-label">创建时间:</label>
+										<div class="col-md-4">
+											<div  class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+												<input type="text" class="form-control" name="from" value="{$from}">
+												<span class="input-group-addon">到</span>
+												<input type="text" class="form-control" name="to" value="{$to}">
+											</div>
+											
+										</div>
+										<div class="col-md-2">
+											<button class="btn blue" type="submit">查询</button>
+										</div>
+									</div>
+									
+								</div>
+							</form>
+						</div>
+                </div>
+            </div>
+			</div>
+            <div class="row">
+				<div class="col-md-12">
+					<div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-edit"></i>主持人流程管理
+							</div>
+								
+						</div>
+						<style>
+							.table-bordered th{text-align:center}
+						</style>
+						<div class="portlet-body">
+						
+						    <button style="margin-bottom:5px;" class="btn blue"  type="button" onclick="addurl('{$stage_id}')">新建流程</button>
+            			    <button style="margin-bottom:5px;" class="btn blue"  type="button" onclick="bothdelte()">批量删除</button>
+							
+							<table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+						
+							<thead>
+							<tr>
+								<th><input type="checkbox" id="checkAll"></th>
+								<th>ID</th>
+								<th>顺序</th>
+								<th>流程名称</th>
+								<th>创建时间</th>
+								<th>更新时间</th>
+								<th>操作</th>
+							</tr>
+							</thead>
+							<tbody>
+							<foreach name="data['list']" item="vo">
+							<tr>
+								<td><input type="checkbox" name="checkList" value="{$vo.id}"></td>
+								<td>{$vo.id}</td>
+							    <if condition="$vo.process_order eq 100">
+							    	<td><input type="text" id="set_order_{$vo.id}" name="set_processorder" value="" style="width:20px;" autocomplete="off"></td>
+							    <else />
+							    	<td><input type="text" id="set_order_{$vo.id}" name="set_processorder" value="{$vo.process_order}" style="width:20px;" autocomplete="off"></td>
+							    </if>
+								<td>{$vo.title}</td>
+								<td>{$vo.created|date='Y/m/d H:i:s',###} </td>
+								<td>{$vo.updated|date='Y/m/d H:i:s',###}</td>
+								<td>
+	                                <button class="btn btn-default" type="button" onclick="updateurl({$vo.id},'{$stage_id}')">编辑</button>
+	                                <button class="btn btn-default" type="button" onclick="deleteurl(this)" rel="{$vo.id}">删除</button>
+								</td>
+							</tr>
+							</foreach>
+							</tbody>
+							</table>
+							<if condition="$data['totalpage'] gt 1">
+							<div class="row">
+								<div class="col-md-5 col-sm-12">
+									<div class="dataTables_info" id="sample_editable_1_info" role="status" aria-live="polite">
+									    当前是第 {$data['p']} 页  总页数 {$data['totalpage']}
+									</div>
+								</div>
+
+								<div class="col-md-7 col-sm-12">
+									<div class="dataTables_paginate paging_simple_numbers" id="sample_editable_1_paginate">
+										  {$page}
+									 </div>
+								</div>
+							</div>
+                            </if>
+                           
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		<script>
+			$(function(){
+				$("input[name=set_processorder").blur(function(){
+					var obj = $(this);
+					var processid = obj.attr("id").replace("set_order_","");
+					var processorder = obj.val();
+					if(obj.val() == "" || obj.val() <= 0){
+						return false;
+					}
+					
+					//修改排序
+					$.confirm({  
+						   title:"确定要修改排序吗？",
+						   modal: true,  
+						   level:"warning",
+						   buttons: {  
+							   "确定": {
+								   "class":"green",
+								   "action":function() {
+										$.ajax({
+											url:"{:U('Process/updateProcessorder')}",
+											type:'post',
+											data:{processid:processid,processorder:processorder},
+											dataType:'json',
+											success:function(msg){
+												if(msg.status==1){
+													updateSuccess();
+												}
+											}
+										});
+								   }
+							   },
+							   "取消": {
+								   "class":"green",
+								   "action":function() {
+									   //$("#set_order_"+processid).val("");
+								   }
+							   }
+						   }  
+						});
+					
+				})
+			})
+			
+			function addurl(stage_id){
+				var str = "{:U('Process/add')}";
+				var url = str.replace(".html","")
+				    url = url+"/stage_id/"+stage_id;
+				    location.href=url;
+			}
+			function updateurl(id,stage_id){
+				var str = "{:U('Process/update')}";
+				var url = str.replace(".html","")
+				    url = url+"/processId/"+id+"/stage_id/"+stage_id;
+				    location.href=url;
+			}
+			function livetalkSet(livetalkid){
+				var str = "{:U('Livetalk/LivetalkSet')}";
+				var url = str.replace(".html","")
+				    url = url+"/livetalkid/"+livetalkid;
+				    location.href=url;
+			}
+			function deleteurl(obj){
+				var processId = $(obj).attr('rel');
+					$.confirm({  
+					   title:"确定要删除这条流程吗？",
+					   modal: true,  
+					   level:"warning",
+					   buttons: {  
+						   "确定": {
+							   "class":"green",
+							   "action":function() {
+								   $.ajax({
+										url:"{:U('Process/deleteProcess')}",
+										type:'post',
+										data:{processId:processId},
+										dataType:'json',
+										success:function(msg){
+											if(msg.status==1){
+												$(obj).parent().parent().remove();
+											}
+										}
+								});
+							   }
+						   },
+						   "取消": {
+							   "class":"green",
+							   "action":function() {}
+						   }
+					   }  
+					});
+			}
+			
+			function bothdelte(){
+				/* $.each($('input[name="checkList"]'),function () {
+	                if($(this).attr('checked') != undefined){
+	                	ids.push($(this).val());
+	                }
+	            }) */
+				var idstr = getCheckBoxValue();
+				if(idstr==''){
+					$.confirm({title:"你还没有选择要删除的流程，请选择后删除",modal: true,level:"warning",buttons: {  
+						   "确定": {"class":"green","action":function() {}}
+					   }  
+					});
+				}else{
+					$.confirm({  
+						   title:"确定要删除选中的流程？",
+						   modal: true,  
+						   level:"warning",
+						   buttons: {  
+							   "确定": {
+								   "class":"green",
+								   "action":function() {
+									   $.ajax({
+											url:"{:U('Process/deleteProcess')}",
+											type:'post',
+											data:{processId:idstr},
+											dataType:'json',
+											success:function(msg){
+												if(msg.status==1){
+													location.reload();
+												}
+											}
+									});
+								   }
+							   },
+							   "取消": {
+								   "class":"green",
+								   "action":function() {}
+							   }
+						   }  
+						});
+				}
+				
+			}
+			
+			function updateSuccess(){
+				$.confirm({  
+					   title:"修改成功",
+					   modal: true,  
+					   level:"warning",
+					   buttons: {  
+						   "确定": {
+							   "class":"green",
+						   },
+						   "取消": {
+							   "class":"green",
+						   }
+					   }  
+					});
+			}
+		</script>
+<include file="Public/footer" />

@@ -1,0 +1,176 @@
+<html><head><link href="modifyPasswd_data/style.css" rel="stylesheet" type="text/css">
+<script src="modifyPasswd_data/jquery-1.js"></script>
+<script src="modifyPasswd_data/js.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<style>
+.jibenxinxi_1 table tr td dd{ display:block; line-height:28px; font-family:"宋体"; font-size:12px; color:#e86767; background:url(http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/true_03.jpg) no-repeat 10px 7px; padding-left:33px;}
+</style>
+
+	</head><body><div class="xiugaitishi" id="xgcg2" style="display:none">
+		<div class="close"><a href="javascript:void(0)" id="close4"></a></div>
+		<p>修改成功</p>
+	</div>
+  <div class="xinxi jibenxinxi_1">
+
+
+<div class="vspace" style="height:30px;"></div>
+<table cellpadding="0" cellspacing="0" width="100%">
+      <tbody><tr height="50">
+            <td style="text-align:right" width="90">当前密码:&nbsp;</td>
+            <td width="212"><input name="current_password" id="current_password" onblur="return check_current();" type="password"></td>
+            <td width="200"><div id="zhengquets"></div></td>
+      </tr>
+      <tr height="50">
+            <td style="text-align:right" width="90">新密码:&nbsp;</td>
+            <td><input name="new_password" id="new_password" onblur="check_passwd()" type="password"></td>
+            <td><p id="jianyi" style="display:">密码由6-20个英文字母、数字或特殊字符组成。</p><div id="newpasswordzhengquets"></div></td>
+      </tr>
+      <tr height="50">	
+            <td style="text-align:right" width="90">确认新密码:&nbsp;</td>
+            <td><input name="new_password_confirm" id="new_password_confirm" onblur="check_repasswd()" type="password"></td>
+            <td><div id="confirmzhengquets"></div></td>
+      </tr>
+      <tr height="50">
+            <td>
+            <input id="usrId" name="usrId" value="89747e50a12f4b21ad0f485c918d4322" type="hidden">
+      		<input id="regSouce" name="regSouce" value="/userInfo/modifyPasswd.jsp" type="hidden">
+            </td>
+            <td colspan="2"><a href="javascript:void(0)" onclick="return check_submit();">提交修改</a></td>
+      </tr>
+</tbody></table>
+
+</div>
+ 
+<script type="text/javascript">
+		function trim(str){
+			 return str.replace(/(^\s*)|(\s*$)/g, "");
+		}	
+		function check_passwd(){
+			var current_passwd=$.trim($("#current_password").val());
+			var passwd = $("#new_password").val();
+			if(passwd!=""){
+				if(current_passwd == passwd){
+					$("#newpasswordzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;新密码不能与当前密码相同</p>");
+					$("#jianyi").html("");
+					return false;
+				}
+				if(trim(passwd) != passwd){
+					$("#newpasswordzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;密码不能使用空格，请更换</p>");
+					$("#jianyi").html("");
+					return false;
+				}
+				if(passwd.length<6||passwd.length>20){
+					$("#newpasswordzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;密码长度应为6-20位</p>");
+					$("#jianyi").html("");
+					return false;
+				}else{
+					$("#newpasswordzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/true_03.jpg' width='13' height='13'/></p>");
+					$("#jianyi").html("");
+					return true;
+				}
+			}else{
+				$("#newpasswordzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;请输入密码</p>");
+				$("#jianyi").html("");
+				return false;
+			}
+			return true;
+		}
+		function check_repasswd(){
+			var repasswd = $("#new_password_confirm").val();
+			var passwd = $("#new_password").val();
+			if(repasswd!=""){
+				if(repasswd!=passwd){
+					$("#confirmzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;两次输入密码不一致，请重输</p>");
+					return false;
+				}else{
+					$("#confirmzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/true_03.jpg' width='13' height='13'/></p>");
+					return true;
+				}
+			}else{
+				$("#confirmzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;请再次输入密码</p>");
+				return false;
+			}
+			return true;
+		}
+		function check_current(){
+			var current_passwd=$.trim($("#current_password").val());
+			var usrid =$.trim($("#usrId").val());
+			if(current_passwd==""){
+				$("#zhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;请输入当前密码</p>");
+				return false;
+			}else{
+				var varData = {
+						'passWd' : current_passwd,
+						'usrId' : usrid
+				};
+				$.getJSON(
+					'https://reg.cntv.cn/regist/checkPassWord.action?callback=?',
+					varData,
+				function(json){  
+					var errtype = '-1';
+					errtype = json.errtype;
+					if (errtype == 0) {
+						$("#zhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/true_03.jpg' width='13' height='13'/></p>");
+	        			return true;
+					} else{
+						$("#zhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;当前密码错误</p>");
+	        			return false;
+					}
+				});
+				return true;
+			}
+		}
+		function colsediv(){
+			document.getElementById("xgcg2").style.display="none";
+			location.reload();
+		}
+		function check_submit(){
+			var oldpasswd=document.getElementById("current_password").value;
+			var passwd= document.getElementById("new_password").value;
+			var verifypasswd= document.getElementById("new_password_confirm").value;
+			var usrid = document.getElementById("usrId").value;
+			var regSouce = document.getElementById("regSouce").value;
+			if(check_current() && check_passwd() && check_repasswd()){
+				var varData = {
+					'oldpasswd' : oldpasswd,
+					'passWd' : passwd,
+					'verifyPasswd' :verifypasswd,
+					'usrId' : usrid,
+					'regSouce' : regSouce
+				};
+				$.getJSON(
+					'https://reg.cntv.cn/regist/updatePasswd.action?callback=?',
+					varData,
+					function(json){  
+						var update_errtype = '-1';
+						update_errtype = json.errtype;
+						if (update_errtype == 0) {
+							document.getElementById("xgcg2").style.display="block";
+						} else if (update_errtype == 102) {
+							$("#confirmzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;请填全信息</p>");
+		        			return false;
+						} else if (update_errtype == 104) {
+							$("#confirmzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;用户不存在</p>");
+		        			return false;
+						}else if (update_errtype == 110) {
+							$("#confirmzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;密码不一致</p>");
+		        			return false;
+						}else if (update_errtype == 117) {
+							$("#confirmzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;密码仅限6-16个字符</p>");
+		        			return false;
+						} else if (update_errtype == 105) {
+							$("#confirmzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;当前密码错误</p>");
+		        			return false;
+						} else if (update_errtype == 119) {
+							$("#confirmzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;用户未激活</p>");
+		        			return false;
+		        		} else{
+		        			$("#confirmzhengquets").html("<p><img src='http://www.cntv.cn/Library/passport/2014/20140729passport_style/image/errer_03.jpg' width='13' height='13'/>&nbsp;修改密码失败</p>");
+		        			return false;
+						}
+				});
+			}
+		}
+	</script>
+</body></html>

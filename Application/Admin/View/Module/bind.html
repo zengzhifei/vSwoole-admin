@@ -1,0 +1,70 @@
+<!--模块绑定-->
+<div class="modules-bind">
+    <div class="modules-bind-row">
+        <div class="form-group">
+            <label class="col-md-3 control-label">绑定模块<span class="required"> &nbsp; </span></label>
+            <div class="col-md-9">
+                <select class="form-control input-inline input-small" name="modules-bind-name">
+                    <notempty name="modules">
+                        <option value="">选择绑定模块名称</option>
+                        <foreach name="modules" item="vo">
+                            <option value="{$vo.module_code}">{$vo.module_name}</option>
+                        </foreach>
+                    </notempty>
+                </select>
+                <button class="btn btn-default modules-bind-add" type="button">追加</button>
+                <button class="btn btn-default modules-bind-delete" type="button">删除</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">模块ID<span class="required"> &nbsp; </span></label>
+            <div class="col-md-9">
+                <select class="form-control input-inline input-medium" name="modules-bind-id">
+                    <option value="">选择绑定模块ID</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".modules-bind").on('click', ".modules-bind-add", function () {
+        var html = $(".modules-bind-row").eq(0).clone();
+        html.each(function () {
+            var self = $(this);
+            self.find("select[name='modules-bind-id']").empty();
+        })
+        $(".modules-bind").append(html);
+    })
+    $(".modules-bind").on('click', ".modules-bind-delete", function () {
+        if ($(".modules-bind-row").length > 1) {
+            $(this).parents('.modules-bind-row').remove();
+        }
+    })
+    $(".modules-bind").on('change', "select[name='modules-bind-name']", function () {
+        var modules_bind_name = $(this).val();
+        var stage_id = "{$stage_id}";
+        $.ajax({
+            url: "{:U('Module/selectModule')}",
+            type: 'GET',
+            data: {module_code: modules_bind_name, stage_id: stage_id},
+            dataType: 'json',
+            context:this,
+            success: function (res) {
+                if (res.status == 1) {
+                    var option = '';
+                    $.each(res.data, function (k, v) {
+                        option += '<option value="' + v.id + '">' + v.id + '</option>';
+                    })
+                    $(this).parents('.modules-bind-row').find("select[name='modules-bind-id']").html('').append(option);
+                } else {
+                    var option = '<option value="">'+res.msg+'</option>'
+                    $(this).parents('.modules-bind-row').find("select[name='modules-bind-id']").html('').append(option);
+                }
+            },
+            error: function (e) {
+                alert(e.statusText);
+            }
+        })
+    })
+
+</script>

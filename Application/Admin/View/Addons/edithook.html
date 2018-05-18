@@ -1,0 +1,312 @@
+<include file="Public/head" />
+<include file="Public/top" />
+<style>
+.dragsort {width:400px;}
+</style>
+<link rel="stylesheet" type="text/css" href="__CSS__/style.css" media="all">
+<div class="clearfix">
+	<div class="page-container">
+		<include file="Public/left" />
+
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+				<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+					tabindex="-1" id="portlet-config" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button aria-hidden="true" data-dismiss="modal" class="close"
+									type="button"></button>
+								<h4 class="modal-title">Modal title</h4>
+							</div>
+							<div class="modal-body">Widget settings form goes here</div>
+							<div class="modal-footer">
+								<button class="btn blue" type="button">Save changes</button>
+								<button data-dismiss="modal" class="btn default" type="button">Close</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+				<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+				<!-- BEGIN PAGE HEADER-->
+				<!-- BEGIN PAGE HEAD -->
+				<div class="page-head">
+					<!-- BEGIN PAGE TITLE -->
+					<!-- END PAGE TITLE -->
+					<!-- BEGIN PAGE TOOLBAR -->
+					<!--<div class="page-toolbar">
+                     BEGIN THEME PANEL 
+                    <div class="btn-group btn-theme-panel">
+                        <a data-toggle="dropdown" class="btn dropdown-toggle" href="javascript:;">
+                        <i class="icon-settings"></i>
+                        </a>
+                        <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <h3>THEME</h3>
+                                    <ul class="theme-colors">
+                                        <li data-theme="default" class="theme-color theme-color-default active">
+                                            <span class="theme-color-view"></span>
+                                            <span class="theme-color-name">Dark Header</span>
+                                        </li>
+                                        <li data-theme="light" class="theme-color theme-color-light">
+                                            <span class="theme-color-view"></span>
+                                            <span class="theme-color-name">Light Header</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-12 seperator">
+                                    <h3>LAYOUT</h3>
+                                    <ul class="theme-settings">
+                                        <li>
+                                             Theme Style
+                                            <select class="layout-style-option form-control input-small input-sm">
+                                                <option selected="selected" value="square">Square corners</option>
+                                                <option value="rounded">Rounded corners</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Layout
+                                            <select class="layout-option form-control input-small input-sm">
+                                                <option selected="selected" value="fluid">Fluid</option>
+                                                <option value="boxed">Boxed</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Header
+                                            <select class="page-header-option form-control input-small input-sm">
+                                                <option selected="selected" value="fixed">Fixed</option>
+                                                <option value="default">Default</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Top Dropdowns
+                                            <select class="page-header-top-dropdown-style-option form-control input-small input-sm">
+                                                <option value="light">Light</option>
+                                                <option selected="selected" value="dark">Dark</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Mode
+                                            <select class="sidebar-option form-control input-small input-sm">
+                                                <option value="fixed">Fixed</option>
+                                                <option selected="selected" value="default">Default</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Menu
+                                            <select class="sidebar-menu-option form-control input-small input-sm">
+                                                <option selected="selected" value="accordion">Accordion</option>
+                                                <option value="hover">Hover</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Position
+                                            <select class="sidebar-pos-option form-control input-small input-sm">
+                                                <option selected="selected" value="left">Left</option>
+                                                <option value="right">Right</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Footer
+                                            <select class="page-footer-option form-control input-small input-sm">
+                                                <option value="fixed">Fixed</option>
+                                                <option selected="selected" value="default">Default</option>
+                                            </select>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     END THEME PANEL 
+                </div> -->
+					<!-- END PAGE TOOLBAR -->
+				</div>
+				<!-- END PAGE HEAD -->
+				<!-- BEGIN PAGE BREADCRUMB -->
+				<!-- END PAGE BREADCRUMB -->
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN EXAMPLE TABLE PORTLET-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+	                                 <i class="fa fa-edit"></i><present name="data">编辑<else />新增</present>钩子
+	                            </div>
+							</div>
+							<div class="portlet-body form">
+								<div class="form-body">
+									<div class="alert alert-danger display-hide">
+										<button data-close="alert" class="close"></button>
+										<span></span>
+									</div>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-12">
+											<form id="sortform" class="form-horizontal">
+												<div class="form-group">
+													<label class="control-label col-md-3">钩子名称：<span class="required"> * </span></label>
+													<div class="col-md-9">
+														<input type="text" value="{$data.name}" name="name" class="form-control input-inline input-medium"/>
+														<span class="help-inline">需要在程序中先添加钩子，否则无效</span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">钩子描述：<span class="required"> * </span></label>
+													<div class="col-md-9">
+														<textarea rows="3" class="form-control input-inline input-medium" name="description">{$data.description}</textarea>
+														<span class="help-inline">钩子的描述信息</span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">钩子类型：</label>
+													<div class="col-md-9">
+														<select class="form-control input-inline input-medium" name="type">
+															<volist name=":C('HOOKS_TYPE')" id="vo">
+																<option value="{$key}" <eq name="data.type" value="$key"> selected</eq>>{$vo}</option>
+															</volist>
+														</select>
+				
+													</div>
+												</div>
+												
+												<present name="data">
+													<div class="form-item cf" style="padding-left:165px;">
+														<label class="item-label">钩子挂载的插件排序<span class="check-tips">（拖动后保存顺序，影响同一个钩子挂载的插件执行先后顺序）</span></label>
+														<div class="controls">
+															<input type="hidden" name="addons" value="{$data.addons}" readonly>
+															<empty name="data.addons">
+																暂无插件，无法排序
+															<else />
+															<ul id="sortUl" class="dragsort">
+																<volist name=":explode(',',$data['addons'])" id="addons_vo">
+																	<li class="getSort"><b>&times;</b><em>{$addons_vo}</em></li>
+																</volist>
+															</ul>
+															<script type="text/javascript">
+																$(function(){
+																	$("#sortUl").dragsort({
+											                            dragSelector:'li',
+											                            placeHolderTemplate: '<li class="draging-place">&nbsp;</li>',
+											                            dragEnd:function(){
+											                            	updateVal();
+											                            }
+											                        });
+										
+																	$('#sortUl li b').click(function(){
+										                            	$(this).parent().remove();
+										                            	updateVal();
+										                            });
+										
+																	// 更新排序后的隐藏域的值
+											                        function updateVal() {
+											                        	var sortVal = [];
+										                            	$('#sortUl li').each(function(){
+										                            		sortVal.push($('em',this).text());
+										                            	});
+										                                $("input[name='addons']").val(sortVal.join(','));
+											                        }
+																})
+															</script>
+															</empty>
+														</div>
+													</div>
+												</present>
+		
+												<div class="form-actions">
+													<div class="row">
+														<div class="col-md-offset-4 col-md-7">
+															<input type="hidden" name="id" value="{$data.id}">
+															<button type="button" onclick="checkform(this.form)" class="btn blue">提交</button>
+															<input type="button" class="btn default" onclick="javascript:history.back(-1);return false;" value="返回">
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<present name="data">
+						<script type="text/javascript" src="__STATIC__/jquery.dragsort-0.5.1.min.js"></script>
+					</present>
+					<script type="text/javascript">
+						function checkform(form) {
+							if (form.name.value == '') {
+								$(".display-hide > span").html("请输入钩子名称");
+								$(".display-hide").show();
+								form.name.focus();
+								return false;
+							}
+							if (form.description.value == '') {
+								$(".display-hide > span").html("请填写描述信息");
+								$(".display-hide").show();
+								form.description.focus();
+								return false;
+							}
+							
+
+							
+							$(".display-hide").hide();
+					        var data=$("#sortform").serialize();
+							$.ajax({
+					            url:"{:U('updateHook')}",
+					            data:data,
+					            type:"POST",
+					            dataType:"json",
+					            success:function(msg){
+					            	
+					                if(msg.status == 1){
+					                    var msg = msg.info;
+					                    $.confirm({title:msg,modal: true, level:"success",buttons: {  
+					                           "确定": {
+					                               "class":"blue",
+					                               "action":function() {
+					                            	   //location.reload();
+					                            	   location.href = '__ROOT__/admin/Addons/hooks.html';
+					                               }
+					                           }
+					                       }  
+					                    });
+					                }else{
+					                    var msg=msg.info+",请重新提交";
+					                    $.confirm({title:msg,modal: true, level:"danger",buttons: {  
+					                           "确定": {
+					                               "class":"blue",
+					                               "action":function() {
+					                               }
+					                           }
+					                       }  
+					                    });
+					                }
+					            }
+					        });
+							return false;
+							
+						}
+
+					</script>
+
+				</div>
+			</div>
+			<!-- END EXAMPLE TABLE PORTLET-->
+		</div>
+	</div>
+
+	<!-- END PAGE CONTENT-->
+</div>
+
+
+
+<include file="Public/footer" />

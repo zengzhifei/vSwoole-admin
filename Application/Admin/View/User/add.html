@@ -1,0 +1,271 @@
+<include file="Public/head" />
+<include file="Public/top" />
+<div class="clearfix">
+	<div class="page-container">
+		<include file="Public/left" />
+
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+				<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+					tabindex="-1" id="portlet-config" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button aria-hidden="true" data-dismiss="modal" class="close"
+									type="button"></button>
+								<h4 class="modal-title">Modal title</h4>
+							</div>
+							<div class="modal-body">Widget settings form goes here</div>
+							<div class="modal-footer">
+								<button class="btn blue" type="button">Save changes</button>
+								<button data-dismiss="modal" class="btn default" type="button">Close</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+				<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+				<!-- BEGIN PAGE HEADER-->
+				<!-- BEGIN PAGE HEAD -->
+				<div class="page-head">
+					<!-- BEGIN PAGE TITLE -->
+					<!-- END PAGE TITLE -->
+					<!-- BEGIN PAGE TOOLBAR -->
+					<!--<div class="page-toolbar">
+                     BEGIN THEME PANEL 
+                    <div class="btn-group btn-theme-panel">
+                        <a data-toggle="dropdown" class="btn dropdown-toggle" href="javascript:;">
+                        <i class="icon-settings"></i>
+                        </a>
+                        <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <h3>THEME</h3>
+                                    <ul class="theme-colors">
+                                        <li data-theme="default" class="theme-color theme-color-default active">
+                                            <span class="theme-color-view"></span>
+                                            <span class="theme-color-name">Dark Header</span>
+                                        </li>
+                                        <li data-theme="light" class="theme-color theme-color-light">
+                                            <span class="theme-color-view"></span>
+                                            <span class="theme-color-name">Light Header</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-12 seperator">
+                                    <h3>LAYOUT</h3>
+                                    <ul class="theme-settings">
+                                        <li>
+                                             Theme Style
+                                            <select class="layout-style-option form-control input-small input-sm">
+                                                <option selected="selected" value="square">Square corners</option>
+                                                <option value="rounded">Rounded corners</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Layout
+                                            <select class="layout-option form-control input-small input-sm">
+                                                <option selected="selected" value="fluid">Fluid</option>
+                                                <option value="boxed">Boxed</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Header
+                                            <select class="page-header-option form-control input-small input-sm">
+                                                <option selected="selected" value="fixed">Fixed</option>
+                                                <option value="default">Default</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Top Dropdowns
+                                            <select class="page-header-top-dropdown-style-option form-control input-small input-sm">
+                                                <option value="light">Light</option>
+                                                <option selected="selected" value="dark">Dark</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Mode
+                                            <select class="sidebar-option form-control input-small input-sm">
+                                                <option value="fixed">Fixed</option>
+                                                <option selected="selected" value="default">Default</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Menu
+                                            <select class="sidebar-menu-option form-control input-small input-sm">
+                                                <option selected="selected" value="accordion">Accordion</option>
+                                                <option value="hover">Hover</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Position
+                                            <select class="sidebar-pos-option form-control input-small input-sm">
+                                                <option selected="selected" value="left">Left</option>
+                                                <option value="right">Right</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Footer
+                                            <select class="page-footer-option form-control input-small input-sm">
+                                                <option value="fixed">Fixed</option>
+                                                <option selected="selected" value="default">Default</option>
+                                            </select>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     END THEME PANEL 
+                </div> -->
+					<!-- END PAGE TOOLBAR -->
+				</div>
+				<!-- END PAGE HEAD -->
+				<!-- BEGIN PAGE BREADCRUMB -->
+				<!-- END PAGE BREADCRUMB -->
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN EXAMPLE TABLE PORTLET-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+	                                 <i class="fa fa-edit"></i>新增用户
+	                            </div>
+							</div>
+							<div class="portlet-body form">
+								<div class="form-body">
+									<div class="alert alert-danger display-hide">
+										<button data-close="alert" class="close"></button>
+										<span></span>
+									</div>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-12">
+											<form id="sortform" class="form-horizontal">
+												<div class="form-group">
+													<label class="control-label col-md-3">用户名：<span class="required"> * </span></label>
+													<div class="col-md-9">
+														<input type="text" name="username" class="form-control input-inline input-medium"/>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">密码：<span class="required"> * </span></label>
+													<div class="col-md-9">
+														<input type="password" name="password"  autocomplete="off" class="form-control input-inline input-medium"/>
+														<span class="help-inline">用户密码不能少于6位</span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">确认密码：<span class="required"> * </span></label>
+													<div class="col-md-9">
+														<input type="password" name="repassword"  autocomplete="off" class="form-control input-inline input-medium"/>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">邮箱：<span class="required"> * </span></label>
+													<div class="col-md-9">
+														<input type="text" name="email" class="form-control input-inline input-medium "/>
+													</div>
+												</div>
+												<div class="form-actions">
+													<div class="row">
+														<div class="col-md-offset-4 col-md-7">
+															<button type="button" onclick="checkform(this.form)" class="btn blue">提交</button>
+															<button class="btn default" onclick="javascript:history.back(-1);return false;">返 回</button>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<script type="text/javascript">
+						function checkform(form) {
+							if (form.username.value == '') {
+								$(".display-hide > span").html("请输入昵称");
+								$(".display-hide").show();
+								form.username.focus();
+								return false;
+							}
+							if (form.password.value == '') {
+								$(".display-hide > span").html("请输入密码");
+								$(".display-hide").show();
+								form.password.focus();
+								return false;
+							}
+							if (form.password.value != form.repassword.value) {
+								$(".display-hide > span").html("您输入的新密码与确认密码不一致");
+								$(".display-hide").show();
+								form.password.focus();
+								return false;
+							}
+							if (form.email.value == '') {
+								$(".display-hide > span").html("请输入邮箱");
+								$(".display-hide").show();
+								form.email.focus();
+								return false;
+							}
+
+							
+							$(".display-hide").hide();
+					        var data=$("#sortform").serialize();
+							$.ajax({
+					            url:"{:U('User/add')}",
+					            data:data,
+					            type:"POST",
+					            dataType:"json",
+					            success:function(msg){
+					            	
+					                if(msg.status == 1){
+					                    var msg = msg.info;
+					                    $.confirm({title:msg,modal: true, level:"success",buttons: {  
+					                           "确定": {
+					                               "class":"blue",
+					                               "action":function() {
+					                            	   //location.reload();
+					                            	   location.href = '__ROOT__/admin/User/index';
+					                               }
+					                           }
+					                       }  
+					                    });
+					                }else{
+					                    var msg=msg.info+",请重新提交";
+					                    $.confirm({title:msg,modal: true, level:"danger",buttons: {  
+					                           "确定": {
+					                               "class":"blue",
+					                               "action":function() {
+					                               }
+					                           }
+					                       }  
+					                    });
+					                }
+					            }
+					        });
+							return false;
+							
+						}
+
+					</script>
+
+				</div>
+			</div>
+			<!-- END EXAMPLE TABLE PORTLET-->
+		</div>
+	</div>
+
+	<!-- END PAGE CONTENT-->
+</div>
+
+
+
+<include file="Public/footer" />

@@ -1,0 +1,144 @@
+<include file="Public/head" />
+<script type="text/javascript" src="__PUBLIC__/static/uploadify/jquery.uploadify.min.js"></script>
+
+
+
+<include file="Public/top" />
+<div class="clearfix">
+	<div class="page-container">
+	<include file="Public/left" />	
+	    <div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<!-- BEGIN PAGE HEAD -->
+				<div class="page-head"></div>
+				<!-- END PAGE HEAD -->
+				<!-- BEGIN PAGE BREADCRUMB -->
+				<!-- END PAGE BREADCRUMB -->
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="portlet box"><div class="portlet-body form">
+                        <div calss="col-md-offset-3 form-body" style="line-height:5">
+                            <a  style="margin-left:20px" class="btn btn-default" data-toggle="modal"  href="{:U('Comment/index')}">评论管理</a>
+                            <a  class="btn btn-default" data-toggle="modal"  href="{:U('Comment/user')}">用户管理</a>
+                            <a  class="btn btn-default" data-toggle="modal"  href="{:U('Comment/counttable')}">统计信息</a>
+                            <a  class="btn btn-default btn-primary" data-toggle="modal"  href="{:U('Comment/commentsettings')}">留言设置</a>
+                        </div></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN EXAMPLE TABLE PORTLET-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+	                            <div class="caption">
+                                     <i class="fa fa-edit"></i>{$title}
+                                </div>
+							</div>
+							<div class="portlet-body form">
+								<!-- begin form -->
+								<div data-width="400">
+									<!-- <div class="modal-dialog">
+										<div class="modal-content"> -->
+											<!-- <div class="modal-header">
+												<h4 class="modal-title">留言设置</h4>
+											</div> -->
+											<div class="modal-body">
+												<div class="row">
+													<div class="col-md-12">
+														<form role="form" class="form-horizontal" method="post" action="">
+															<notempty name='commentset'>
+															<input type="hidden" name="uid" value="{$commentset.uid}" />
+															</notempty>
+															<div class="form-group">
+																<label class="col-md-3 control-label">敏感词设置<span class="required">
+																* </span></label>
+																<div class="md-checkbox-list col-md-4" style="padding:8px 15px">
+																	<div class="md-checkbox">
+																		<input type="checkbox" name="is_filter" id="checkbox1" class="md-check"<if condition="$commentset.is_filter eq 0"> checked="checked"</if>>
+																		<label for="checkbox1">
+																		<span></span>
+																		<span class="check"></span>
+																		<span class="box"></span>
+																		勾选后开启敏感词过滤（默认开启） </label>
+																	</div>
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label class="control-label col-md-3">系统敏感词库<span class="required">
+																* </span>
+																</label>
+																<div class="md-radio-list col-md-4" style="padding:8px 15px">
+																	<div class="md-radio">
+																		<input type="radio" id="radio1" name="is_self" class="md-radiobtn" value="0"<if condition="$commentset.is_self eq 0"> checked="checked"</if>>
+																		<label for="radio1">
+																		<span></span>
+																		<span class="check"></span>
+																		<span class="box"></span>
+																		是 </label>
+																	</div>
+																	<div class="md-radio">
+																		<input type="radio" id="radio2" name="is_self" class="md-radiobtn" value="1"<if condition="$commentset.is_self eq 1"> checked="checked"</if>>
+																		<label for="radio2">
+																		<span></span>
+																		<span class="check"></span>
+																		<span class="box"></span>
+																		否 </label>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-md-3">手动录入敏感词<span class="required">
+																* </span>
+																</label>
+																<div class="col-md-4">
+																	<textarea class="form-control" name="filter_words">{$commentset.filter_words}</textarea>
+																	<span class="help-block">敏感词之间使用逗号隔开</span>
+																</div>
+															</div>
+						                                    <div class="form-group">
+						                                        <label class="col-md-3 control-label">审核设置<span class="required"> * </span></label>
+																<div class="md-checkbox-list col-md-4" style="padding:8px 15px">
+																	<div class="md-checkbox">
+																		<input type="checkbox" name="check_set" id="checkbox2" class="md-check"<if condition="$commentset.check_set eq 0"> checked="checked"</if>>
+																		<label for="checkbox2">
+																		<span></span>
+																		<span class="check"></span>
+																		<span class="box"></span>
+																		勾选后开启人工审核功能（默认开启） </label>
+																	</div>
+																</div>
+						                                    </div>												
+
+															<div class="form-actions">
+																<div class="row">
+																	<div class="col-md-offset-5 col-md-7">
+																		<input type="submit" class="btn blue" value="提交">
+																		<input type="reset" class="btn default" value="重置">
+																	</div>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										<!-- </div> -->
+									<!-- </div> -->
+								</div>
+								<!-- end form -->
+							</div>
+						</div>
+						<!-- END EXAMPLE TABLE PORTLET-->
+					</div>
+				</div>
+
+				<!-- END PAGE CONTENT-->
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Public/footer" />

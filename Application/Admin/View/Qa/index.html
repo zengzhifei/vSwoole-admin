@@ -1,0 +1,1072 @@
+<include file="Public/head"/>
+<include file="Public/top"/>
+<div class="clearfix">
+    <div class="page-container">
+        <include file="Public/left"/>
+
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="portlet-config"
+                     class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+                                <h4 class="modal-title">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                                Widget settings form goes here
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn blue" type="button">Save changes</button>
+                                <button data-dismiss="modal" class="btn default" type="button">Close</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+                <!-- BEGIN PAGE HEADER-->
+                <!-- BEGIN PAGE HEAD -->
+                <div class="page-head">
+                    <!-- BEGIN PAGE TITLE -->
+                    <!-- END PAGE TITLE -->
+                    <!-- BEGIN PAGE TOOLBAR -->
+                    <!--<div class="page-toolbar">
+                         BEGIN THEME PANEL
+                        <div class="btn-group btn-theme-panel">
+                            <a data-toggle="dropdown" class="btn dropdown-toggle" href="javascript:;">
+                            <i class="icon-settings"></i>
+                            </a>
+                            <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <h3>THEME</h3>
+                                        <ul class="theme-colors">
+                                            <li data-theme="default" class="theme-color theme-color-default active">
+                                                <span class="theme-color-view"></span>
+                                                <span class="theme-color-name">Dark Header</span>
+                                            </li>
+                                            <li data-theme="light" class="theme-color theme-color-light">
+                                                <span class="theme-color-view"></span>
+                                                <span class="theme-color-name">Light Header</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12 seperator">
+                                        <h3>LAYOUT</h3>
+                                        <ul class="theme-settings">
+                                            <li>
+                                                 Theme Style
+                                                <select class="layout-style-option form-control input-small input-sm">
+                                                    <option selected="selected" value="square">Square corners</option>
+                                                    <option value="rounded">Rounded corners</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Layout
+                                                <select class="layout-option form-control input-small input-sm">
+                                                    <option selected="selected" value="fluid">Fluid</option>
+                                                    <option value="boxed">Boxed</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Header
+                                                <select class="page-header-option form-control input-small input-sm">
+                                                    <option selected="selected" value="fixed">Fixed</option>
+                                                    <option value="default">Default</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Top Dropdowns
+                                                <select class="page-header-top-dropdown-style-option form-control input-small input-sm">
+                                                    <option value="light">Light</option>
+                                                    <option selected="selected" value="dark">Dark</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Sidebar Mode
+                                                <select class="sidebar-option form-control input-small input-sm">
+                                                    <option value="fixed">Fixed</option>
+                                                    <option selected="selected" value="default">Default</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Sidebar Menu
+                                                <select class="sidebar-menu-option form-control input-small input-sm">
+                                                    <option selected="selected" value="accordion">Accordion</option>
+                                                    <option value="hover">Hover</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Sidebar Position
+                                                <select class="sidebar-pos-option form-control input-small input-sm">
+                                                    <option selected="selected" value="left">Left</option>
+                                                    <option value="right">Right</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Footer
+                                                <select class="page-footer-option form-control input-small input-sm">
+                                                    <option value="fixed">Fixed</option>
+                                                    <option selected="selected" value="default">Default</option>
+                                                </select>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         END THEME PANEL
+                    </div> -->
+                    <!-- END PAGE TOOLBAR -->
+                </div>
+                <!-- END PAGE HEAD -->
+                <!-- BEGIN PAGE BREADCRUMB -->
+                <!-- <ul class="page-breadcrumb breadcrumb">
+                    <li>
+                        <a href="#">竞猜</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                </ul> -->
+                <!-- END PAGE BREADCRUMB -->
+                <!-- END PAGE HEADER-->
+                <!-- BEGIN PAGE CONTENT-->
+                <!-- 注释 查询开始  -->
+                <!--<div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet box">
+                            <div class="portlet-body form">
+
+                                <form role="form" class="form-horizontal">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">题目时间校准：</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="qa-time-check-start" class="form-control input-medium qa-check-time" placeholder="初始时间" style="display: inline-block;">到
+                                                <input type="text" name="qa-time-check-end" class="form-control input-medium qa-check-time" placeholder="目标时间" style="display: inline-block;">
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button class="btn blue" type="button" stage_id="{$data['pageParam']['stage_id']}" id="checkQaTime">校准</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <!-- 注释 查询结束  -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-edit"></i>{$data['pageTitle']}
+                                </div>
+                            </div>
+                            <style>
+                                .table-bordered th {
+                                    text-align: center
+                                }
+                            </style>
+                            <div class="portlet-body">
+                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="qa-add">新建问答
+                                </button>
+                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="qa-backDb">备份数据库
+                                </button>
+                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="qa-init">重置题目
+                                </button>
+                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="qa-sync" qa-sync-status="1">预热缓存
+                                </button>
+                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="qa-cancelSync" qa-sync-status="0">撤销预热
+                                </button>
+
+                                <span class="qa-backDb-info"></span>
+                                <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>问答ID</th>
+                                        <th>所属期数</th>
+                                        <th>所属分组</th>
+                                        <th>问答类型</th>
+                                        <th width="180px;">答题时区</th>
+                                        <th>问答计时</th>
+                                        <th width="90px;">答案推送时间</th>
+                                        <th width="150px;">问答题面</th>
+                                        <!--<th width="150px;">二级题面</th>-->
+                                        <!--<th>选手得分</th>-->
+                                        <th>备注</th>
+                                        <!--<th>问答题面图片</th>-->
+                                        <!--<th>问答选项</th>-->
+                                        <!--<th>问答选项图片</th>-->
+                                        <!--<th>问答答案</th>-->
+                                        <th>题目序号</th>
+                                        <!--<th width="90px;">更新时间</th>-->
+                                        <th width="60px;">是否预热</th>
+                                        <th width="60px;">题目是否推送</th>
+                                        <th width="60px;">答案是否推送</th>
+                                        <!--<th width="60px;">选手问答状态</th>-->
+                                        <!--<th width="60px;">百人团问答状态</th>-->
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <notempty name="data['pageInfo']">
+                                        <foreach name="data['pageInfo']" item="vo" key="key">
+                                            <tr>
+                                                <td>{$key + 1}</td>
+                                                <td>{$vo.id}</td>
+                                                <td>{$data['stage_info']['stage_name']}</td>
+                                                <td>{$data['group_info']['group_title']}</td>
+                                                <td>{$vo.qa_type_name}</td>
+                                                <td>{$vo.qa_time}</td>
+                                                <td>{$vo.qa_countdown}</td>
+                                                <td>{$vo.qa_res_time}</td>
+                                                <td>{$vo.qa_subject}</td>
+                                                <!--<td>{$vo.qa_title}</td>-->
+                                                <!-- <td>
+                                                     <if condition="$vo.qa_is_used eq '1'">
+                                                         <if condition="$vo.qa_xs_right eq '1'">
+                                                             {$vo.qa_xs_name}：{$vo.qa_xs_score}
+                                                             <elseif condition="$vo.qa_xs_right eq '0'"/>
+                                                             选手答错：{$vo.qa_xs_score}
+                                                             <else/>
+                                                             选手未答题：{$vo.qa_xs_score}
+                                                         </if>
+                                                         <else/>
+                                                         未开始
+                                                     </if>
+                                                 </td>-->
+                                                 <td>{$vo.qa_remark}</td>
+                                                <!--<if condition="$vo.qa_subject_img neq '0'">
+                                                    <td><a target="_blank" href="{$vo.qa_subject_img}"><img src="{$vo.qa_subject_img}" style="width: 50px;height: 50px;" /></a></td>
+                                                <else />
+                                                    <td></td>
+                                                </if>-->
+                                               <!-- <td style="text-align: left">
+                                                    <foreach name="vo.qa_options" item="v" key="k">
+                                                        <if condition="$v.option_title neq null">
+                                                            {$v.option_number}.{$v.option_title}
+                                                        </if>
+                                                        <br>
+                                                    </foreach>
+                                                </td>-->
+                                                <!--<td style="text-align: left">
+                                                    <foreach name="vo.qa_options" item="v" key="k">
+                                                        <if condition="$v.option_img neq '0'">
+                                                            {$v.option_number}.<a target="_blank" href="{$v.option_img}"><img src="{$v.option_img}" style="width: 50px;height: 50px;" /></a>
+                                                        </if>
+                                                        <br>
+                                                    </foreach>
+                                                </td>-->
+                                                <!--<td>{$vo.qa_right_key}</td>-->
+                                                <td>{$vo.qa_extend}</td>
+                                                <!--<td>{$vo.qa_updated|date="Y-m-d H:i:s",###}</td>-->
+                                                <td>
+                                                    <if condition="$vo.qa_sync_status eq '0'">
+                                                        未预热
+                                                        <else/>
+                                                        <span style="color: red;">已预热</span>
+                                                    </if>
+                                                </td>
+                                                <td>
+                                                    <if condition="$vo.qa_is_used eq '0'">
+                                                        未推送
+                                                        <else/>
+                                                        <span style="color: red;">已推送</span>
+                                                    </if>
+                                                </td>
+                                                <td>
+                                                    <if condition="$vo.qa_res_is_pushed eq '0'">
+                                                        未推送
+                                                        <else/>
+                                                        <span style="color: red;">已推送</span>
+                                                    </if>
+                                                </td>
+                                                <!--<td>
+                                                    <if condition="$vo.qa_player_status eq '0'">
+                                                        未开启
+                                                        <br>
+                                                        <a><i qa_id="{$vo.id}" qa_status="1" class="glyphicon glyphicon-play qa-switch" status_type="1" title="点击开启选手答题"></i></a>
+                                                        <else/>
+                                                        <span style="color: red;">已开启</span>
+                                                        <br>
+                                                        <a><i qa_id="{$vo.id}" qa_status="0" class="glyphicon glyphicon-stop qa-switch" status_type="1" title="点击关闭选手答题"></i></a>
+                                                    </if>
+                                                </td>-->
+                                                <!--<td>
+                                                    <if condition="$vo.qa_normal_status eq '0'">
+                                                        未开启
+                                                        <br>
+                                                        <a><i qa_id="{$vo.id}" qa_status="1" class="glyphicon glyphicon-play qa-switch" status_type="2" title="点击开启百人团答题"></i></a>
+                                                        <else/>
+                                                        <span style="color: red;">已开启</span>
+                                                        <br>
+                                                        <a><i qa_id="{$vo.id}" qa_status="0" class="glyphicon glyphicon-stop qa-switch" status_type="2" title="点击关闭百人团答题"></i></a>
+                                                    </if>
+                                                </td>-->
+                                                <td style="width:150px;">
+                                                    <if condition="$vo.qa_player_status eq '0' and $vo.qa_normal_status eq '0'">
+                                                        <a><i qa_id="{$vo.id}" qa_status="1" class="glyphicon glyphicon-play qa-switch" status_type="0" title="点击开启答题"></i></a>
+                                                        <else/>
+                                                        <a><i qa_id="{$vo.id}" qa_status="0" class="glyphicon glyphicon-stop qa-switch" status_type="0" title="点击关闭答题"></i></a>
+                                                    </if>
+                                                    <a><i qa_id="{$vo.id}" class="glyphicon glyphicon-edit qa-edit" title="编辑"></i></a>
+                                                    <a><i qa_id="{$vo.id}" stage_id="{$vo.stage_id}" column_id="{$data.column_info.column_id}" group_id="{$vo.group_id}" class="glyphicon glyphicon-send qa-send" title="推送题目"></i></a>
+                                                    <a><i qa_id="{$vo.id}" stage_id="{$vo.stage_id}" column_id="{$data.column_info.column_id}" group_id="{$vo.group_id}" class="glyphicon glyphicon-plane qa-send-res" title="推送答案"></i></a>
+                                                    <a><i qa_id="{$vo.id}" class="glyphicon glyphicon-resize-full qa-full" title="详细展开"></i></a>
+                                                    <!--<a><i qa_id="{$vo.id}" class="glyphicon glyphicon-list-alt qa-detail" title="答题详情"></i></a>-->
+                                                    <a><i qa_id="{$vo.id}" class="glyphicon glyphicon-refresh qa-refresh" title="刷新题目"></i></a>
+                                                    <a><i qa_id="{$vo.id}" qa_player_status="{$vo.qa_player_status}" qa_normal_status="{$vo.qa_normal_status}" class="glyphicon glyphicon-trash qa-delete" title="删除"></i></a>
+                                                </td>
+                                            </tr>
+                                        </foreach>
+                                        <else/>
+                                        <td colspan="24" class="text-center"> aOh! 暂时还没有内容!</td>
+                                    </notempty>
+                                    </tbody>
+                                </table>
+                                <div class="row">
+                                    <div class="col-md-5 col-sm-12">
+                                        <div class="dataTables_info" id="sample_editable_1_info" role="status"
+                                             aria-live="polite">
+                                            当前是第 {$data['page']['p']} 页 总页数 {$data['page']['totalPage']}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-12">
+                                        <div class="dataTables_paginate paging_simple_numbers"
+                                             id="sample_editable_1_paginate">
+                                            {$data['page']['show']}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END EXAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+
+                <!-- END PAGE CONTENT-->
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        //添加题目
+        $("#qa-add").on('click', function () {
+            var url = "{:U('Qa/addEdit')}" + '&stage_id=' + "{$data['pageParam']['stage_id']}" + '&group_id=' + "{$data['pageParam']['group_id']}";
+            window.location.href = url;
+        })
+        //编辑数据
+        $(".qa-edit").on('click', function () {
+            var qa_id = $(this).attr('qa_id');
+            var url = "{:U('Qa/addEdit')}";
+            url = url + '&stage_id=' + "{$data['pageParam']['stage_id']}" + '&group_id=' + "{$data['pageParam']['group_id']}" + '&qa_id=' + qa_id;
+            window.location.href = url;
+        })
+        //刷新题目
+        $(".qa-refresh").on('click', function () {
+            var qa_id = $(this).attr('qa_id');
+            $.confirm({
+                title: '确认刷新当前问答题目吗？',
+                level: 'warning',
+                buttons: {
+                    "确定": {
+                        class: "blue",
+                        action: function () {
+                            $.ajax({
+                                url: "{:U('Qa/refresh')}",
+                                type: 'GET',
+                                data: {qa_id: qa_id},
+                                dataType: 'JSON',
+                                success: function (msg) {
+                                    console.log(msg);
+                                    $.confirm({
+                                        title: msg.info,
+                                        level: 'success',
+                                        buttons: {
+                                            "确定": {
+                                                class: "blue",
+                                                action: function () {
+                                                    msg.status == 1 && window.location.reload();
+                                                }
+                                            }
+                                        }
+                                    })
+                                },
+                                error: function () {
+                                    console.log('refresh error');
+                                }
+                            })
+                        }
+                    },
+                    "取消": {
+                        "class": "green",
+                        "action": function () {
+                        }
+                    }
+                }
+            })
+
+        })
+        //答题详情
+        $(".qa-detail").on('click', function () {
+            var qa_id = $(this).attr('qa_id');
+            var timer = null;
+            var flag = true;
+            var options = {
+                title: '问答详细信息',
+                id: 'qa-detail-table',
+                width: 1200,
+                height: 550,
+                border: 0,
+                top: '10%',
+                buttons: {'自动刷新': true},
+                submit: function () {
+                    $("#qa-detail-table .jbox-button").attr('disabled', true);
+                    timer = setInterval(function () {
+                        getDetail();
+                    }, 1000);
+                    return false;
+                },
+                closed: function () {
+                    clearInterval(timer);
+                }
+            }
+            getDetail();
+
+            function getDetail() {
+                if (!flag) return;
+                flag = false;
+                $.ajax({
+                    url: "{:U('Qa/detail')}",
+                    type: 'GET',
+                    data: {qa_id: qa_id},
+                    dataType: 'JSON',
+                    success: function (msg) {
+                        console.log(msg);
+                        if (msg.status == 1) {
+                            var html = '<div class="qa-brt">百人团：</div>';
+                            if (msg.data['brt']) {
+                                var v = msg.data['brt'];
+                                var count = 0;
+                                html += '<table class="table table-striped table-hover table-bordered"><thead>';
+                                html += '<tr><th>ID</th><th>ID</th><th>ID</th><th>ID</th><th>ID</th><th>ID</th><th>ID</th><th>ID</th><th>ID</th><th>ID</th></tr>';
+                                html += '</thead><tbody>';
+                                for (var i = 1; i <= 80;) {
+                                    html += '<tr>';
+                                    for (var j = 0; j < 10; j++) {
+                                        if (v[i + j]) {
+                                            count++;
+                                            var is_right = v[i + j]["is_right"] == 1 ? '对' : '错';
+                                            html += '<td style="width:75px;height:35px;">' + v[i + j]["user_id"] + '：' + is_right + '</td>';
+                                        } else {
+                                            html += '<td style="width:75px;height:35px;"></td>';
+                                        }
+                                    }
+                                    html += '</tr>';
+                                    i = i + 10;
+                                }
+                                html += '</tbody></table>';
+                            } else {
+                                html += "百人团未答题<br>";
+                            }
+                            html += '<div class="qa-xs">选手：</div>';
+                            if (msg.data['xs']) {
+                                var v = msg.data['xs'];
+                                $.each(v, function (item, val) {
+                                    var is_right = val["is_right"] == 1 ? '对' : '错';
+                                    html += val['user_id'] + '：' + is_right + "<br>";
+                                })
+                            } else {
+                                html += "选手未答题<br>";
+                            }
+                            html += '<div class="qa-ysj">艺术家：</div>';
+                            if (msg.data['ysj']) {
+                                var v = msg.data['ysj'];
+                                $.each(v, function (item, val) {
+                                    var is_right = val["is_right"] == 1 ? '对' : '错';
+                                    html += val['user_id'] + '：' + is_right + "<br>";
+                                })
+                            } else {
+                                html += '艺术家未答题';
+                            }
+                            $("#qa-detail-table").length > 0 ? $("#jbox-content").html(html) : $.jBox(html, options);
+                            $(".qa-brt").append(count);
+                            flag = true;
+                        } else {
+                            $.confirm({
+                                title: '该题无答题数据',
+                                level: 'warning',
+                                buttons: {
+                                    "确定": {
+                                        class: "blue"
+                                    }
+                                }
+                            })
+                        }
+                    },
+                    error: function () {
+                        console.log('get detail error');
+                    }
+                })
+            }
+        })
+        //详细展开
+        $(".qa-full").on('click', function () {
+            var qa_id = $(this).attr('qa_id');
+            var options = {
+                title: '问答详细信息',
+                width: 1100,
+                border: 0,
+                top: '25%'
+            }
+            $.ajax({
+                url: "{:U('Qa/getQaInfo')}",
+                type: 'GET',
+                data: {qa_id: qa_id},
+                dataType: 'JSON',
+                success: function (msg) {
+                    console.log(msg);
+                    if (msg.status == 1) {
+                        var v = msg.data;
+                        var html = '<table class="table table-striped table-hover table-bordered"><thead>';
+                        html += '<tr><th>问答题面</th><th>二级题面</th><th>问答题面图片</th><th style="width:150px;">问答选项</th><th>问答选项图片</th><th style="width:150px;">问答答案</th><th>绑定模块</th><th>备注</th><th>嘉宾扩展</th><th>主持人点评</th></tr>';
+                        html += '</thead><tbody>';
+                        html += '<tr>';
+                        html += '<td>' + v.qa_subject + '</td>';
+                        html += '<td>' + v.qa_title + '</td>';
+                        if (v.qa_subject_img != 0) {
+                            html += '<td><a target="_blank" href="' + v.qa_subject_img + '"><img src="' + v.qa_subject_img + '" style="width: 50px;height: 50px;" /></a></td>';
+                        } else {
+                            html += '<td></td>';
+                        }
+                        html += '<td>';
+                        if (v.qa_options) {
+                            $.each(v.qa_options, function (key, val) {
+                                if (val.option_title) {
+                                    html += val.option_number + '.' + val.option_title + '<br>';
+                                } else {
+                                    html += '';
+                                }
+                            })
+                        }
+                        html += '</td><td>';
+                        if (v.qa_options) {
+                            $.each(v.qa_options, function (key, val) {
+                                if (val.option_img != 0) {
+                                    html += val.option_number + '.<a target="_blank" href="' + val.option_img + '"><img src="' + val.option_img + '" style="width: 50px;height: 50px;" /></a><br>';
+                                } else {
+                                    html += '';
+                                }
+                            })
+                        }
+                        html += '</td><td>';
+                        if (v.qa_right_key) {
+                            $.each(v.qa_right_key, function (key, val) {
+                                if (v.qa_type == 7 || v.qa_type == 14) {
+                                    html += key + '---' + val + '<br>';
+                                } else {
+                                    html += val + '<br>';
+                                }
+                            })
+                        }
+                        html += '</td><td>';
+                        if (v.qa_bind_modules) {
+                            $.each(v.qa_bind_modules, function (key, val) {
+                                $.each(val, function (k, v) {
+                                    html += k + '：' + v + '<br>';
+                                })
+                            })
+                        }
+                        html += '</td><td>' + v.qa_remark + '</td>';
+                        html += '</td><td>' + v.qa_extend + '</td>';
+                        html += '</td><td>' + v.qa_extend_zcr + '</td>';
+                        html += '</tbody></table>';
+                        $.jBox(html, options);
+                    } else {
+                        $.confirm({
+                            title: msg.info,
+                            level: 'warning',
+                            buttons: {
+                                "确定": {
+                                    class: "blue"
+                                }
+                            }
+                        })
+                    }
+                },
+                error: function () {
+                    console.log('get error');
+                }
+            })
+        })
+
+        //开启关闭分组
+        $(".qa-switch").on('click', function () {
+            var this_flag = true;
+            var data = {
+                qa_id: $(this).attr('qa_id'),
+                qa_status: $(this).attr('qa_status'),
+                status_type: $(this).attr('status_type')
+            }
+
+            if (data['status_type'] == 1 || data['status_type'] == 2) {
+                var type = data['status_type'] == 1 ? '选手' : '百人团';
+            } else {
+                var type = '';
+            }
+            var title = data['qa_status'] == 1 ? '确认开启当前' + type + '问答？' : '确认关闭当前' + type + '问答？';
+
+            if (data['qa_status'] == 1) {
+                $('.qa-switch').each(function (k, v) {
+                    if ($(this).attr('qa_status') == 0 && $(this).attr('qa_id') != data['qa_id']) {
+                        this_flag = false;
+                        $.confirm({
+                            title: '当前已有其他开启问答,点击"确定"将强制关闭已开启问答,然后开启当前' + type + '问答!',
+                            level: 'danger',
+                            buttons: {
+                                "确定": {
+                                    class: "blue",
+                                    action: function () {
+                                        $.ajax({
+                                            url: "{:U('Qa/switchQa')}",
+                                            type: 'POST',
+                                            dataType: 'JSON',
+                                            data: data,
+                                            timeout: 20000,
+                                            success: function (msg) {
+                                                console.log(msg);
+                                                if (msg.status == 1) {
+                                                    $.cookie('do_qa_status', data['qa_status']);
+                                                    window.location.reload();
+                                                } else if (msg.status == -2) {
+                                                    $.confirm({
+                                                        title: msg.info,
+                                                        level: 'warning',
+                                                        buttons: {
+                                                            "确定": {
+                                                                class: "blue",
+                                                                action: function () {
+                                                                    window.location.href = "{:U('Stage/index')}";
+                                                                }
+                                                            }
+                                                        }
+                                                    })
+                                                } else {
+                                                    $.confirm({
+                                                        title: '操作失败，请重新操作',
+                                                        level: 'warning',
+                                                        buttons: {
+                                                            "确定": {
+                                                                class: "blue",
+                                                                action: function () {
+                                                                    window.location.reload();
+                                                                }
+                                                            }
+                                                        }
+                                                    })
+                                                }
+                                            },
+                                            error: function () {
+                                                $.confirm({
+                                                    title: '操作失败，请联系开发人员',
+                                                    level: 'warning',
+                                                    buttons: {
+                                                        "确定": {
+                                                            class: "blue"
+                                                        }
+                                                    }
+                                                })
+                                            }
+                                        })
+                                    }
+                                },
+                                "取消": {
+                                    "class": "green",
+                                    "action": function () {
+                                    }
+                                }
+                            }
+                        })
+                        return false;
+                    }
+                })
+            }
+
+            if (!this_flag) {
+                return false;
+            }
+
+            $.confirm({
+                title: title,
+                level: 'warning',
+                buttons: {
+                    "确定": {
+                        class: "blue",
+                        action: function () {
+                            $.ajax({
+                                url: "{:U('Qa/switchQa')}",
+                                type: 'POST',
+                                dataType: 'JSON',
+                                data: data,
+                                timeout: 20000,
+                                success: function (msg) {
+                                    console.log(msg);
+                                    if (msg.status == 1) {
+                                        $.cookie('do_qa_status', data['qa_status']);
+                                        window.location.reload();
+                                    } else if (msg.status == -2) {
+                                        $.confirm({
+                                            title: msg.info,
+                                            level: 'warning',
+                                            buttons: {
+                                                "确定": {
+                                                    class: "blue",
+                                                    action: function () {
+                                                        window.location.href = "{:U('Stage/index')}";
+                                                    }
+                                                }
+                                            }
+                                        })
+                                    } else {
+                                        $.confirm({
+                                            title: '操作失败，请重新操作',
+                                            level: 'warning',
+                                            buttons: {
+                                                "确定": {
+                                                    class: "blue",
+                                                    action: function () {
+                                                        window.location.reload();
+                                                    }
+                                                }
+                                            }
+                                        })
+                                    }
+                                },
+                                error: function () {
+                                    $.confirm({
+                                        title: '操作失败，请联系开发人员',
+                                        level: 'warning',
+                                        buttons: {
+                                            "确定": {
+                                                class: "blue"
+                                            }
+                                        }
+                                    })
+                                }
+                            })
+                        }
+                    },
+                    "取消": {
+                        "class": "green",
+                        "action": function () {
+                        }
+                    }
+                }
+            })
+        })
+        //手动备库
+        $("#qa-backDb").on('click', function () {
+            $.ajax({
+                url: "{:U('Qa/bakDb')}",
+                type: 'POST',
+                dataType: 'JSON',
+                timeout: 20000,
+                success: function (msg) {
+                    console.log(msg);
+                    if (msg.status == 1) {
+                        $(".qa-backDb-info").text(new Date());
+                    } else {
+                        $(".qa-backDb-info").text('备份失败');
+                    }
+                },
+                error: function () {
+                    console.log('back error');
+                }
+            })
+        })
+
+        //删除
+        $(".qa-delete").on('click', function () {
+            var qa_normal_status = $(this).attr('qa_normal_status');
+            var qa_player_status = $(this).attr('qa_player_status');
+            var this_qa_id = $(this).attr('qa_id');
+            var this_flag = true;
+            var $this = this;
+
+            if (qa_normal_status == 1 || qa_player_status == 1) {
+                this_flag = false;
+                $.confirm({
+                    title: '当前题目正在开启中，请关闭后再执行删除操作',
+                    level: 'danger',
+                    buttons: {
+                        "确定": {
+                            class: "blue"
+                        }
+                    }
+                })
+            }
+            if (!this_flag) {
+                return false;
+            }
+
+            $.confirm({
+                title: '确认删除当前题目吗？',
+                level: 'warning',
+                buttons: {
+                    "确定": {
+                        class: "blue",
+                        action: function () {
+                            $.ajax({
+                                url: "{:U('Qa/deleteQa')}",
+                                type: 'GET',
+                                data: {qa_id: this_qa_id},
+                                dataType: 'JSON',
+                                success: function (msg) {
+                                    console.log(msg);
+                                    if (msg.status == 1) {
+                                        $($this).parent().parent().parent().remove();
+                                    } else if (msg.status == -2) {
+                                        $.confirm({
+                                            title: '当前题目正在开启中，请关闭后再执行删除操作!',
+                                            level: 'danger',
+                                            buttons: {
+                                                "确定": {
+                                                    class: "blue"
+                                                }
+                                            }
+                                        })
+                                    } else {
+                                        $.confirm({
+                                            title: '删除失败，请重新尝试',
+                                            level: 'warning',
+                                            buttons: {
+                                                "确定": {
+                                                    class: "blue"
+                                                }
+                                            }
+                                        })
+                                    }
+                                },
+                                error: function () {
+                                    $.confirm({
+                                        title: '删除失败，请刷新后重新尝试',
+                                        level: 'warning',
+                                        buttons: {
+                                            "确定": {
+                                                class: "blue"
+                                            }
+                                        }
+                                    })
+                                }
+                            })
+                        }
+                    },
+                    "取消": {
+                        "class": "green",
+                        "action": function () {
+                        }
+                    }
+                }
+            })
+        })
+
+        //推送题目
+        $(".qa-send").on('click', function () {
+            var column_id = $(this).attr('column_id');
+            var stage_id = $(this).attr('stage_id');
+            var group_id = $(this).attr('group_id');
+            var qa_id = $(this).attr('qa_id');
+            $.confirm({
+                title: '您确认立即推送该题目吗？',
+                level: 'warning',
+                buttons: {
+                    "确定": {
+                        class: "blue",
+                        action: function () {
+                            $.ajax({
+                                url: "{:U('Qa/sendQa')}",
+                                type: 'POST',
+                                data: {column_id: column_id, stage_id: stage_id, group_id:group_id,qa_id: qa_id},
+                                dataType: 'json',
+                                success: function (res) {
+                                    $.confirm({
+                                        title: res.msg,
+                                        level: 'success',
+                                        buttons: {
+                                            "确定": {
+                                                class: "blue",
+                                                action: function () {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        }
+                                    })
+                                },
+                                error: function (e) {
+                                    alert(e.statusText);
+                                }
+                            })
+                        }
+                    },
+                    "取消": {
+                        "class": "green",
+                        "action": function () {
+                        }
+                    }
+                }
+            })
+        })
+
+        //推送答案
+        $(".qa-send-res").on('click', function () {
+            var column_id = $(this).attr('column_id');
+            var stage_id = $(this).attr('stage_id');
+            var group_id = $(this).attr('group_id');
+            var qa_id = $(this).attr('qa_id');
+            $.confirm({
+                title: '您确认立即推送该题目答案吗？',
+                level: 'warning',
+                buttons: {
+                    "确定": {
+                        class: "blue",
+                        action: function () {
+                            $.ajax({
+                                url: "{:U('Qa/sendQaRes')}",
+                                type: 'POST',
+                                data: {column_id: column_id, stage_id: stage_id, group_id:group_id,qa_id: qa_id},
+                                dataType: 'json',
+                                success: function (res) {
+                                    $.confirm({
+                                        title: res.msg,
+                                        level: 'success',
+                                        buttons: {
+                                            "确定": {
+                                                class: "blue",
+                                                action: function () {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        }
+                                    })
+                                },
+                                error: function (e) {
+                                    alert(e.statusText);
+                                }
+                            })
+                        }
+                    },
+                    "取消": {
+                        "class": "green",
+                        "action": function () {
+                        }
+                    }
+                }
+            })
+        })
+
+        //重置题目
+        $("#qa-init").on('click', function () {
+            var stage_id = "{$data.stage_info.stage_id}";
+            var group_id = "{$data.group_info.id}";
+            $.confirm({
+                title: '(谨慎操作)您确认重置当前组所有题目状态吗？',
+                level: 'warning',
+                buttons: {
+                    "确定": {
+                        class: "blue",
+                        action: function () {
+                            $.ajax({
+                                url: "{:U('Qa/initQa')}",
+                                type: 'POST',
+                                data: {stage_id: stage_id, group_id: group_id},
+                                dataType: 'json',
+                                success: function (res) {
+                                    $.confirm({
+                                        title: res.msg,
+                                        level: 'success',
+                                        buttons: {
+                                            "确定": {
+                                                class: "blue",
+                                                action: function () {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        }
+                                    })
+                                },
+                                error: function (e) {
+                                    alert(e.statusText);
+                                }
+                            })
+                        }
+                    },
+                    "取消": {
+                        "class": "green",
+                        "action": function () {
+                        }
+                    }
+                }
+            })
+        })
+
+        //预热，撤销预热
+        $("#qa-sync,#qa-cancelSync").on('click', function () {
+            var sync_status = $(this).attr('qa-sync-status');
+            var stage_id = "{$data.stage_info.stage_id}";
+            var group_id = "{$data.group_info.id}";
+            //var title = sync_status == 1 ? '确认预热当前组题目吗？' : '确认撤销当前组所有预热题目吗？';
+            var title = sync_status == 1 ? '确认预热所有已开启分组的题目吗？' : '确认撤销所有预热题目吗？';
+            $.confirm({
+                title: title,
+                level: 'warning',
+                buttons: {
+                    "确定": {
+                        class: "blue",
+                        action: function () {
+                            $.ajax({
+                                url: "{:U('Qa/sync')}",
+                                type: 'POST',
+                                data: {sync_status: sync_status, stage_id: stage_id, group_id: group_id},
+                                dataType: 'json',
+                                success: function (res) {
+                                    $.confirm({
+                                        title: res.msg,
+                                        level: 'success',
+                                        buttons: {
+                                            "确定": {
+                                                class: "blue",
+                                                action: function () {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        }
+                                    })
+                                },
+                                error: function (e) {
+                                    alert(e.statusText);
+                                }
+                            })
+                        }
+                    },
+                    "取消": {
+                        "class": "green",
+                        "action": function () {
+                        }
+                    }
+                }
+            })
+        })
+    })
+</script>
+
+<include file="Public/footer"/>

@@ -1,0 +1,137 @@
+<include file="Public/uchead"/>
+<div class="bg_top_h_tile">
+  <div class="bg_top_owner">
+    <div id="page_body">
+    				<div class="column_wrapper">
+           				 <div class="col_w1000">
+                   	   <div class="logo"><img src="__PUBLIC__/Home/updatepasswd_files/youxiang_1.jpg" height="86" width="990"></div>
+                       <div class="zt">
+                            <div class="left_nav">
+                                    <div class="tp"><img src="{$Think.session.user_auth.uid|getFaceUrl=###,'120'}" onerror="javascript:this.src='__PUBLIC__/Home/yonghuzhongxinindex_files/youxiang_2_120.jpg'" height="120" width="120"></div>
+                                    <div class="vspace" style="height:53px"></div>
+                                    <div class="nav">
+										<include file="Index/zjleft" />
+									</div>
+                            </div>
+                            <div class="right_nr">
+                                  <h3>个人设置</h3>
+							<ul id="dell">
+								<li class="cur">
+									<a href="#">基本信息</a>
+								</li>
+								<li>
+									<a href="{:U('User/profile')}">修改密码 </a>
+								</li>
+								<li>
+									<a href="{:U('User/setHead')}">设置头像</a>
+								</li>
+							</ul>
+
+							<div class="xinxi jibenxinxi_0" id="jibenxinxi_0" style="display: block">
+								<div id="xgcgaaa" style="display: none" class="xiugaitishi1">
+									<div class="close">
+										<a id="close2a" href="javascript:void(0)"></a>
+									</div>
+									<p></p>
+								</div>
+								
+									<div class="vspace" style="height: 30px;"></div>
+									<form name="profile" method="post">
+									<input type="hidden" name="uid" value="{$userinfo[0]}">
+									<table cellpadding="0" cellspacing="0" style="display: block; float: left; margin-left: 20px;" width="100%">
+
+										<Tr>
+											<td width="381">
+												<table cellpadding="0" class="xxnr" cellspacing="0" style="border: none; margin: 0">
+													<tr>
+														<td>
+															上次登录时间：
+															<span>{$userinfo[4]|date='Y-m-d H:i:s',###}</span>
+														</td>
+													</tr>
+													
+													<tr>
+														<td>
+															用户名：
+															<input type="text" name="username" value="{$userinfo[1]}"   />
+														</td>
+													</tr>
+													
+													<tr>
+														<td>
+															电&nbsp;&nbsp;&nbsp;&nbsp;话：
+															<input type="text" name="mobile" value="{$userinfo[3]}"  />
+														</td>
+													</tr>
+													
+													<tr>
+														<td>
+															邮&nbsp;&nbsp;&nbsp;&nbsp;箱：
+															<input type="text" name="email" value="{$userinfo[2]}" />
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<a href="javascript:void(0)" class="tj" id="tjxg">提交修改</a>
+														</td>
+													</tr>
+												</table>
+											</td>
+											<td>
+
+												<img src="{$Think.session.user_auth.uid|getFaceUrl=###,'120'}" onerror="javascript:this.src='__PUBLIC__/Home/yonghuzhongxinindex_files/youxiang_2_120.jpg'" width="120" height="120" style="padding-top: 15px;" />
+												<p>
+													<a href="{:U('User/setHead')}" id="xgtx">修改头像</a>
+												</p>
+											</td>
+										</Tr>
+									</table>
+									</form>
+								</div>
+							
+
+
+						</div>
+						<script type="text/javascript">
+$("#close2a").click(function(){
+	$("#xgcgaaa").hide().find('p').html('');
+});
+$("#tjxg").click(function(){
+	if($("[name='username']").val() == "" || $("[name='mobile']").val() == "" || $("[name='email']").val()==""){
+		$("#xgcgaaa").show().find('p').html("信息不能为空，请输入信息");return false;
+	}
+	var data = $("[name='profile']").serialize();
+	$.ajax({
+			url:"{:U('User/userprofile')}",
+			type: "POST",
+			async: false, 
+			data:data,
+			success:function(json){
+				if(json.status == "success"){
+					/*url="{:U('Index/index')}";
+					window.location.href=url;*/
+					$('#xgcgaaa').attr('class','xiugaitishi').show().find('p').html(json.msg);
+				}else{
+					$("#xgcgaaa").show().find('p').html(json.msg);
+					return false;
+				}
+			}
+	});
+});
+</script>
+					</div>
+					
+				</div>
+			</div>
+			<include file="Public/ucfooter" />
+			<div id="page_bottom_self">
+				<div class="cntv_footer_ftc">
+					<b></b>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

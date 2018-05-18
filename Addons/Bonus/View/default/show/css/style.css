@@ -1,0 +1,150 @@
+@charset "utf-8";
+/* CSS Document */
+html,body,div,span,h1,h2,h3,h4,h5,h6,p,pre,a,code,em,img,small,strong,sub,sup,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;height: 100%;}
+a{color:#007bc4/*#424242*/; text-decoration:none;}
+a:hover{text-decoration:underline}
+ol,ul{list-style:none}
+table{border-collapse:collapse;border-spacing:0}
+html{}
+body{height:100%; font:14px/18px "Microsoft Yahei", Tahoma, Helvetica, Arial, Verdana, "\5b8b\4f53", sans-serif; color:#51555C; }
+img{border:none}
+
+
+body { overflow:hidden; clear:both; background-size:100% 100%;background:url(img/bgjieguo_20151115.jpg) repeat center top;}
+#main{width: 100%; height: 100%; margin:0 auto;}
+.yaoyiyao_first_boxs{ overflow:hidden; clear:both; background:url(img/guang.png) repeat center top;background-size:cover;position: relative; width: 100%; height: 100%;}
+.yaoyiyao_first_boxs .top_font_bg img {width: 100%; height: 15%; position: absolute; top: 5%; left: 0;/*-moz-animation:heart_beat 1s ease infinite;-webkit-animation:heart_beat 1s ease infinite;*/ }
+.yaoyiyao_first_boxs .caidai_bg img {width: 100%; height: 41%;position: absolute; top: 23%; left: 0;}
+.yaoyiyao_first_boxs .yuanbeijing01 {width: 100%; height: 41%; position: absolute; left: 0; top: 25%; text-align: center;}
+#shoushi_bg{height: 29%; width: 31%; margin: 0 auto; padding: 0; position: absolute; left: 33%; top: 33%; }
+#shoushi_bg img{ width: 100%;  -webkit-animation: anim1 1s linear infinite;
+    -moz-animation: anim1 1s linear infinite;
+    -ms-animation: anim1 1s linear infinite;
+    -o-animation: anim1 1s linear infinite;
+    animation: anim1 1s linear infinite;}
+.yaoyiyao_first_boxs .zhongguo_font_box { width: 100%; font-family: 黑体; font-size: 1.5em; line-height: 1.7em;  color: #FFFFFF;position: absolute; left:0;top:73%}
+.yaoyiyao_first_boxs .zhongguo_font_box p { text-align: center;}
+audio {height: 0;}
+/*.jingcai_font { width: 100%;  margin: 0 auto;}
+.jingcai_font img { width: 100%; height:5%;}*/
+
+ @-moz-keyframes heart_beat{0%{-moz-transform:scale(1)}  
+	25%{-moz-transform:scale(1.10)}  
+	50%{-moz-transform:scale(0.9)}  
+	75%{-moz-transform:scale(1.1)}  
+	100%{-moz-transform:scale(1)}
+}  
+@-webkit-keyframes heart_beat{0%{-webkit-transform:scale(1)}  
+	25%{-webkit-transform:scale(1.1)}  
+	50%{-webkit-transform:scale(0.9)}  
+	75%{-webkit-transform:scale(1.1)}  
+	100%{-webkit-transform:scale(1)}
+} 
+
+ /*翻转*/
+ @-webkit-keyframes anim1 {
+    from { -webkit-transform: rotateZ(0deg); }
+    50% { -webkit-transform: rotateZ(25deg); }
+    to { -webkit-transform: rotateZ(0deg); }
+}
+@-moz-keyframes anim1 {
+    from { -moz-transform: rotateZ(0deg); }
+    50% { -moz-transform: rotateZ(25deg); }
+    to { -moz-transform: rotateZ(0deg); }
+}
+@-ms-keyframes anim1 {
+    from { -ms-transform: rotateZ(0deg); }
+    50% { -ms-transform: rotateZ(25deg); }
+    to { -ms-transform: rotateZ(0deg); }
+}
+@-o-keyframes anim1 {
+    from { -o-transform: rotateZ(0deg); }
+    50% { -o-transform: rotateZ(25deg); }
+    to { -o-transform: rotateZ(0deg); }
+}
+@keyframes anim1 {
+    from { transform:rotateZ(0deg); }
+    50% { transform:rotateZ(25deg); }
+    to { transform:rotateZ(0deg); }
+}
+
+.yaoyiyao_second_boxs {overflow:hidden; clear:both; background-size:100% 100%;position: relative;}
+.result_font { position: absolute; top: 32%; left: 0; width: 100%; text-align: center;font-family: 黑体; font-size: 1.6em; line-height: 1.8em;  color: #ff0000;-webkit-animation: title 1s ease-in-out;-moz-animation: title 1s ease-in-out;}
+.shuoming_font {position: absolute; top:65% ;left: 0; width: 100%;text-align: center;font-family: 黑体; font-size: 1.5em; line-height: 1.8em;  color: #FFFFFF;}
+.btn_boxs { position: absolute; left: 9%; top: 76%; width: 82%; height:10% ; margin: 0 auto; text-align: center; }
+.btn_confirm { 
+	width: 100%; 
+	text-align: center; 
+	font-family: 黑体; 
+	font-size: 36px; 
+	line-height: 80px;  
+	color: #000000;
+	background: #FFFFFF;
+	border: 1px solid #FFFFFF;
+	-moz-border-radius: 5px;
+	-webkit-border-radius:5px; 
+	border-radius:5px;
+	box-shadow: 1px 2px 2px #000000;
+	-moz-box-shadow: 1px 2px 2px #000000;
+	-webkit-box-shadow: 1px 2px 2px #000000;
+}
+.yaoyiyao_third_boxs{overflow:hidden; clear:both; background:url(img/guang.png) repeat center;background-size:cover;position: relative;}
+.result_font01 {position: absolute; top: 32%; left: 0; width: 100%; text-align: center;font-family: 黑体; font-size: 1.6em; line-height: 1.8em;  color: #ff0000;}
+
+@media screen and (max-width: 499px){
+	 html{-webkit-text-size-adjust: none;}
+	 #main{width:100%; margin:0 auto;}
+	#shoushi_bg{ top: 33%; }
+	.result_font { position: absolute; top: 32%; left: 0; width: 100%; text-align: center;font-family: 黑体; font-size: 1.6em; line-height: 1.8em;  color: #ff0000;-webkit-animation: title 1s ease-in-out;-moz-animation: title 1s ease-in-out;}
+	.result_font01 {position: absolute; top: 34%; left: 0; width: 100%; text-align: center;font-family: 黑体; font-size: 1.2em; line-height: 1.8em;  color: #ff0000;}
+	.btn_boxs { position: absolute; left: 9%; top: 76%; width: 82%; height:10% ; margin: 0 auto; text-align: center;}
+	.btn_confirm { width: 100%; text-align: center; font-family: 黑体; font-size: 26px; line-height: 45px;  color: #000000;  background: #FFFFFF;border: 1px solid #FFFFFF;    -moz-border-radius: 5px;     -webkit-border-radius:5px;     border-radius:5px;}
+}
+@media screen and (min-width: 500px){
+	.result_font { position: absolute; top: 32%; left: 0; width: 100%; text-align: center;font-family: 黑体; font-size: 2em; line-height: 2.2em;  color: #ff0000;-webkit-animation: title 1s ease-in-out;-moz-animation: title 1s ease-in-out;}
+	.result_font01 {position: absolute; top: 36%; left: 0; width: 100%; text-align: center;font-family: 黑体; font-size: 1.7em; line-height: 1.8em;  color: #ff0000;}
+.shuoming_font {position: absolute; top:65% ;left: 0; width: 100%;text-align: center;font-family: 黑体; font-size: 2em; line-height: 2.2em;  color: #FFFFFF;}
+}
+.yuanbeijing { width: 100%; height: 41%; position: absolute; left: 0; top: 21%; text-align: center;}
+.baiguang{
+	background:url(img/guang.png) no-repeat center; width:100%; background-size:cover; position:absolute; height:100%; z-index:0; left: 0; top: 0;
+	-moz-animation: myfirst 1s  ease-in-out;	
+	-webkit-animation: myfirst 1s ease-in-out;	
+	-o-animation: myfirst 1s ease-in-out;	
+	animation: myfirst 1s ease-in-out;
+}
+
+@keyframes myfirst{
+	0%{background: url(img/guang.png) no-repeat center;background-size:cover;}
+	25%{background: url(img/guang_cur.png) no-repeat center;background-size:cover;}
+	50%{background:url(img/guang.png) no-repeat center;background-size:cover;}
+	75%{background: url(img/guang_cur.png) no-repeat center;background-size:cover;}
+	100%{background:url(img/guang.png) no-repeat center;background-size:cover;}
+}
+
+@-moz-keyframes myfirst{
+	0%{background: url(img/guang.png) no-repeat center;background-size:cover;}
+	25%{background: url(img/guang_cur.png) no-repeat center;background-size:cover;}
+	50%{background:url(img/guang.png) no-repeat center;background-size:cover;}
+	75%{background: url(img/guang_cur.png) no-repeat center;background-size:cover;}
+	100%{background:url(img/guang.png) no-repeat center;background-size:cover;}
+}
+
+@-webkit-keyframes myfirst {
+	0%{background: url(img/guang.png) no-repeat center;background-size:cover;}
+	25%{background: url(img/guang_cur.png) no-repeat center;background-size:cover;}
+	50%{background:url(img/guang.png) no-repeat center;background-size:cover;}
+	75%{background: url(img/guang_cur.png) no-repeat center;background-size:cover;}
+	100%{background:url(img/guang.png) no-repeat center;background-size:cover;}
+}
+
+@-webkit-keyframes title {
+	 0%{-webkit-transform:scale(0); text-shadow:3px 3px 3px #ece901;}
+	50%{-webkit-transform:scale(1.20);text-shadow:3px 3px 3px #ece901;}
+	100%{-webkit-transform:scale(1);text-shadow:3px 3px 3px #ece901;}
+}
+@-moz-keyframes title {
+	 0%{-moz-transform:scale(0); text-shadow:3px 3px 3px #ece901;}
+	50%{-moz-transform:scale(1.20);text-shadow:3px 3px 3px #ece901;}
+	100%{-moz-transform:scale(1);text-shadow:3px 3px 3px #ece901;}
+}

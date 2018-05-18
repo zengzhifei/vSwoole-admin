@@ -1,0 +1,243 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="微盟、微信营销、微信代运营、微信定制开发、微信托管、微网站、微商城、微营销" name="Keywords">
+	<meta content="微盟，国内最大的微信公众智能服务平台，微盟八大微体系：微菜单、微官网、微会员、微活动、微商城、微推送、微服务、微统计，企业微营销必备。" name="Description">
+<link rel="stylesheet" type="text/css" href="{$link}/css/common.css?v={:SITE_VERSION}" media="all">
+    <link rel="stylesheet" type="text/css" href="{$link}/css/survey.css?v={:SITE_VERSION}" media="all">
+    <script type="text/javascript" src="{$link}/js/jquery-1.7.2.min.js?v={:SITE_VERSION}"></script>
+    <script type="text/javascript" src="http://218.241.129.64/appplatform/mc/js/implante.js"></script>
+<!-- <script type="text/javascript" async="" src="http://tj.weimob.com/wtj.js?url=http%3A%2F%2Fwxa54efa46a5d2deaa.m.weimob.com%2FSurveymobile%2FStart%2F%3Fid%3D15282%26bid%3D56202538%26pid%3D55560238%26wechatid%3Do1-Guw7wokGlpeRi8CPwiheYFdDY"><script src="http://m.weimob.com/weixinjs/getsignpackage?pid=55560238&amp;bid=" type="text/javascript"></script></script><script type="text/javascript" src="http://stc.weimob.com/src/surveymobile/zepto.js?2014-10-22"></script> -->
+<title>调查</title>
+	
+    <!--[if lte IE 9]><script src="http://stc.weimob.com/src/watermark.js"></script><![endif]-->
+	<!--[if IE 7]><link href="http://stc.weimob.com/css/font_awesome_ie7.css" rel="stylesheet" /><![endif]-->
+</head>
+<body>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1,user-scalable=no,maximum-scale=1,initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title></title>
+	<style>
+		.question{z-index: 2;position: relative;padding-top: 20px;}
+		.index{position: absolute;color: #b40000;top: 75px;left: 80px;font-size: 10px;}
+		.index strong{font-size: 12px;}
+		.question .title{
+			  font-size: 24px;
+              padding: 0 10px;
+              line-height: 26px;
+              margin-bottom: 10px;
+              white-space: pre-line;
+              word-break: break-all;
+              text-align: left;
+		}
+		.question .option{position: relative;height: 45px;}
+		.question .option .text{position: relative;line-height: 40px;overflow: hidden;}
+		.question .option .i{float: left;margin-left: 20px;}
+		.question .option .otext{
+			margin-left: 45px;
+			overflow: hidden;
+			max-width: 260px;
+			height: 40px;
+		}
+		.question .option .oimg,.question .option .oimg-sel{position: absolute;top: 4px;left: 10px;width: 300px;}
+		.question .option .oimg-sel{display: none;}
+		.question .option-sel .oimg{display: none;}
+		.question .option-sel .oimg-sel{display: block;}
+		.result-timeout .timg{
+			margin-left: -40px;
+		}
+		#submit{
+			width: 80px;
+			margin: 20px 20px 0px 0px;
+			float: right;
+			position: relative;
+		}
+		#submit img{
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+		}
+		#submit span{
+			position: relative;
+			color: #FFF;
+			font-size: 18px;
+			line-height: 40px;
+			margin-left: 8px;
+		}
+		/*.page-url{
+			position: absolute;
+			width: 100%;
+			bottom: 0px;
+		}*/
+		.tip{
+			color: #FFF;
+			font-size: 12px;
+			margin-left: 20px;
+		}
+	</style>
+
+
+	<div class="wrapper">
+		<img class="bg" src="http://stc.weimob.com/img/surveymobile/bg.jpg">
+		
+		<div class="question" style="overflow:hidden;"  >
+		<foreach name="topiclist" item="vo">
+		<if condition="$key eq 0">
+		   <div rel="{$key}" id="question_{$key}" class="questionNum" data-value="{$vo.id}" maxsel="{$vo.answer_number}">
+			<div class="title">{$vo.title}</div>
+			<div class="tip">注：本题最多能选择{$vo.answer_number}个答案！</div>
+			
+			<div class="options">
+			<foreach name="vo.optionlist" item="v">
+				<div class="option" data-value="{$vo.id}_{$v.id}">
+					<img class="oimg" src="http://stc.weimob.com/img/surveymobile/option_bg.png">
+					<img class="oimg-sel" src="http://stc.weimob.com/img/surveymobile/option_sel_bg.png">
+					<div class="text">
+						<div class="otext">{$v.title}</div>
+					</div>
+				</div>
+				</foreach>
+			</div>
+			
+			</div>
+		<else/>
+		   <div rel="{$key}" id="question_{$key}" class="questionNum" style="display:none;" data-value="{$vo.id}" maxsel="{$vo.answer_number}">
+			<div class="title">{$vo.title}</div>
+			<div class="tip">注：本题最多能选择{$vo.answer_number}个答案！</div>
+			
+			<div class="options">
+			<foreach name="vo.optionlist" item="v">
+				<div class="option" data-value="{$vo.id}_{$v.id}">
+					<img class="oimg" src="http://stc.weimob.com/img/surveymobile/option_bg.png">
+					<img class="oimg-sel" src="http://stc.weimob.com/img/surveymobile/option_sel_bg.png">
+					<div class="text">
+						<div class="otext">{$v.title}</div>
+					</div>
+				</div>
+				</foreach>
+			</div>
+			
+			</div>
+				</if>
+				
+ </foreach>
+			<div id="submit">
+				<img src="http://stc.weimob.com/img/surveymobile/next_btn.png">
+				<span>下一步</span>
+			</div>
+		  
+		</div>
+	
+ 	<p class="page-url">
+		<a href="/weisite/home?pid=55560238&amp;bid=56202538&amp;wechatid=o1-Guw7wokGlpeRi8CPwiheYFdDY" target="_blank" class="page-url-link">由“轻应用”平台提供</a>
+	</p>
+
+		<!-- <audio id="musicClick" src="http://stc.weimob.com/res/surveymobile/click.mp3" preload="auto"></audio> -->
+	</div>
+	<div id="loading" class="loading-mask">
+		<img class="gimg" src="http://stc.weimob.com/img/surveymobile/ajax-loader.gif">
+	</div>
+
+<script type="text/javascript">
+	$(function(){	
+	//var maxsel = 2;
+	$(".option").on("click",function(){
+		var obj = $(this);
+		var questionDisplay = $(this).parents(".questionNum");
+		questionDisplay.each(function(){
+			var maxsel = $(this).attr('maxsel');
+			if($(this).css("display")=="block"){
+				$option = obj;
+				$option.toggleClass("option-sel");
+				var $answer = $option.parent().find(".option-sel");
+				if($answer.size() == 0){
+					$option.removeClass("option-sel");
+					return;
+				}
+				if($answer.size() > maxsel){
+					alert("本题最多只能选择个"+maxsel+"答案!");
+					$option.removeClass("option-sel");
+					return;
+				}
+			}
+		});
+		return false;
+	});
+	
+	$("#submit").on("click",function(){
+		var $btn = $(this);
+		if($btn.hasClass("disabled")) return;
+		var questionDisplay = $(".questionNum");
+		var qlen = questionDisplay.length;
+		questionDisplay.each(function(){
+			var maxsel = $(this).attr('maxsel');
+			if($(this).css("display")=="block"){
+				var key = parseInt($(this).attr('rel'));
+					next = parseInt(key+1);
+					if(next >= qlen){
+						var i=0;
+						var research={$reseachid};
+						var topicid = '';
+						var optionid= '';
+						questionDisplay.each(function(){
+							if(i++ != 0){
+								topicid += ',';
+							}
+							topicid += $(this).attr("data-value");
+						})
+						var element = $('.options .option-sel');
+						var ii = 0;
+						element.each(function(){
+							if(ii++ != 0){
+								optionid+=',';
+							}
+							optionid+=$(this).attr("data-value");
+						});
+						$.ajax({
+							type : "POST",
+							url : "{:addons_url('Research://Show/addTopic')}",
+							data : {researchid:research,topicid:topicid,optionid:optionid},
+							dataType : "JSON",
+							success : function(data){
+								if(data.status == 'success'){
+									var url = "{:addons_url('Research://Show/end',array('rid'=>$reseachid))}";
+									window.location.href=url;
+								}else{
+									if(data.code=='001'){
+										alert(data.msg);
+										window.location.href=data.url;
+									}else{
+										alert(data.msg);
+									}
+									
+								}
+							},
+							error : function(data){
+								alert("抱歉,服务器繁忙");
+							}
+						});
+						
+					}else{
+						var  $answer = $(this).find(".options .option-sel");
+						if($answer.size() == 0){
+							alert("请选择一个答案!");
+							return;
+						}
+						if($answer.size() > maxsel){
+							alert("本题最多只能选择个"+maxsel+"答案!");
+							return;
+						}
+						$("#question_"+key).hide();
+						$("#question_"+next).show();
+					}
+					return false;
+			}
+		})
+	});
+});
+</script>
+</body></html>

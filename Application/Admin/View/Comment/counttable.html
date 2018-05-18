@@ -1,0 +1,386 @@
+<include file="Public/head" />
+<include file="Public/top" />
+<script>
+	var TITLE = "{$rtitle}";
+	var VALEFIELD = "{$rvalueField}";
+	var CATEGORYFIELD = "{$RcategoryField}";
+	var RESEARCH = {$research};
+</script>
+<script src="__PUBLIC__/Home/interact/js/charts-amcharts.js"></script>
+<script src="__PUBLIC__/Home/static/theme/assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Home/static/theme/assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Home/static/theme/assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+<div class="clearfix">
+    <div class="page-container">
+    <include file="Public/left" />
+    
+        <div class="page-content-wrapper">
+        <div class="page-content">
+            <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="portlet-config" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+                            <h4 class="modal-title">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                             Widget settings form goes here
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn blue" type="button">Save changes</button>
+                            <button data-dismiss="modal" class="btn default" type="button">Close</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <!-- BEGIN PAGE HEADER-->
+            <!-- BEGIN PAGE HEAD -->
+            <div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <!-- END PAGE TITLE -->
+                <!-- BEGIN PAGE TOOLBAR -->
+                <!--<div class="page-toolbar">
+                     BEGIN THEME PANEL 
+                    <div class="btn-group btn-theme-panel">
+                        <a data-toggle="dropdown" class="btn dropdown-toggle" href="javascript:;">
+                        <i class="icon-settings"></i>
+                        </a>
+                        <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <h3>THEME</h3>
+                                    <ul class="theme-colors">
+                                        <li data-theme="default" class="theme-color theme-color-default active">
+                                            <span class="theme-color-view"></span>
+                                            <span class="theme-color-name">Dark Header</span>
+                                        </li>
+                                        <li data-theme="light" class="theme-color theme-color-light">
+                                            <span class="theme-color-view"></span>
+                                            <span class="theme-color-name">Light Header</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-12 seperator">
+                                    <h3>LAYOUT</h3>
+                                    <ul class="theme-settings">
+                                        <li>
+                                             Theme Style
+                                            <select class="layout-style-option form-control input-small input-sm">
+                                                <option selected="selected" value="square">Square corners</option>
+                                                <option value="rounded">Rounded corners</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Layout
+                                            <select class="layout-option form-control input-small input-sm">
+                                                <option selected="selected" value="fluid">Fluid</option>
+                                                <option value="boxed">Boxed</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Header
+                                            <select class="page-header-option form-control input-small input-sm">
+                                                <option selected="selected" value="fixed">Fixed</option>
+                                                <option value="default">Default</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Top Dropdowns
+                                            <select class="page-header-top-dropdown-style-option form-control input-small input-sm">
+                                                <option value="light">Light</option>
+                                                <option selected="selected" value="dark">Dark</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Mode
+                                            <select class="sidebar-option form-control input-small input-sm">
+                                                <option value="fixed">Fixed</option>
+                                                <option selected="selected" value="default">Default</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Menu
+                                            <select class="sidebar-menu-option form-control input-small input-sm">
+                                                <option selected="selected" value="accordion">Accordion</option>
+                                                <option value="hover">Hover</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Position
+                                            <select class="sidebar-pos-option form-control input-small input-sm">
+                                                <option selected="selected" value="left">Left</option>
+                                                <option value="right">Right</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Footer
+                                            <select class="page-footer-option form-control input-small input-sm">
+                                                <option value="fixed">Fixed</option>
+                                                <option selected="selected" value="default">Default</option>
+                                            </select>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     END THEME PANEL 
+                </div> -->
+                <!-- END PAGE TOOLBAR -->
+            </div>
+            <!-- END PAGE HEAD -->
+            <!-- BEGIN PAGE BREADCRUMB -->
+            
+            <!-- END PAGE BREADCRUMB -->
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box"><div class="portlet-body form">
+                        <div calss="col-md-offset-3 form-body" style="line-height:5">
+                            <a  style="margin-left:20px" class="btn btn-default" data-toggle="modal"  href="{:U('Comment/index')}">评论管理</a>
+                            <a  class="btn btn-default" data-toggle="modal"  href="{:U('Comment/user')}">用户管理</a>
+                            <a  class="btn btn-default btn-primary" data-toggle="modal"  href="{:U('Comment/counttable')}">统计信息</a>
+                            <a  class="btn btn-default" data-toggle="modal"  href="{:U('Comment/commentsettings')}">留言设置</a>
+                        </div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-danger display-hide">
+                                        <button data-close="alert" class="close"></button>
+                                        <span></span>
+                                    </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box">
+                        <div class="portlet-body form">
+                            <form id="commentcountform" class="form-horizontal" method="POST" action="{:U('Comment/counttable')}">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-1">时间设置</label>
+                                        <div class="col-md-2">
+                                            <div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+                                                <input type="text" class="form-control" name="starttime" value="{$starttime}">
+                                                <span class="input-group-addon">到</span>
+                                                <input type="text" class="form-control" name="endtime"  value="{$endtime}">
+                                            </div>
+                                            <span class="required" style="color:red"></span>
+                                            <span class="help-inline">
+                                            时间间隔不能大于30天</span>
+                                        </div>
+                                        <label class="col-md-2 control-label">分类选择：</label>
+                                        <div class="col-md-1">
+                                            <select onchange="changetopic(this)" class="form-control input-inline input-small" name="sort">
+                                                <option value=''>请选择</option>
+                                                <foreach name="sortdata" item="v" >
+                                                    <option value="{$v.sid}" <if condition="$sortid eq $v['sid']">selected</if> >{$v.sortname}</option>
+                                                </foreach>
+                                            </select>
+                                        </div>
+                                        <label <if condition="$topicid eq 0">style="display:none"</if> class="col-md-2 control-label">话题：</label>
+                                        <div <if condition="$topicid eq 0">style="display:none"</if> class="col-md-1">
+                                            <select class="form-control input-inline input-small" name="topic">
+                                                <option value=''>请选择</option>
+                                                <if condition="$topicid">
+                                                    <foreach name="topicdata" item="v" >
+                                                        <option value="{$v.tid}" <if condition="$topicid eq $v['tid']">selected</if> >{$v.topicname}</option>
+                                                    </foreach>
+                                                </if>
+                                            </select>
+                                        </div>
+                                        <label class="col-md-1 control-label"></label>
+                                        <div class="">
+                                            <button class="btn blue" type="submit" onclick="return checkform(this.form)">查询</button>
+                                            <button class="btn blue" type="button" onclick="exportdata(this.form)">导出数据</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-5 col-md-7">
+                                            <button class="btn green" type="submit">查询</button>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+	                        <div class="caption">
+	                                 <i class="fa fa-edit"></i>评论统计图表
+	                            </div>
+	                        </div>
+                        <div class="portlet-body">
+                            <div class="portlet light">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-bar-chart font-green-haze"></i>
+                                        <span class="caption-subject bold uppercase font-green-haze">统计图表</span>
+                                        <!--<span class="caption-helper">column and line mix</span>-->
+                                    </div>
+                                    <!--<div class="tools">
+                                        <a href="javascript:;" class="collapse">
+                                        </a>
+                                        <a href="#portlet-config" data-toggle="modal" class="config">
+                                        </a>
+                                        <a href="javascript:;" class="reload">
+                                        </a>
+                                        <a href="javascript:;" class="fullscreen">
+                                        </a>
+                                        <a href="javascript:;" class="remove">
+                                        </a>
+                                    </div>-->
+                                </div>
+                                <div class="portlet-body">
+                                    <div id="chart_1" class="chart" style="height: 400px;">
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END EXAMPLE TABLE PORTLET-->
+                </div>
+            </div>
+            
+            <!-- END PAGE CONTENT-->
+        </div>
+        </div></div></div>
+ <script>
+$.ajaxSetup({
+	async : false 
+}); 
+	jQuery(document).ready(function() {
+	   ChartsAmcharts.init();
+	});
+function  changetopic(obj){
+	if($(obj).val() == ''){
+		$(obj).parent().next().hide();
+	    $(obj).parent().next().next().hide();
+	    $(obj).parent().next().next().find("select").html("<option value=''>请选择</option>");
+	    return false;
+	}
+	$.post("{:U('Comment/topicoption')}",{sid:$(obj).val()}, function(info) {
+		if(info.status == "succ"){
+			optionhtml = "";
+			for(i=0;i<info.data.length;i++){
+				optionhtml += '<option value="'+info.data[i]['tid']+'"<if condition="$sortoption eq $v.sid">selected</if> >'+info.data[i]['topicname']+'</option>';
+			}
+			$(obj).parent().next().next().find("select").html("<option value=''>请选择</option>");
+			$(obj).parent().next().next().find("select").append(optionhtml);
+		}else{
+			$(obj).parent().next().next().find("select").show();
+		}
+	},'json');
+    $(obj).parent().next().show();
+    $(obj).parent().next().next().show();
+}
+function checkform(form){
+	if( form.starttime.value != '' || form.endtime.value != ""){
+		if( form.starttime.value != ''){
+			if(form.endtime.value == ""){
+				$(".display-hide > span").html("不能只选择一个时间点");
+		        $(".display-hide").show();
+		        return false;
+			}
+		}
+		if( form.starttime.value == ''){
+	        if(form.endtime.value != ""){
+	            $(".display-hide > span").html("不能只选择一个时间点");
+	            $(".display-hide").show();
+	            return false;
+	        }
+	    }
+	    startyear = form.starttime.value.substr(form.starttime.value.length-4);
+	    startmonth = form.starttime.value.substr(0,2);
+	    startday = form.starttime.value.substr(3,2);
+	    endyear = form.endtime.value.substr(form.endtime.value.length-4);
+	    endmonth = form.endtime.value.substr(0,2);
+	    endday = form.endtime.value.substr(3,2);
+	    var date1 = new Date(startyear, (startmonth-1), startday);  //开始时间
+	    var date2 = new Date(endyear, (endmonth-1), endday);     //结束时间
+	    var date3 = date2.getTime() - date1.getTime();   //时间差的毫秒数
+	    if(date3 <0){
+            $(".display-hide > span").html("结束时间必须大于开始时间");
+            $(".display-hide").show();
+	    	return false;
+	    }
+	    var leave = date3 % (30 * 24 * 3600 * 1000);
+	    var leave0 = leave % (30 * 24 * 3600 * 1000);
+	    var days = Math.floor(leave0 / (24 * 3600 * 1000));
+	    if(parseInt(date3) > 2736000000){
+	    	$(".display-hide > span").html("时间间隔不能大于30天");
+            $(".display-hide").show();
+	        return false;
+	    }else{
+	    	$(".display-hide").hide();
+	    	return true;
+	    }
+	}else{
+		return true;
+	}
+}
+function exportdata(form){
+    starttime = 0;
+    endtime = 0;
+	if( form.starttime.value != '' || form.endtime.value != ""){
+        if( form.starttime.value != ''){
+            if(form.endtime.value == ""){
+                $(".display-hide > span").html("不能只选择一个时间点");
+                $(".display-hide").show();
+                return false;
+            }
+        }
+        if( form.starttime.value == ''){
+            if(form.endtime.value != ""){
+                $(".display-hide > span").html("不能只选择一个时间点");
+                $(".display-hide").show();
+                return false;
+            }
+        }
+        startyear = form.starttime.value.substr(form.starttime.value.length-4);
+        startmonth = form.starttime.value.substr(0,2);
+        startday = form.starttime.value.substr(3,2);
+        endyear = form.endtime.value.substr(form.endtime.value.length-4);
+        endmonth = form.endtime.value.substr(0,2);
+        endday = form.endtime.value.substr(3,2);
+        var date1 = new Date(startyear, (startmonth-1), startday);  //开始时间
+        var date2 = new Date(endyear, (endmonth-1), endday);     //结束时间
+        var date3 = date2.getTime() - date1.getTime();   //时间差的毫秒数
+        if(date3 <0){
+            $(".display-hide > span").html("结束时间必须大于开始时间");
+            $(".display-hide").show();
+            return false;
+        }
+        var leave = date3 % (30 * 24 * 3600 * 1000);
+        var leave0 = leave % (30 * 24 * 3600 * 1000);
+        var days = Math.floor(leave0 / (24 * 3600 * 1000));
+        if(parseInt(date3) > 2736000000){
+            $(".display-hide > span").html("时间间隔不能大于30天");
+            $(".display-hide").show();
+            return false;
+        }
+        starttime = (date1.getTime() / 1000);
+        endtime = (date2.getTime() / 1000);
+    }
+	sortid = form.sort.value;
+	topicid = form.topic.value;
+	var str = "{:U('Comment/exportcomment')}";
+    var url = str.replace(".html","")
+    url = url+"/starttime/"+starttime+"/endtime/"+endtime+"/sort/"+sortid+"/topic/"+topicid;
+    location.href=url;
+}
+ </script>
+<include file="Public/footer" />

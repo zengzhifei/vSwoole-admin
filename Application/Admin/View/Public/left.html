@@ -1,0 +1,71 @@
+<div class="page-sidebar-wrapper">
+    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+    <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+    <div class="page-sidebar navbar-collapse collapse">
+        <!-- BEGIN SIDEBAR MENU -->
+        <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+        <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+        <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+        <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+        <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+        <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+        <notempty name="__MENU__.child">
+            <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                <foreach name='__MENU__.child' item='v' key='k'>
+                    <li class="active">
+                        <a href="javascript:;">
+                            <i class="icon icon-unfold"></i>
+                            <notempty name="k"><span class="title">{$k}</span></notempty>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu" style="display: none;">
+                            <foreach name='v' item='sk'>
+                                <if condition="$menuname eq $sk[title]">
+                                    <li class="myApp active">
+                                        <else/>
+                                    <li>
+                                </if>
+                                <if condition="$sk.title eq '节目期数'"><a href="{$sk.url|U}">
+                                    <else/>
+                                    <a href="{:U($sk['url'],array('stage_id'=>$stage_id))}">
+                                </if>
+
+                                <i class="icon icon-unfold"></i>
+                                {$sk.title}</a>
+                                </li>
+                            </foreach>
+                        </ul>
+                    </li>
+                    </if>
+                </foreach>
+            </ul>
+        </notempty>
+        <!-- END SIDEBAR MENU -->
+    </div>
+</div>
+<script>
+    var local_url = window.location.href;
+    var getUrlParam = function(url,param) {
+        if (!url || !param) return null;
+        var reg = new RegExp("(^|&|/|\\?)" + param + "=([/]?)([^&]*)(&|$)");
+        var r = url.match(reg);
+        if (r != null) {
+            r[3] = r[3].indexOf('/') == -1 ? r[3]+'/index' : r[3];
+            var reg = /(\.html)|(\.htm)/g;
+            r[3] = r[3].replace(reg,'');
+            return decodeURI(r[3]).toLowerCase();
+        }
+        return null;
+    }
+    $('.sub-menu').each(function() {
+        $(this).children('li').each(function() {
+            var href = $(this).find('a').attr('href');
+            if(getUrlParam(local_url,'s') == getUrlParam(href,'s')) {
+                $(this).addClass('active');
+                $(this).parent().parent().addClass('active on open');
+                $(this).parent().parent().find('.arrow').addClass('open');
+                $(this).parent().show();
+            }
+        });
+    });
+</script>

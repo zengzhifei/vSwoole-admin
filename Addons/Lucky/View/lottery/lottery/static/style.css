@@ -1,0 +1,55 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td {
+    margin: 0;
+    padding: 0;
+    font: 14px/1.5 Microsoft YaHei, Helvitica, Verdana, Arial, san-serif;
+}
+.activity-lottery-winning {
+    background: url(../static/activity-lottery-bg2.jpg) #2a8a00;
+    overflow-x: hidden;
+}
+
+.boxcontent {
+    margin: 15px 15px 0;
+    border-radius: 5px;
+    padding: 2px;
+    background-color: #FEF8B2;
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    -o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.boxyellow {
+    background-color: #FEF8B2;
+}
+.box {
+    border-radius: 5px;
+    font-size: 14px;
+    border: 1px dashed rgba(0, 0, 0, 0.3);
+}
+.box .title-orange {
+        padding: 0 5px 0px 10px;
+        background: url(../static/title-bg-orange.png) no-repeat 0 0;
+        border-radius: 3px 3px 3px 0;
+        color: #ffffff;
+        height: 22px;
+        margin: -1px;
+        /*-moz-text-shadow:0 1px 0 #8d0001;-webkit-text-shadow:0 1px 0 #8d0001;text-shadow:0 1px 0 #8d0001;
+	text-shadow:0px 1px 0 #8d0001;*/
+    }
+.box .Detail {
+        padding: 15px;
+    }
+	.red {
+    color: red;
+}
+    .box .title-green {
+        padding: 0 5px 0px 10px;
+        background: url(../static/title-bg-green.png) no-repeat 0 0;
+        border-radius: 3px 3px 3px 0;
+        color: #ffffff;
+        height: 22px;
+        margin: -1px;
+        /*-moz-text-shadow:0 1px 0 #8d0001;-webkit-text-shadow:0 1px 0 #8d0001;text-shadow:0 1px 0 #8d0001;
+	text-shadow:0px 1px 0 #8d0001;*/
+    }

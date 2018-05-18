@@ -1,0 +1,45 @@
+	<div class="page-sidebar-wrapper">
+		<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+		<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+		<div class="page-sidebar navbar-collapse collapse">
+			<!-- BEGIN SIDEBAR MENU -->
+			<!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+			<!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+			<!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+			<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+			<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+			<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+			<ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+				<foreach name='nav' item='v' key='k'>
+					<if condition="$v.name eq '轻应用管理'">
+						<li class="start appInfo active">
+					<else/>
+						<li>
+					</if>
+						<a href="javascript:;">
+						<i class="{$v.style}"></i>
+						<span class="title">{$v.name}</span>
+						<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<foreach name='nav[$k]["children"]' item='sk'>
+							<if condition="$sk.name eq '我的轻应用'">
+								<li class="myApp active">
+							<elseif condition="$sk.name eq '模版管理'" />
+								<li class="myApp active">
+							<else/>
+								<li>
+							</if>
+								<a href="{$sk.url}">
+								<i class="{$sk.style}"></i>
+								{$sk.name}</a>
+							</li>
+							</foreach>
+						</ul>
+					</li>
+
+				</foreach>
+			</ul>
+			<!-- END SIDEBAR MENU -->
+		</div>
+	</div>

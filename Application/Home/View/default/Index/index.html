@@ -1,0 +1,256 @@
+<include file="Public/uchead"/>
+
+<div class="bg_top_h_tile">
+  <div class="bg_top_owner">
+    <div id="page_body">
+      <div class="column_wrapper">
+        <div class="col_w1000">
+          <div class="index0_left">
+            <div class="logo2"><img src="__PUBLIC__/Home/yonghuzhongxinindex_files/youxiang_1.jpg" height="86"></div>
+            <div class="col_1">
+              <div class="zt">
+                <div class="tp"><img src="{$Think.session.user_auth.uid|getFaceUrl=###,'120'}" onerror="javascript:this.src='__PUBLIC__/Home/yonghuzhongxinindex_files/youxiang_2_120.jpg'" height="120" width="120">
+                  <div class="xiuggai" id="xgtx"><a href="{:U('User/setHead')}">修改头像</a></div>
+                </div>
+                
+                <div class="vspace" style="height:53px"></div>
+                <div class="nav">
+	<include file="zjleft" />
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	/*
+	默认时间
+	*/
+	var myDate = new Date();
+	var time_now = myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate(); 
+	this.day = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六")[myDate.getDay()];
+	var str = time_now+" "+this.day;
+	$("#time_now").html(str);
+	
+    $("#leftnav li").each(function(i){
+    	Cts = $(this).attr("class");
+    	if(Cts.indexOf("cur") >= 0 )  
+    	{  
+    	    thisObj = $(this);
+    		$(this).mouseenter(function()
+    		{
+    			$(this).siblings("li").removeClass("cur").end().addClass("cur");
+    		    thisObj.addClass("cur");
+    		});
+    		$(this).mouseleave(function()
+    		{
+    			$(this).removeClass("cur");
+    		    thisObj.addClass("cur");
+    		});
+    	}
+	});
+});
+function get_calendar(timestamp){
+	var str = "{:U('Index/calendar')}";
+	var urlstr = str.replace(".html","");
+	var rand =Math.random();
+	$.ajax({
+		url:str,
+		type:'get',
+		data:{timestamp:timestamp,rand:rand},
+		dataType:'json',
+		success:function(msg){
+		$('.rq').html(msg)
+	}})
+}
+</script>
+              </div>
+            </div>
+            <div class="col_2">
+              <div class="xm">
+                <div class="mc">
+                  <p>{$Think.session.user_auth.username}</p>
+                  <span><a href="{:U('User/userProfile')}" id="updatenickname">修改用户名</a></span>
+                  
+                  </div>
+                <div class="tp1"> <a href="{:U('User/profile')}">修改密码</a><a href="javascript:void(0);" id="loginout">注销</a></div>
+              </div>
+              <div class="vspace"></div>
+              <div class="md">
+                <div class="md_hd bai"> <span class="mh_title">消息通知</span> </div>
+                <div class="md_bd">
+                  <div class="xiaoxi">
+                    <p class="xt"><a href="/notice.php?a=sysMes">系统消息：<i><?php echo $sysMesNoReadCount;?>条新</i></a></p>
+                  </div>
+                </div>
+              </div>
+              <div style="height:40px" class="vspace"></div>
+              <div class="md" id="guankanjilu">
+                <div class="md_hd"> <span class="mh_title">最新投票</span> <span class="mh_option"><!-- <a href="#">查看全部</a> --></span> </div>
+                <div class="md_bd">
+                  <div class="list_box">
+                    <ul>
+                    	<foreach name="votelist" item="vo">
+                           <li class="end" style="margin-right:25px;">
+                        		<div class="img"><a href="{$vo.url}" target="_block"><img src="{$vo.imgpath}" height="120" width="160"></a></div>
+                        		<div class="text"> <a href="{$vo.url}" target="_block" title="{$vo.title}">{$vo.title}</a></div>
+                      		</li>
+                      </foreach>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="md" id="guankanjilu">
+                <div class="md_hd"> <span class="mh_title">调查推荐</span> <span class="mh_option"><!-- <a href="#">查看全部</a> --></span> </div>
+                <div class="md_bd">
+                  <div class="list_box">
+                    <ul>
+                    	<foreach name="researchlist" item="vo">
+                           <li class="end" style="margin-right:25px;">
+                        		<div class="img"><a href="{$vo.url}" target="_block"><img src="{$vo.imgpath}" height="120" width="160"></a></div>
+                        		<div class="text"> <a href="{$vo.url}" target="_block" title="{$vo.title}">{$vo.title}</a></div>
+                      		</li>
+                      </foreach>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              
+              
+             
+            </div>
+          </div>
+          <div class="index0_right">
+            <div class="riqi" style="display:none;">
+              <div class="rq">{$calendar}</div>
+              <div class="qdjl">
+                <div class="tp1"><a href="javascript:void(0)" id="cclose"></a></div>
+                <h3>我的签到记录：</h3>
+                <p>连续签到天数：{$checkinuser.checkin_days}天<br>累计签到：{$checkinuser.checkin_total}天</p>
+                <if condition="$checkinuser[ischeckined] neq 1"><else/>
+                <span>今日已签到</span>
+                </if>
+                              </div>
+            </div>
+            <div class="text_box">
+              <div class="img" id="time_now"></div>
+              <div class="text">
+              <if condition="$checkinuser[ischeckined] neq 1">
+              	<div class="qd2" style="display:none"><span id="yiqiandao" style="cursor:pointer;">已签到</span></div>
+              	<div class="qd" style="display:block"><a href="javascript:void(0);" id="qiandao">签到</a></div>
+              <else />
+              	<div class="qd2" style="display:block"><span id="yiqiandao" style="cursor:pointer;">已签到</span></div>
+              	<div class="qd" style="display:none"><a href="javascript:void(0);" id="qiandao">签到</a></div>
+              </if>
+                <div class="lxqd">
+                  <p>连续签到：</p>
+                  <p><i id="all_num">{$checkinuser.checkin_days}</i>天</p>
+                </div>
+                <div class="lj">累计签到： <b id="total_num">{$checkinuser.checkin_total}</b> 天</div>
+              </div>
+            </div>
+            <!-- <iframe src="__PUBLIC__/Home/yonghuzhongxinindex_files/index_002.htm" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="true" frameborder="0" height="593px" width="220"></iframe> -->
+            <div class="md">
+              <div class="md_hd"> <span class="mh_title">我的收藏</span> <span class="mh_option"><a href="#">查看全部</a></span> </div>
+              <div class="md_bd">
+                              <div class="list_box">
+                  <div class="img"><a href="#" ><img src="__PUBLIC__/Home/yonghuzhongxinindex_files/2bc109d479fc4f99aa562c9a4aaba448-180.jpg" height="80" width="107"></a></div>
+                  <div class="text"><a href="#"  title="《大秦帝国之纵横》 第21集">《大秦帝国之纵横》 第21集</a></div>
+                </div>
+                <div class="vspace" style=" height:21px;*height:20px"></div>
+                              <div class="list_box">
+                  <div class="img"><a href="#" ><img src="__PUBLIC__/Home/yonghuzhongxinindex_files/5a578bbe1de74c51a8b4ce3e7fdd8f98-180.jpg" height="80" width="107"></a></div>
+                  <div class="text"><a href="#"  title="《大秦帝国之纵横》 第14集">《大秦帝国之纵横》 第14集</a></div>
+                </div>
+                <div class="vspace" style=" height:21px;*height:20px"></div>
+                              <div class="list_box">
+                  <div class="img"><a href="#" ><img src="__PUBLIC__/Home/yonghuzhongxinindex_files/2151f675ecb443dcb1fb1bf425c2ff12-180.jpg" height="80" width="107"></a></div>
+                  <div class="text"><a href="#"  title="《大秦帝国之纵横》 第7集">《大秦帝国之纵横》 第7集</a></div>
+                </div>
+                <div class="vspace" style=" height:21px;*height:20px"></div>
+                            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <include file="Public/ucfooter" />
+    <div id="page_bottom_self">
+  <div class="cntv_footer_hdc"><b></b></div>
+  <div class="cntv_footer">
+   
+    <div class="clear"></div>
+  </div>
+  <div class="cntv_footer_ftc"><b></b></div>
+</div>  </div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		//退出登录js
+		$("#loginout").click(function(){
+			$.ajax({
+				url:"{:U('User/logout')}",
+				type: "POST",
+				async: false, 
+				success:function(json){
+					if(json.status == "success"){
+						//alert("注销成功！");
+						//setCookie("user_"+uid,0,1*24*3600);
+						url="{:U('User/login')}";
+						window.location.href=url;
+					}else{
+						alert(json.msg);
+					}
+				}
+			});
+	    });
+		
+		
+		$('#qiandao').click(function(){
+			$.ajax({
+				url:"{:U('Index/checkin')}",
+				type:"post",
+				success:function(json){
+					if(json.status == 'success'){
+						$("#all_num").html(json.data.days);
+						$("#total_num").html(json.data.total);
+						$(".qdjl p").after("<span>今日已签到</span>");
+						$(".qdjl p").html("连续签到天数："+json.data.days+"天<br />累计签到天数："+json.data.total+"天");
+						$(".qd").hide();
+					    $(".qd2").show();
+					    $(".riqi").show();
+					}
+				}
+			});
+		});
+		
+		$('#yiqiandao').click(function(){
+			$(".riqi").show();
+		})
+		$("#cclose").click(function(){
+			$(".riqi").hide();
+		});
+		
+	});
+	function getUrlParam(name)
+	{
+	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+	if (r!=null) return unescape(r[2]); return null; //返回参数值
+	}
+	//写cookies
+	function setCookie(name,value,time)
+	{
+	    var Days = time;
+	    var exp = new Date();
+	    exp.setTime(exp.getTime() + Days*1000);
+	    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	}
+	$("#xgtx").click(function(){
+		$(".xiuzp").show();
+	})
+	function close_header(){
+		$(".xiuzp").hide();
+	}
+</script>
+</body></html>

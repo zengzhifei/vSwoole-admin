@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>微投票</title>
+  <meta name="viewport" content="width:640px,initial-scale=1,user-scalable=1">
+
+  <link href="{$link}/style/style.css?v={:SITE_VERSION}" rel="stylesheet"/>
+  <script src="{$link}/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+ </head>
+ <body>
+ <div class="column_wrapper">
+	<header class="header">
+		<!-- <a href="#" class="md-close"><img src="style/img/backmoren.png"></a> -->
+		<a class="title"><i>投票</i></a>
+		<a href="" class="user_btn"><img id="userInfo_img" src="" style="display:none;"></a>
+	</header>
+	<section class="diaocha">
+		<div class="md">
+			<div class="titile_box"><p id="diaocha_title" data="">{$info.title}</p></div>
+			<div class="option_box">
+			  <ul class="list" id="toupiao_options">
+			  <foreach item="vo" name="option">
+			  <li><i id="{$vo.id}">{$vo.title}</i></li>
+			  </foreach>
+			  </ul>
+			</div>
+			<div class="submit_box">
+				<div class="submit" onClick="diaochaVote();">
+					<a class="commit_btn" >完成</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+ </div>
+ <script type="text/javascript">
+ $(function(){
+	//单选、双选
+	var op_type = {$info.optioned_type};
+	if (op_type == 1){
+		$("#toupiao_options li").click(function(){
+			$("#toupiao_options li").removeClass("cur");
+			$(this).addClass("cur")
+		});
+	}
+	if (op_type == 2){
+		$("#toupiao_options li").toggle(function(){
+			$(this).addClass("cur")
+		},function(){
+			$(this).removeClass("cur")
+		});
+	}
+
+ });
+	var diaochaVote = function(){
+		
+		// 获得li
+		var lis = $("#toupiao_options li.cur");
+		var is_register = {$info.is_register};
+		var userid = "{$userid}";
+		var option_number = {$info.option_number};
+		var optioned_type = {$info.optioned_type}
+
+		if (lis.length == 0){
+			alert("请选择至少1项！");
+			return false;
+		}else if(optioned_type == 2 && lis.length > option_number){
+			alert("最多选择"+option_number+"项！");
+			return false;
+		}else{
+			// 投票
+			var post_str = "";
+			for (var i= 0; i< lis.length; i++)
+			{
+				post_str += $(lis[i]).find("i").attr("id");
+				if (i != lis.length -1)
+				{
+					post_str += ",";
+				}
+			}
+			diaochaVote_post(post_str);
+		}
+	}
+	var diaochaVote_post = function(optionid){
+		var voteid = "{$info.id}";
+		var userid = "{$userid}";
+		var cast_count = {$cast_count};
+		var vcount = {$info.voteperson_maxnum};
+		var result_show = "{$info.result_show}";
+		if(cast_count >= vcount){
+			alert("您的投票次数已用尽！");
+			return false;
+		}
+		$.post("{:addons_url('Vote://Show/castVote')}",{voteid:voteid,optionid:optionid,userid:userid}, function(data) {
+			if (data.status == "success"){
+				alert("提交成功");
+				diaocheVote_flag = false;
+				// 提示
+				if (result_show == 2){
+					window.location.href="{:addons_url('Vote://Show/result',array('voteid'=>$info['id']))}";
+				}else{
+					location.reload();
+				}
+			}else if(data.status == 'fail'){
+				if(data.code == '001'){
+					alert(data.msg);
+					window.location.href=data.url;
+				}else{
+					alert(data.msg);
+				}
+			}
+		},'json');
+		
+	}
+ </script>
+ </body>
+</html>

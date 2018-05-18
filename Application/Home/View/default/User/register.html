@@ -1,0 +1,241 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$title} - ctvit.com.cn</title>
+
+<script type="text/javascript" src="__PUBLIC__/Home/userregister_files/jquery-1.js"></script>
+<!-- <script type="text/javascript" src="http://r.img.cctvpic.com/library/script/jquery-1.7.2.min.js"></script> -->
+<!-- <script type="text/javascript" src="/Public/front/formvalidator4.1.3/jquery-1.4.4.min.js"></script> -->
+<script src="__PUBLIC__/Home/userregister_files/formValidator-4.js" type="text/javascript" charset="UTF-8"></script>
+<script src="__PUBLIC__/Home/userregister_files/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
+<script src="__PUBLIC__/Home/userregister_files/DateTimeMask.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Home/userregister_files/theme.js" type="text/javascript"></script>
+<link href="__PUBLIC__/Home/userregister_files/style.css" rel="stylesheet" type="text/css">
+<script>
+$(document).ready(function(){
+		$.formValidator.initConfig({
+			formID:"form_profil",
+			theme:"ArrowSolidBox",
+			//submitOnce:true,
+			errorfocus:true,
+			onError:function(){  },
+		    onSuccess: function () {
+		    	submitUser();
+		    }
+		});
+		$("#username").formValidator({
+            onShow:"帐号必填(可使用字母、数字、下划线)",
+            onFocus:"帐号必填(可使用字母、数字、下划线)",
+            onempty:'帐号不能为空'
+        }).inputValidator({
+            min:6,
+            max:18,
+            onError:"帐号长度6-18个字符"
+        }).regexValidator({
+        	regExp:"(^[a-zA-Z][a-zA-Z0-9_]*$)",
+            onError:"帐号不对"
+        });
+		$("#password").formValidator({
+            onShow:"密码必填",
+            onFocus:"密码必填(6-20位)",
+            onempty:'密码不能为空'
+        }).inputValidator({
+            min:6,
+            max:20,
+            onError:"密码长度6-20个字符"
+        });
+		$("#repassword").formValidator({
+            onShow:"请跟密码一致",
+            onFocus:"请跟密码一致",
+            onempty:'请跟密码一致'
+        }).inputValidator({
+            min:6,
+            max:20,
+            onError:"密码长度6-20个字符"
+        }).compareValidator({
+        	desID:"password",
+        	operateor:"=",
+        	onError:"2次密码不一致,请确认"
+        });
+		/*$("#verify").formValidator({
+            onShow:"请输入验证码",
+            onFocus:"请输入验证码",
+            onCorrect:""
+        }).inputValidator({
+            min:1,
+            onError:"请输入验证码"
+        }).ajaxValidator({
+        	type:'GET',
+        	async : false,
+        	url: "/index.php/Home/User/checkverify.html",
+        	success:function(data){
+        		if(data.indexOf('y')>0){
+        			return true;
+        		}else{
+        			return false;
+        		}
+        	},
+        	onError: "验证码错误,请重新输入",
+        	onWait:"正在验证，请耐心等待"
+        });*/
+		return false;
+});
+</script>
+<style type="text/css">@import url('http://ting.cri.cn/Public/front/formvalidator4.1.3/themes/ArrowSolidBox/style/style.css');</style></head>
+<body>
+	<!-- <div class="vspace" style="height: 90px"></div> -->
+	<div class="xieyitou">
+		<a href="http://ting.cri.cn/index.php/Home/Index/index.html">
+			<img src="__PUBLIC__/Home/userregister_files/youxiang_1.jpg"  height="71">
+		</a>
+	</div>
+
+	<div class="vspace" style="height: 25px"></div>
+	<div class="zhucebox">
+		<div class="vspace" style="height: 40px"></div>
+		
+		<div class="zhucer fl" style="padding-left:250px">
+		<form method="post" name="form_profil" id="form_profil">
+			<h4>快速注册平台</h4>
+			<div class="vspace" style="height: 30px"></div>
+			<div class="zhucexinxi">
+				<span class="user_style_0203">用 户 名</span>
+				<input class="input_public" name="username" id="username" type="text">
+				<strong class="onShow" style="margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; display: inline;" id="usernameTip"></strong>
+				<div class="clear"></div>
+			</div>
+			<script>
+				$(function() {
+					$('.zhucexinxi input').focus(function() {
+						$(this).siblings('strong').show()
+
+					})
+
+				})
+			</script> 
+			<div class="vspace" style="height: 20px"></div>
+			<div class="zhucexinxi">
+				<span class="user_style_0203">邮  箱</span>
+				<input class="input_public" name="email" id="email" type="text">
+				<strong class="onShow" style="margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; display: inline;" id="emailTip"></strong>
+				<div class="clear"></div>
+			</div>
+			<div class="vspace" style="height: 20px"></div>
+			<div class="zhucexinxi">
+				<span class="user_style_0203">手  机</span>
+				<input class="input_public" name="mobile" id="mobile" type="text">
+				<strong class="onShow" style="margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; display: inline;" id="mobileTip"></strong>
+				<div class="clear"></div>
+			</div>
+			<!-- <div class="vspace" style="height: 20px"></div> -->
+			<div class="vspace" style="height: 20px"></div>
+			<div class="zhucexinxi">
+				<span class="user_style_0203">密  码</span>
+				<input name="password" id="password" class="input_public" type="password">
+				<strong class="onShow" style="margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; display: inline;" id="passwordTip"></strong>
+				<div class="clear"></div>
+			</div>
+			<div class="vspace" style="height: 20px"></div>
+			<div class="zhucexinxi">
+				<span class="user_style_0203">确认密码</span>
+				<input class="input_public" name="repassword" id="qrpassword" type="password">
+				<strong class="onShow" style="margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; display: inline;" id="repasswordTip"></strong>
+				<div class="clear"></div>
+			</div>
+			<div class="vspace" style="height: 20px"></div>
+			<div class="yanzheng">
+
+				<span class="user_style_0203">验 证 码</span>
+				<input class="input_public" name="verify" id="verify" type="text">
+				<img alt="点击切换" src="{:U('verify')}" style="cursor:pointer;widht:260px;height:30px;" class="verify">
+				<strong class="onShow" style="margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; display: inline;" id="verifyTip"></strong>
+			</div>
+			
+			<script>
+				$(function() {
+					$('.yanzheng input').focus(function() {
+						$(this).siblings('strong').show()
+					});
+				})
+			</script>
+			<div class="vspace" style="height: 20px"></div>
+			<div class="tongyibox">
+				<a href="javascript:void(0)" onclick="verify();" title="点击刷新验证码">看不清，换一张</a>
+				<div class="vspace" style="height: 14px"></div>
+				<div class="vspace" style="height: 20px"></div>
+				<input value="" class="submit" type="submit">
+				<!-- <a href="javascript:void(0);">
+					<img src="style/zhuceq.jpg" />
+				</a> -->
+				<div class="yiyou">
+					<span>已有账号</span>
+					<a href="{:U('User/login')}">去登录</a>
+				</div>
+
+			</div>
+
+</form>
+		</div>
+		<div class="clear"></div>
+
+
+	</div>
+<include file="Public/ucfooter" />
+
+
+
+
+<script>
+function submitUser(){
+	/*var username = $("[name='username']").val();
+	var password = $("[name='password']").val();
+	var email    = $("[name='email']").val();
+	var telenumber    = $("[name='mobile']").val();
+	var verify = $("[name='verify']").val();*/
+	var data = $('#form_profil').serialize();
+	//var check_verify = false;
+	//var verify=$('.yanzheng input').val();
+	/*$.ajax({
+    	url:"/index.php/Home/User/checkverify.html",
+    	type:'POST',
+    	data:{verify:verify},
+    	dataType:'json',
+    	async:false,
+    	success:function(json){
+    		if(json.status=='y'){
+    			 check_verify=true;
+    		}else{
+    			alert('验证码错误0000');
+    		}
+    	}
+    });*/
+	/*if(check_verify == false){
+		return false;
+	}*/
+	$.ajax({
+			url:"{:U('User/register')}",
+			type: "POST",
+			async: false, 
+			data:data,
+			dataType:'JSON',
+			success:function(json){
+				if(json.status == "success"){
+					url="{:U('User/login')}";
+					window.location.href=url;
+				}else{
+					alert(json.msg);
+				}
+				
+			}
+		});
+}
+
+function verify(){	
+		var verifyimg = $(".verify").attr("src");
+            if( verifyimg.indexOf('?')>0){
+                $(".verify").attr("src", verifyimg+'&random='+Math.random());
+            }else{
+                $(".verify").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+            }	
+}
+	
+</script></body></html>

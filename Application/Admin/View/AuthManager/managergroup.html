@@ -1,0 +1,367 @@
+<include file="Public/head" />
+<include file="Public/top" />
+<style>
+.auth-form {
+    min-width: 100px;
+    padding: 15px;
+}
+.checkmod {
+	border: 1px solid #ebebeb;
+    border-color: #ebebeb;
+	margin-bottom: 20px;
+}
+.checkmod dt {
+    background-color: #ececec;
+    border-bottom-color: #ebebeb;
+	font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+.checkmod dd {
+    line-height: 30px;
+    padding-left: 10px;
+}
+.checkmod dd .divsion {
+    margin-right: 20px;
+}
+
+.checkmod dd .checkbox {
+    margin: 0 10px 0 0;
+}
+.checkmod dd .rule_check{padding-top:10px;}
+.checkbox, .radio {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+}
+
+.checkbox input, .radio input {
+    margin-right: 5px;
+    vertical-align: -1px;
+}
+</style>
+<div class="clearfix">
+	<div class="page-container">
+		<include file="Public/left" />
+
+		<div class="page-content-wrapper">
+			<script type="text/javascript" src="__PUBLIC__/static/uploadify/jquery.uploadify.min.js"></script>
+			<div class="page-content">
+				<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+				<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+					tabindex="-1" id="portlet-config" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button aria-hidden="true" data-dismiss="modal" class="close"
+									type="button"></button>
+								<h4 class="modal-title">Modal title</h4>
+							</div>
+							<div class="modal-body">Widget settings form goes here</div>
+							<div class="modal-footer">
+								<button class="btn blue" type="button">Save changes</button>
+								<button data-dismiss="modal" class="btn default" type="button">Close</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+				<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+				<!-- BEGIN PAGE HEADER-->
+				<!-- BEGIN PAGE HEAD -->
+				<div class="page-head">
+					<!-- BEGIN PAGE TITLE -->
+					<!-- END PAGE TITLE -->
+					<!-- BEGIN PAGE TOOLBAR -->
+					<!--<div class="page-toolbar">
+                     BEGIN THEME PANEL 
+                    <div class="btn-group btn-theme-panel">
+                        <a data-toggle="dropdown" class="btn dropdown-toggle" href="javascript:;">
+                        <i class="icon-settings"></i>
+                        </a>
+                        <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <h3>THEME</h3>
+                                    <ul class="theme-colors">
+                                        <li data-theme="default" class="theme-color theme-color-default active">
+                                            <span class="theme-color-view"></span>
+                                            <span class="theme-color-name">Dark Header</span>
+                                        </li>
+                                        <li data-theme="light" class="theme-color theme-color-light">
+                                            <span class="theme-color-view"></span>
+                                            <span class="theme-color-name">Light Header</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-12 seperator">
+                                    <h3>LAYOUT</h3>
+                                    <ul class="theme-settings">
+                                        <li>
+                                             Theme Style
+                                            <select class="layout-style-option form-control input-small input-sm">
+                                                <option selected="selected" value="square">Square corners</option>
+                                                <option value="rounded">Rounded corners</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Layout
+                                            <select class="layout-option form-control input-small input-sm">
+                                                <option selected="selected" value="fluid">Fluid</option>
+                                                <option value="boxed">Boxed</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Header
+                                            <select class="page-header-option form-control input-small input-sm">
+                                                <option selected="selected" value="fixed">Fixed</option>
+                                                <option value="default">Default</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Top Dropdowns
+                                            <select class="page-header-top-dropdown-style-option form-control input-small input-sm">
+                                                <option value="light">Light</option>
+                                                <option selected="selected" value="dark">Dark</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Mode
+                                            <select class="sidebar-option form-control input-small input-sm">
+                                                <option value="fixed">Fixed</option>
+                                                <option selected="selected" value="default">Default</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Menu
+                                            <select class="sidebar-menu-option form-control input-small input-sm">
+                                                <option selected="selected" value="accordion">Accordion</option>
+                                                <option value="hover">Hover</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Sidebar Position
+                                            <select class="sidebar-pos-option form-control input-small input-sm">
+                                                <option selected="selected" value="left">Left</option>
+                                                <option value="right">Right</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                             Footer
+                                            <select class="page-footer-option form-control input-small input-sm">
+                                                <option value="fixed">Fixed</option>
+                                                <option selected="selected" value="default">Default</option>
+                                            </select>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     END THEME PANEL 
+                </div> -->
+					<!-- END PAGE TOOLBAR -->
+				</div>
+				<!-- END PAGE HEAD -->
+				<!-- BEGIN PAGE BREADCRUMB -->
+				<!-- END PAGE BREADCRUMB -->
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="portlet box"><div class="portlet-body form">
+							<div calss="col-md-offset-3 form-body" style="line-height:5">
+                                <a  style="margin-left:20px" class="btn btn-default btn-primary" data-toggle="modal" href="javascript:;">访问授权</a>
+								<a class="btn btn-default" data-toggle="modal" href="{:U('AuthManager/user',array('group_name'=>I('group_name') ,'group_id'=> I('group_id')))}">成员授权</a>
+			
+																		
+									<select name="group" class="form-control input-inline">
+										<volist name="auth_group" id="vo">
+											<option value="{:U('AuthManager/access',array('group_id'=>$vo['id'],'group_name'=>$vo['title']))}" <eq name="vo['id']" value="$this_group['id']">selected</eq> >{$vo.title}</option>
+										</volist>
+									</select>
+							
+							
+							</div></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN EXAMPLE TABLE PORTLET-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+	                                 <i class="fa fa-edit"></i>访问授权
+	                            </div>
+							</div>
+							<div class="portlet-body form">
+								<div class="form-body">
+									<div class="alert alert-danger display-hide">
+										<button data-close="alert" class="close"></button>
+										<span></span>
+									</div>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-12">
+
+												<form enctype="application/x-www-form-urlencoded" class="form-horizontal auth-form" id="sortform">
+													<volist name="node_list" id="node" >
+														<dl class="checkmod">
+															<dt class="hd">
+																<label class="checkbox"><input class="auth_rules rules_all" type="checkbox" name="rules[]" value="<?php echo $main_rules[$node['url']] ?>">{$node.title}管理</label>
+															</dt>
+															<dd class="bd">
+																<present name="node['child']">
+																<volist name="node['child']" id="child" >
+								                                    <div class="rule_check">
+								                                        <div>
+								                                            <label class="checkbox" <notempty name="child['tip']">title='{$child.tip}'</notempty>>
+								                                           <input class="auth_rules rules_row" type="checkbox" name="rules[]" value="<?php echo $auth_rules[$child['url']] ?>"/>{$child.title}
+								                                            </label>
+								                                        </div>
+								                                       <notempty name="child['operator']">
+								                                           <span class="divsion">&nbsp;</span>
+								                                           <span class="child_row">
+								                                               <volist name="child['operator']" id="op">
+								                                                   <label class="checkbox" <notempty name="op['tip']">title='{$op.tip}'</notempty>>
+								                                                       <input class="auth_rules" type="checkbox" name="rules[]"
+								                                                       value="<?php echo $auth_rules[$op['url']] ?>"/>{$op.title}
+								                                                   </label>
+								                                               </volist>
+								                                           </span>
+								                                       </notempty>
+												                    </div>
+																</volist>
+																</present>
+															</dd>
+														</dl>
+													</volist>
+								
+											        <input type="hidden" name="id" value="{$this_group.id}" />
+								                    <button type="button" onclick="checkform(this.form)" class="btn blue">提交</button>
+								                    <button class="btn default" onclick="javascript:history.back(-1);return false;">返 回</button>
+											    </form>
+										
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+<script type="text/javascript" src="__STATIC__/qtip/jquery.qtip.min.js"></script>
+<link rel="stylesheet" type="text/css" href="__STATIC__/qtip/jquery.qtip.min.css" media="all">
+<script type="text/javascript" charset="utf-8">
+    +function($){
+        var rules = [{$this_group.rules}];
+        $('.auth_rules').each(function(){
+            if( $.inArray( parseInt(this.value,10),rules )>-1 ){
+                $(this).prop('checked',true);
+            }
+            if(this.value==''){
+                $(this).closest('span').remove();
+            }
+        });
+
+        //全选节点
+        $('.rules_all').on('change',function(){
+        	var tes = $(this).closest('dl').find('dd').find('input').attr('type');
+        	if(this.checked == true){
+        		$(this).closest('dl').find('dd').find('input').parent().addClass("checked");
+        	}else{
+        		$(this).closest('dl').find('dd').find('input').parent().removeClass("checked");
+        	}
+        	
+            $(this).closest('dl').find('dd').find('input').prop('checked',this.checked);
+        });
+        $('.rules_row').on('change',function(){
+        	if(this.checked == true){
+        		$(this).closest('.rule_check').find('.child_row').find('input').parent().addClass("checked");
+        	}else{
+        		$(this).closest('.rule_check').find('.child_row').find('input').parent().removeClass("checked");
+        	}
+            $(this).closest('.rule_check').find('.child_row').find('input').prop('checked',this.checked);
+        });
+
+        $('.checkbox').each(function(){
+            $(this).qtip({
+                content: {
+                    text: $(this).attr('title'),
+                    title: $(this).text()
+                },
+                position: {
+                    my: 'bottom center',
+                    at: 'top center',
+                    target: $(this)
+                },
+                style: {
+                    classes: 'qtip-dark',
+                    tip: {
+                        corner: true,
+                        mimic: false,
+                        width: 10,
+                        height: 10
+                    }
+                }
+            });
+        });
+
+        $('select[name=group]').change(function(){
+			location.href = this.value;
+        });
+
+    }(jQuery);
+    
+    function checkform(form) {
+        var data=$("#sortform").serialize();
+		$.ajax({
+            url:"{:U('AuthManager/writeGroup')}",
+            data:data,
+            type:"POST",
+            dataType:"json",
+            success:function(msg){
+            	
+                if(msg.status == 1){
+                    var msg = msg.info;
+                    $.confirm({title:msg,modal: true, level:"success",buttons: {  
+                           "确定": {
+                               "class":"blue",
+                               "action":function() {
+                            	   location.href = '__ROOT__/admin/AuthManager/index';
+                               }
+                           }
+                       }  
+                    });
+                }else{
+                    var msg=msg.info+",请重新提交";
+                    $.confirm({title:msg,modal: true, level:"danger",buttons: {  
+                           "确定": {
+                               "class":"blue",
+                               "action":function() {
+                               }
+                           }
+                       }  
+                    });
+                }
+            }
+        });
+		return false;
+		
+	}
+</script>
+				</div>
+			</div>
+			<!-- END EXAMPLE TABLE PORTLET-->
+		</div>
+	</div>
+
+	<!-- END PAGE CONTENT-->
+</div>
+
+
+
+<include file="Public/footer" />

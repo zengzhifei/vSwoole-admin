@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>发布爆料</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maxinum-scale=1.0,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="__ADDONS__/baoliao/css/bootstrap.min.css">
+	<script type="text/javascript" src="__ADDONS__/baoliao/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__ADDONS__/baoliao/js/bootstrap.min.js"></script>
+	<style type="text/css">
+	body{padding-top:50px;}
+	* a{text-decoration: none !important;}
+	.navbar{background: #fff;color:#08a5e0 !important;font-size:20px;font-weight:700;line-height: 50px;}
+	.navbar-brand{color:#fff}</style>
+</head>
+<body>
+<!-- header begin -->
+<nav class="navbar navbar-fixed-top text-center">
+
+<a class="" href="{:addons_url('Baoliao://Baoliao/index')}"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;返回爆料主体</a>
+</nav>
+<!-- fabu begin -->
+<div class="well">
+<form method="post">
+<input type="hidden" name="id" value="{$id}">
+<div class="form-group">
+<label for="name">爆料标题</label>
+<input class="form-control" type="text" id="name" name="title" placeholder="请输入爆料标题" value="" /></div>
+<div class="form-group">
+<label for="content">爆料内容</label>
+<textarea id="content" name="content" class="form-control" placeholder="请输入爆料内容" rows="8"></textarea></div>
+<div class="text-right">
+<button class="btn btn-primary" type="submit" id="submit-btn">提交</button>
+</div></form>
+</div>
+
+ 		<script type="text/javascript">
+			$('#submit-btn').click(function(){
+					if($('#content').val()==''){
+					alert('请输入爆料内容');
+					return false;}
+					
+					if($('#name').val()==''){
+					alert('请输入爆料标题');
+					return false;}
+				})
+		</script>
+
+</body>
+</html>

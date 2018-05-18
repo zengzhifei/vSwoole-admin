@@ -1,0 +1,204 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="shortcut icon" href="http://stc.weimob.com/img/favicon.ico">
+    <!--[if lte IE 9]><script src="http://stc.weimob.com/src/watermark.js"></script><![endif]-->
+    <!--[if IE 7]><link href="http://stc.weimob.com/css/font_awesome_ie7.css" rel="stylesheet" /><![endif]-->
+</head>
+<body onselectstart="return true;" ondragstart="return false;" class="discuss_comment">
+    
+
+    
+        <title></title>
+        <meta charset="utf-8">
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+        <meta content="eric.wu" name="author">
+        <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+        <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+        <meta content="no-cache" http-equiv="pragma">
+        <meta content="0" http-equiv="expires">
+        <meta content="telephone=no, address=no" name="format-detection">
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/sns/main.css">
+        <link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/sns/dialog.css">
+        <script type="text/javascript" async="" src="http://tj.weimob.com/wtj.js?url=http%3A%2F%2Fwxa54efa46a5d2deaa.m.weimob.com%2Fsnsmobile%2Fcommentview%3Fsid%3D55560238%26tid%3D7528%26uid%3D961486%26ruid%3D961487%26exa_praise%3D0%26t%3D0"><script src="http://m.weimob.com/weixinjs/getsignpackage?pid=0&amp;bid=" type="text/javascript"></script></script><script src="http://stc.weimob.com/src/sns/jquery_min.js"></script>
+        <script src="http://stc.weimob.com/src/sns/swipe.js"></script>
+        <script src="http://stc.weimob.com/src/sns/main.js"></script>
+        <script src="http://stc.weimob.com/src/sns/dialog_min.js"></script>
+        <script src="http://stc.weimob.com/src/sns/helper_min.js"></script>
+        <script src="http://stc.weimob.com/src/sns/input.js"></script>
+        <script>
+            var form_emotion = (function(){
+                var fe = function(){
+                    this.values = ["/::)", "/::~", "/::B", "/::|", "/:8-)", "/::<", "/::$", "/::X", "/::Z", "/::'(", "/::-|", "/::@", "/::P", "/::D", "/::O", "/::(", "/::+", "/:–b", "/::Q", "/::T", "/:,@P", "/:,@-D", "/::d", "/:,@o", "/::g", "/:|-)", "/::!", "/::L", "/::>", "/::,@", "/:,@f", "/::-S", "/:?", "/:,@x", "/:,@@", "/::8", "/:,@!", "/:!!!", "/:xx", "/:bye", "/:wipe", "/:dig", "/:handclap", "/:&-(", "/:B-)", "/:<@", "/:@>", "/::-O", "/:>-|", "/:P-(", "/::'|", "/:X-)", "/::*", "/:@x", "/:8*", "/:pd", "/:<W>", "/:beer", "/:basketb", "/:oo", "/:coffee", "/:eat", "/:pig", "/:rose", "/:fade", "/:showlove", "/:heart", "/:break", "/:cake", "/:li", "/:bome", "/:kn", "/:footb", "/:ladybug", "/:shit", "/:moon", "/:sun", "/:gift", "/:hug", "/:strong", "/:weak", "/:share", "/:v", "/:@)", "/:jj", "/:@@", "/:bad", "/:lvu", "/:no", "/:ok", "/:love", "/:<L>", "/:jump", "/:shake", "/:<O>", "/:circle", "/:kotow", "/:turn", "/:skip", "[挥手]", "/:#-0", "[街舞]", "/:kiss", "/:<&", "/:&>"].slice(0, -7);
+                    //console.log(this.values);
+                    this.spearate= 20
+                }
+    
+                fe.prototype = {
+                    rend: function(){
+                        var that = this;
+                        var TPL = '{seprateDiv}<dd><span data-key="{k}_{page}_{v}" style="background-position:{xPos}px 0;"></span></dd>{delHTML}';
+                        var res = iTemplate.makeList(TPL, that.values, function(k,v){
+                            return {
+                                k: k,
+                                v: v,
+                                page: Math.floor(k/that.spearate),
+                                xPos: -24*k,
+                                seprateDiv: (0 == k%that.spearate && 0!=k && k!=that.values.length)?"</div><div>":"",
+                                delHTML: (19==k%that.spearate||k==(that.values.length-1) )?'<dd><span data-key="-1_-1_/:del" class="del"></span></dd>':''
+                            }
+                        });
+                        //console.log(res);
+                        $("#list_emotion").html('<div>'+res+'</div>');
+                        var nav_span = new Array(Math.ceil(that.values.length/that.spearate));
+                        $("#nav_emotion").html('<span class="on">'+nav_span.join("</span><span>")+'</span>');
+                        that.bind();
+    
+                         window.swiper = new Swipe(document.getElementById('page_emotion'), {
+                            speed:500,
+                            // auto:3000,
+                            callback: function(){
+                                //$("#nav_list_uls li").removeClass("on").eq(this.index).addClass("on");
+                                $("#nav_emotion span").removeClass("on").eq(this.index).addClass("on");
+                            }
+                        });
+                        return that;
+                    },
+                    bind: function(){
+                        $("#list_emotion").on("click", function(evt){                       
+                            if("SPAN" == evt.target.tagName){
+                                var val = evt.target.getAttribute("data-key").split('_');
+                                myInput.listen(this, {
+                                    keyCode: -10,
+                                    srcElement: document.getElementById("form_article"),
+                                    value:val[2],
+                                    imgUrl: 'http://stc.weimob.com/img/sns/emotion/'+ val[0]+".gif"
+                                });
+                                this.focus();
+                            }
+                        });
+                    }
+    
+                }
+    
+                return new fe();
+            })();
+
+
+
+            
+            $().ready(function(){
+                form_emotion.rend();
+                myInput.maxLength = 140;
+            });
+
+
+            function submit(){
+                var form = document.getElementById("form_1");
+                var article = document.getElementById("form_article").innerHTML;
+                document.getElementById("form_article_hidden").value = article;
+                if(article.length == 0){
+                    alert("请输入评论内容", 2000);return;
+                }
+                var status = true;
+                $.post("{:addons_url('Comment://User/checkblackwords')}",{content:article,tid:form.tid.value}, function(data) {
+                    if (data.status == 'fail') {
+                    	status = false;
+                    	alert("抱歉,评论内容中含有敏感词", 2000);
+                    	return false;
+                    }else{
+                        form.submit();
+                    }
+                },'json');
+            }
+
+
+            function getCaretCharacterOffsetWithin(element) {
+                var caretOffset = 0;
+                if (typeof window.getSelection != "undefined") {
+                    var range = window.getSelection().getRangeAt(0);
+                    var preCaretRange = range.cloneRange();
+                    preCaretRange.selectNodeContents(element);
+                    preCaretRange.setEnd(range.endContainer, range.endOffset);
+                    caretOffset = preCaretRange.toString().length;
+                } else if (typeof document.selection != "undefined" && document.selection.type != "Control") {
+                    var textRange = document.selection.createRange();
+                    var preCaretTextRange = document.body.createTextRange();
+                    preCaretTextRange.moveToElementText(element);
+                    preCaretTextRange.setEndPoint("EndToEnd", textRange);
+                    caretOffset = preCaretTextRange.text.length;
+                }
+                return caretOffset;
+            }
+
+
+        </script>
+    
+    
+        <div id="container" class="container">
+            <header></header>
+            <div class="body">
+                <form id="form_1" action="{:addons_url('Comment://User/comment_do')}" method="post">
+                    <input type="hidden" name="uid" value="{$uid}"/>
+                    <input type="hidden" name="to_uid" value="{$to_uid}"/>
+                    <input type="hidden" name="tid" value="{$tid}"/>
+                    <input type="hidden" name="to_comment_id" value="{$to_comment_id}"/>
+                    <section class="form_comment">
+                        <header>
+                            <ul class="tbox">
+                                <li>
+                                                                    <label class="title">评论</label>
+                                                                </li>
+                                <li class="align_right">
+                                    <a href="javascript:history.go(-1);" class="cancel">取消</a>
+                                </li>
+                            </ul>
+                        </header>
+                        <article id="form_article" contenteditable="true" onpaste="myInput.listen(this, event);" onkeydown="myInput.listen(this, event);" oninput="myInput.listen(this, event);" placeholder="写评论..." maxlength="10"></article>
+                        <input id="form_article_hidden" name="form_article" type="hidden" value="">
+                        <footer>
+                            <div class="align_right">
+                                <label id="form_count">140 字</label>
+                            </div>
+                        </footer>
+                    </section>
+                    <section class="form_pic_emotion">
+                        <div>
+                            <nav>
+                                <ul id="nav_nav">
+                                    <li>
+                                        <a href="javascript:;" class="on" onclick="$('#page_emotion').toggleClass('on');"><span class="icons icons_emotion">&nbsp;</span></a>   
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div>
+                            <ul class="page_pic_emotion clear" id="nav_page">
+                                <li class="page_emotion box_swipe on" id="page_emotion" style="visibility: visible;">
+                                    <dl id="list_emotion" class="list_emotion pt_10" style="list-style: none; width: 2915px; transition: 0ms; -webkit-transition: 0ms; -webkit-transform: translate3d(0px, 0px, 0px);"><div style="width: 583px; display: table-cell; vertical-align: top;"><dd><span data-key="0_0_/::)" style="background-position:0px 0;"></span></dd><dd><span data-key="1_0_/::~" style="background-position:-24px 0;"></span></dd><dd><span data-key="2_0_/::B" style="background-position:-48px 0;"></span></dd><dd><span data-key="3_0_/::|" style="background-position:-72px 0;"></span></dd><dd><span data-key="4_0_/:8-)" style="background-position:-96px 0;"></span></dd><dd><span data-key="5_0_/::<" style="background-position:-120px 0;"></span></dd><dd><span data-key="6_0_/::$" style="background-position:-144px 0;"></span></dd><dd><span data-key="7_0_/::X" style="background-position:-168px 0;"></span></dd><dd><span data-key="8_0_/::Z" style="background-position:-192px 0;"></span></dd><dd><span data-key="9_0_/::'(" style="background-position:-216px 0;"></span></dd><dd><span data-key="10_0_/::-|" style="background-position:-240px 0;"></span></dd><dd><span data-key="11_0_/::@" style="background-position:-264px 0;"></span></dd><dd><span data-key="12_0_/::P" style="background-position:-288px 0;"></span></dd><dd><span data-key="13_0_/::D" style="background-position:-312px 0;"></span></dd><dd><span data-key="14_0_/::O" style="background-position:-336px 0;"></span></dd><dd><span data-key="15_0_/::(" style="background-position:-360px 0;"></span></dd><dd><span data-key="16_0_/::+" style="background-position:-384px 0;"></span></dd><dd><span data-key="17_0_/:–b" style="background-position:-408px 0;"></span></dd><dd><span data-key="18_0_/::Q" style="background-position:-432px 0;"></span></dd><dd><span data-key="19_0_/::T" style="background-position:-456px 0;"></span></dd><dd><span data-key="-1_-1_/:del" class="del"></span></dd></div><div style="width: 583px; display: table-cell; vertical-align: top;"><dd><span data-key="20_1_/:,@P" style="background-position:-480px 0;"></span></dd><dd><span data-key="21_1_/:,@-D" style="background-position:-504px 0;"></span></dd><dd><span data-key="22_1_/::d" style="background-position:-528px 0;"></span></dd><dd><span data-key="23_1_/:,@o" style="background-position:-552px 0;"></span></dd><dd><span data-key="24_1_/::g" style="background-position:-576px 0;"></span></dd><dd><span data-key="25_1_/:|-)" style="background-position:-600px 0;"></span></dd><dd><span data-key="26_1_/::!" style="background-position:-624px 0;"></span></dd><dd><span data-key="27_1_/::L" style="background-position:-648px 0;"></span></dd><dd><span data-key="28_1_/::>" style="background-position:-672px 0;"></span></dd><dd><span data-key="29_1_/::,@" style="background-position:-696px 0;"></span></dd><dd><span data-key="30_1_/:,@f" style="background-position:-720px 0;"></span></dd><dd><span data-key="31_1_/::-S" style="background-position:-744px 0;"></span></dd><dd><span data-key="32_1_/:?" style="background-position:-768px 0;"></span></dd><dd><span data-key="33_1_/:,@x" style="background-position:-792px 0;"></span></dd><dd><span data-key="34_1_/:,@@" style="background-position:-816px 0;"></span></dd><dd><span data-key="35_1_/::8" style="background-position:-840px 0;"></span></dd><dd><span data-key="36_1_/:,@!" style="background-position:-864px 0;"></span></dd><dd><span data-key="37_1_/:!!!" style="background-position:-888px 0;"></span></dd><dd><span data-key="38_1_/:xx" style="background-position:-912px 0;"></span></dd><dd><span data-key="39_1_/:bye" style="background-position:-936px 0;"></span></dd><dd><span data-key="-1_-1_/:del" class="del"></span></dd></div><div style="width: 583px; display: table-cell; vertical-align: top;"><dd><span data-key="40_2_/:wipe" style="background-position:-960px 0;"></span></dd><dd><span data-key="41_2_/:dig" style="background-position:-984px 0;"></span></dd><dd><span data-key="42_2_/:handclap" style="background-position:-1008px 0;"></span></dd><dd><span data-key="43_2_/:&amp;-(" style="background-position:-1032px 0;"></span></dd><dd><span data-key="44_2_/:B-)" style="background-position:-1056px 0;"></span></dd><dd><span data-key="45_2_/:<@" style="background-position:-1080px 0;"></span></dd><dd><span data-key="46_2_/:@>" style="background-position:-1104px 0;"></span></dd><dd><span data-key="47_2_/::-O" style="background-position:-1128px 0;"></span></dd><dd><span data-key="48_2_/:>-|" style="background-position:-1152px 0;"></span></dd><dd><span data-key="49_2_/:P-(" style="background-position:-1176px 0;"></span></dd><dd><span data-key="50_2_/::'|" style="background-position:-1200px 0;"></span></dd><dd><span data-key="51_2_/:X-)" style="background-position:-1224px 0;"></span></dd><dd><span data-key="52_2_/::*" style="background-position:-1248px 0;"></span></dd><dd><span data-key="53_2_/:@x" style="background-position:-1272px 0;"></span></dd><dd><span data-key="54_2_/:8*" style="background-position:-1296px 0;"></span></dd><dd><span data-key="55_2_/:pd" style="background-position:-1320px 0;"></span></dd><dd><span data-key="56_2_/:<W>" style="background-position:-1344px 0;"></span></dd><dd><span data-key="57_2_/:beer" style="background-position:-1368px 0;"></span></dd><dd><span data-key="58_2_/:basketb" style="background-position:-1392px 0;"></span></dd><dd><span data-key="59_2_/:oo" style="background-position:-1416px 0;"></span></dd><dd><span data-key="-1_-1_/:del" class="del"></span></dd></div><div style="width: 583px; display: table-cell; vertical-align: top;"><dd><span data-key="60_3_/:coffee" style="background-position:-1440px 0;"></span></dd><dd><span data-key="61_3_/:eat" style="background-position:-1464px 0;"></span></dd><dd><span data-key="62_3_/:pig" style="background-position:-1488px 0;"></span></dd><dd><span data-key="63_3_/:rose" style="background-position:-1512px 0;"></span></dd><dd><span data-key="64_3_/:fade" style="background-position:-1536px 0;"></span></dd><dd><span data-key="65_3_/:showlove" style="background-position:-1560px 0;"></span></dd><dd><span data-key="66_3_/:heart" style="background-position:-1584px 0;"></span></dd><dd><span data-key="67_3_/:break" style="background-position:-1608px 0;"></span></dd><dd><span data-key="68_3_/:cake" style="background-position:-1632px 0;"></span></dd><dd><span data-key="69_3_/:li" style="background-position:-1656px 0;"></span></dd><dd><span data-key="70_3_/:bome" style="background-position:-1680px 0;"></span></dd><dd><span data-key="71_3_/:kn" style="background-position:-1704px 0;"></span></dd><dd><span data-key="72_3_/:footb" style="background-position:-1728px 0;"></span></dd><dd><span data-key="73_3_/:ladybug" style="background-position:-1752px 0;"></span></dd><dd><span data-key="74_3_/:shit" style="background-position:-1776px 0;"></span></dd><dd><span data-key="75_3_/:moon" style="background-position:-1800px 0;"></span></dd><dd><span data-key="76_3_/:sun" style="background-position:-1824px 0;"></span></dd><dd><span data-key="77_3_/:gift" style="background-position:-1848px 0;"></span></dd><dd><span data-key="78_3_/:hug" style="background-position:-1872px 0;"></span></dd><dd><span data-key="79_3_/:strong" style="background-position:-1896px 0;"></span></dd><dd><span data-key="-1_-1_/:del" class="del"></span></dd></div><div style="width: 583px; display: table-cell; vertical-align: top;"><dd><span data-key="80_4_/:weak" style="background-position:-1920px 0;"></span></dd><dd><span data-key="81_4_/:share" style="background-position:-1944px 0;"></span></dd><dd><span data-key="82_4_/:v" style="background-position:-1968px 0;"></span></dd><dd><span data-key="83_4_/:@)" style="background-position:-1992px 0;"></span></dd><dd><span data-key="84_4_/:jj" style="background-position:-2016px 0;"></span></dd><dd><span data-key="85_4_/:@@" style="background-position:-2040px 0;"></span></dd><dd><span data-key="86_4_/:bad" style="background-position:-2064px 0;"></span></dd><dd><span data-key="87_4_/:lvu" style="background-position:-2088px 0;"></span></dd><dd><span data-key="88_4_/:no" style="background-position:-2112px 0;"></span></dd><dd><span data-key="89_4_/:ok" style="background-position:-2136px 0;"></span></dd><dd><span data-key="90_4_/:love" style="background-position:-2160px 0;"></span></dd><dd><span data-key="91_4_/:<L>" style="background-position:-2184px 0;"></span></dd><dd><span data-key="92_4_/:jump" style="background-position:-2208px 0;"></span></dd><dd><span data-key="93_4_/:shake" style="background-position:-2232px 0;"></span></dd><dd><span data-key="94_4_/:<O>" style="background-position:-2256px 0;"></span></dd><dd><span data-key="95_4_/:circle" style="background-position:-2280px 0;"></span></dd><dd><span data-key="96_4_/:kotow" style="background-position:-2304px 0;"></span></dd><dd><span data-key="97_4_/:turn" style="background-position:-2328px 0;"></span></dd><dd><span data-key="-1_-1_/:del" class="del"></span></dd></div></dl>
+                                    <dt>
+                                        <ol id="nav_emotion" class="nav_emotion"><span class="on"></span><span></span><span></span><span></span><span></span></ol>
+                                    </dt>
+                                </li>
+                            </ul>
+                        </div>
+                    </section> 
+                </form>
+            </div>
+            <footer>
+                <section class="nav_footer">
+                    <ul class="box">
+                        <li>
+                            <a href="javascript:submit();" class="on" style="width:120px;">
+                                <span class="icons_publish">&nbsp;</span>
+                                <label class="pre">确认提交</label>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </footer>
+        </div>
+    </body></html>

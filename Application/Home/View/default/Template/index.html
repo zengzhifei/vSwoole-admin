@@ -1,0 +1,404 @@
+<include file="Pub/head" />
+<include file="Pub/top" />
+<script src="__PUBLIC__/Home/interact/js/jquery.form.js" type="text/javascript"></script>
+<style>
+
+.div4_1 {
+    float: left;
+    margin-left: 20px;
+    position: relative;
+}
+.inputstyle_1 {
+    cursor: pointer;
+    font-size: 30px;
+    height: 30px;
+    left: 0;
+    opacity: 0;
+    outline: medium none;
+    position: absolute;
+    top: 0;
+    width: 81px;
+}
+</style>
+<div class="clearfix">
+	<div class="page-container">
+	<include file="Pub/left" />
+	
+	    <div class="page-content-wrapper">
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="portlet-config" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							 Widget settings form goes here
+						</div>
+						<div class="modal-footer">
+							<button class="btn blue" type="button">Save changes</button>
+							<button data-dismiss="modal" class="btn default" type="button">Close</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE HEADER-->
+			<!-- BEGIN PAGE HEAD -->
+			<div class="page-head">
+				<!-- BEGIN PAGE TITLE -->
+				<!-- END PAGE TITLE -->
+				<!-- BEGIN PAGE TOOLBAR -->
+				
+				<!-- END PAGE TOOLBAR -->
+			</div>
+			<!-- END PAGE HEAD -->
+			<!-- BEGIN PAGE BREADCRUMB -->
+
+			<!-- END PAGE BREADCRUMB -->
+			<!-- END PAGE HEADER-->
+			<!-- BEGIN PAGE CONTENT-->
+			<!-- 注释 查询开始  -->
+            <div class="row">
+            	<div class="col-md-12">
+                <div class="portlet box">
+                <!-- <div class="portlet-title"> </div> -->
+                	<div class="portlet-body form">
+            				<form role="form" class="form-horizontal" method="POST" action="{:U('Home/Template/index')}">
+								<div class="form-body">
+								<div class="form-group">
+										<label class="col-md-2 control-label">模版标签：</label>
+										<div class="col-md-2">
+											<select class="form-control" name='addons' id="app_code">
+											<foreach name="app" item="vo">
+												<option value="{$vo['code']}" <if condition="$addons eq $vo['code']">selected</if>>{$vo['name']}</option>
+												</foreach>
+											</select>
+										</div>
+										<div class="col-md-2">
+											<button class="btn blue" type="button" id="change_app">查询</button>
+										</div>
+										<!-- <label class="col-md-2 control-label">模版名称：</label>
+										<div class="col-md-2">
+											<input type="text" placeholder="Enter text" class="form-control input-medium">
+										</div> -->
+									</div>
+									<!--
+									<div class="form-group">
+                                        <label class="col-md-2 control-label">时间：</label>
+										<div class="col-md-4">
+											<div data-date-format="mm/dd/yyyy" data-date="10/11/2012" class="input-group input-large date-picker input-daterange">
+												<input type="text" name="from" class="form-control">
+												<span class="input-group-addon">到</span>
+												<input type="text" name="to" class="form-control">
+											</div>
+										</div>
+									</div> -->
+								</div> 
+
+							</form>
+						</div>
+                </div>
+            </div>
+            <!-- 注释 查询结束  -->
+			</div>
+            <div class="row">
+				<div class="col-md-12">
+					<!-- BEGIN EXAMPLE TABLE PORTLET-->
+					<div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption">
+							<i class="fa fa-edit"></i>
+							<if condition="$addons eq 'Vote'">微投票<elseif condition="$addons eq 'Research'" />微调研
+							<elseif condition="$addons eq 'Comment'" />微评论<elseif condition="$addons eq 'Draw'" />微抽奖</if>
+								模版列表
+							</div>
+							<div class="tools">
+								<!-- <button class="btn blue import_template" type="button" data-toggle="modal" data-target="#stack3" rel="{$addons}">导入模版</button> -->
+								<input type="hidden" name="spath" id="spath" value="{$spath}" />
+							</div>
+						</div>
+						<div class="portlet-body">
+						<button class="btn blue import_template" type="button" data-toggle="modal" data-target="#stack3" rel="{$addons}" style="margin-bottom:5px;">导入模版</button>
+							<table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+							<thead>
+							<tr>
+								<th>模版名称</th>
+								<th>大小</th>
+								<th>修改时间</th>
+								<th>可读</th>
+								<th>可写</th>
+								<th>操作</th>
+							</tr>
+							<tr>
+				                <td class="aleft"><a href="{$purl}">↑上级目录</a></td>
+				                <td></td>
+				                <td></td>
+				                <td></td>
+				                <td></td>
+				                <td></td>
+				            </tr>
+							</thead>
+							<tbody>
+							<foreach name='vlist' item='v'>
+							<tr>
+							
+								<td>
+									 <if condition="$v.isDir eq 1">
+						                <a href="{$v.url}">{$v.filename}</a>
+						                <else/>
+						                <a href="javascript:void(0);">{$v.filename}</a> 
+						              </if>
+								</td>
+								<td>
+									 {$v.size}
+								</td>
+								<td class="center">
+									 {$v.mtime|date='Y-m-d H:i:s',###}
+								</td>
+								<td><if condition="$v.isReadable eq 1">√<else/>×</if></td>
+                				<td><if condition="$v.isWritable eq 1">√<else/>×</if></td>
+								<td>
+									<if condition="$v.isDir eq 1">
+						                <button class="btn btn-default" type="button" onClick="location.href='{$v.url}'" data-toggle="modal">打开</button>
+						                <if condition="$v.root eq 1">
+						                <button class="btn btn-default export_log" type="button" onClick="location.href='{:U('/Home/Template/export',array('bas_url'=>$v['bas_url'],'filename'=>$v['filename']))}'" data-toggle="modal">导出</button>
+						                <button class="btn btn-default" type="button" rel="{$v.id}" data-toggle="modal" onclick="delConfirm('{$v.bas_url}','{$v.filename}');" >删除</button> 
+						                </if>
+					                <else/>
+	                                    <if condition="$v.isImg eq 1">
+						                <button class="btn btn-default show_img" type="button" data-toggle="modal" data-target="#stack1" rel="{$v.url}">查看</button>
+						                <else/>
+						                <button class="btn btn-default up_file" type="button"  rel="{$v.bas_url}" write="{$v.isWritable}" data-toggle="modal">修改</button>
+						                <button class="btn btn-default up_log" type="button" rel="{$v.bas_url}" data-toggle="modal">历史版本</button>
+						                </if>
+					                </if>   
+								</td>
+								
+							</tr>
+							</foreach>
+							</tbody>
+							</table>
+							<div id="stack1" class="modal fade" tabindex="-1" data-width="400">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<div class="interact_close" ><a class="interact_remove" data-dismiss="modal"></a></div>
+											<h4 class="modal-title"><i class="fa fa-reorder"></i>&nbsp;缩略图</h4>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-md-12">
+								<div class="form-body">
+									<div class="form-group">
+										<label class="col-md-3 control-label">缩略图</label>
+										<div class="col-md-9">
+											<img src=""  style="height: 353px; width: 165px;"/>
+										</div>
+									</div>
+									
+								</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- 模版导入开始 -->
+							<div id="stack3" class="modal fade" tabindex="-1" data-width="400">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+											<h4 class="modal-title">注册</h4>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-md-12">
+								<form role="form" class="form-horizontal" method="post" enctype="multipart/form-data" id="up_zip">
+								<div class="form-body">
+									<div class="form-group">
+										<label class="col-md-3 control-label">模版标签：</label>
+										<div class="col-md-9">
+											<select class="form-control input-inline input-small" name='addons'>
+											<foreach name="app" item="vo">
+												<option value="{$vo['code']}" <if condition="$addons eq $vo['code']">selected</if>>{$vo['name']}</option>
+												</foreach>
+											</select>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-3 control-label">上传zip文件：</label>
+										<div class="col-md-9">
+										<span id="file_show" style="float:left;margin-top:5px">请选择</span>
+											<div class="div4_1">
+											
+											<input id="s_file_name" type="hidden" value="">
+												<img alt="" src="__PUBLIC__/Home/interact/images/liune.jpg">
+												<input id="file" class="inputstyle_1" type="file" name="name">
+												<spn style="margin-left:13px;color:red;" id="check_file" class="check_group"></spn>
+											</div>										
+										</div>
+									</div>
+									
+								</div>
+							
+							</form>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" data-dismiss="modal" class="btn">Close</button>
+											<button type="button" class="btn red" id="add_template">Ok</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 模版导入结束 -->
+						<input type="hidden" id="spath" value="{$spath}"/>
+                           
+						</div>
+					</div>
+					<!-- END EXAMPLE TABLE PORTLET-->
+				</div>
+			</div>
+            
+			<!-- END PAGE CONTENT-->
+		       </div>
+		    </div>
+		  </div>
+		</div>
+		<script>
+		function delConfirm(bas_url,filename) {
+			$.confirm({  
+			   title:"确定要删除这套模版？",
+			   modal: true,  
+			   level:"warning",
+			   buttons: {  
+				   "确定": {
+					   "class":"blue",
+					   "action":function() {
+						   $.post("__ROOT__/Home/Template/delTemplate",{bas_url:bas_url,filename:filename}, function(data) {
+								if(data.status  == 'success'){
+									location.reload();
+								}else{
+									alert("删除失败！");
+								}
+							},'json');
+					   }
+				   },
+				   "取消": {
+					   "class":"blue",
+					   "action":function() {
+						   //alert('取消');
+					   }
+				   }
+			   }  
+			});
+			
+		}
+		$(function(){
+		    $('.up_file').click(function(){
+		        var base_url = $(this).attr("rel");
+		        var is_write = $(this).attr("write");
+		        var addons = $("#addons").val();
+		        var url = '__ROOT__/Home/Template/edit_file?spath='+base_url+'&addons='+addons+'&is_write='+is_write;
+		        //var url = '__ROOT__/Home/Public/browseFile?stype=picture&uid='+uid;
+
+		        $.jBox("iframe:"+url,{
+		                    title:'修改模版',
+		                    width: 960,
+		                    height: 500,
+		                    buttons: { '关闭': false }
+		                    }
+		                );      
+		    }); 
+		    
+		    $('.up_log').click(function(){
+		        var base_url = $(this).attr("rel");
+		        var url = '__ROOT__/Home/Template/templateLog?spath='+base_url;
+		        $.jBox("iframe:"+url,{
+		                    title:'模版历史',
+		                    width: 960,
+		                    height: 500,
+		                    buttons: { '关闭': true }
+		                    }
+		                );      
+		    }); 
+		    
+		    $('.show_img').click(function(){
+		        var img_url = $(this).attr("rel");
+		        $("#stack1").find("img").attr("src",img_url); 
+		    }); 
+		    
+		    $('#change_app').click(function(){
+		    	var app_code = $("#app_code").val();
+		    	//location.href = "__ROOT__/Home/Template/index?addons="+app_code;
+		    	var str = "{:U('/Home/Template/index')}";
+				var url = str.replace(".html","")
+				    url = url+"/addons/"+app_code;
+				    location.href=url;
+		    }); 
+		    
+		    $('#file').change(function(){
+		    	str=$(this).val(); 
+				var arr=str.split('\\');//注split可以用字符或字符串分割 
+				var my=arr[arr.length-1];
+				$("#file_show").html(my);
+				$("#s_file_name").val(my);
+				var val= $("#s_file_name").val();
+				var k = val.substr(val.indexOf("."));
+				if(k != '.zip'){
+					$("#check_file").html("请选择zip文件");
+				}else{
+					$("#check_file").html("");
+				}
+		    });
+			$('#add_template').click(function(){
+				var val= $("#s_file_name").val();
+				var k = val.substr(val.indexOf("."));
+				if(k != '.zip'){
+					$("#check_file").html("请选择zip文件");
+					return false;
+				}
+				$("#up_zip").ajaxSubmit({
+					type: 'post',
+			        url: "{:U('Home/Import/upload')}",
+			        dataType: 'json',
+					success: function(data) {
+						$.confirm({  
+							   title:data.info,
+							   modal: true,  
+							   level:"success",
+							   buttons: {  
+								   "确定": {
+									   "class":"blue",
+									   "action":function() {
+										   var str = "{:U('/Home/Template/index')}";
+										   var url = str.replace(".html","")
+										   url = url+"/addons/"+data.code;
+										   location.href=url;
+										   //location.href = "__ROOT__/Home/Template/index?addons="+data.code;
+									   }
+								   }
+							   }  
+							});
+						
+					},
+					error:function(xhr){
+						
+					}
+				});
+			});
+			
+		});
+		</script>
+
+<include file="Pub/footer" />

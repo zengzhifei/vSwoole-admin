@@ -1,0 +1,367 @@
+<include file="Public/uchead"/>
+
+
+<link href="__PUBLIC__/Home/interact/js/jqueryimgareaselect/css/imgareaselect-default.css" rel="stylesheet" type="text/css" /> 
+<link href="__PUBLIC__/Home/interact/js/jqueryimgareaselect/css/imgareaselect-animated.css" rel="stylesheet" type="text/css" /> 
+<link href="__PUBLIC__/Home/interact/js/jqueryimgareaselect/css/imgareaselect-deprecated.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="__PUBLIC__/Home/interact/js/jqueryimgareaselect/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/interact/js/jqueryimgareaselect/scripts/jquery.imgareaselect.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/interact/js/jqueryimgareaselect/scripts/jquery.imgareaselect.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/interact/js/jqueryimgareaselect/scripts/jquery.imgareaselect.pack.js"></script>
+<style>
+.sethead{width:540px;height:500px;background:#ffffff;margin-top: 20px;padding: 0 20px;}
+.u-file-btn{position: relative;direction:ltr;width:100px;height:32px;overflow:hidden;line-height:34px;
+padding:3px;text-align: center;background:url(__PUBLIC__/Home/interact/images/shangchuan.png) no-repeat left top;color:#FFF;}
+.u-file-btn input{cursor: pointer;text-align: right;z-index:10;font-size:18px;/* font-size: 118px 工作正常 */
+position: absolute;top:0px;right:0px;opacity:0;filter:Alpha(opacity:0);width:84px;height:34px; display:inline-block;}
+#localImag{height:300px;width:300px;border:1px solid #ccc;float:left;}
+#show_img{float:left;margin-left:20px;}
+#show_img p{margin:0px;}
+.xuanze{padding:20px 0px 20px 0px;}
+.xuanze span{width:100px;height:32px;float:left;}
+.xuanze span form{width:100px;height:32px;}
+.xuanze p{float:left;line-height:32px;}
+.touxiang{margin-top:0px;}
+.showimg{float:left;border:1px solid #ccc;}
+.tj {background: #1e63b0 none repeat scroll 0 0;color: #fff;display: inline-block;font-family: "宋体";
+font-size: 14px;height: 34px;line-height: 34px;margin: 20px 0 0;text-align: center;width: 204px;}
+.tj:hover {background: #dddfe5 none repeat scroll 0 0;color: #707c8b;}
+</style>
+
+
+<div class="bg_top_h_tile">
+  <div class="bg_top_owner">
+    <div id="page_body">
+    				<div class="column_wrapper">
+           				 <div class="col_w1000">
+                   	   <div class="logo"><img src="__PUBLIC__/Home/updatepasswd_files/youxiang_1.jpg" height="86" width="990"></div>
+                       <div class="zt">
+                            <div class="left_nav">
+                                    <div class="tp"><img src="{$Think.session.user_auth.uid|getFaceUrl=###,'120'}" onerror="javascript:this.src='__PUBLIC__/Home/yonghuzhongxinindex_files/youxiang_2_120.jpg'" height="120" width="120"></div>
+                                    <div class="vspace" style="height:53px"></div>
+                                    <div class="nav">
+										<include file="Index/zjleft" />
+									</div>
+                            </div>
+                            <div class="right_nr">
+                                  <h3>个人设置</h3>
+                                  <ul id="dell">
+                                        <li><a href="{:U('User/userProfile')}">基本信息</a></li>
+                                        <li><a href="{:U('User/profile')}">修改密码 </a></li>
+                                        <li class="cur"><a href="#">设置头像 </a></li>
+                                  </ul>
+                                
+                                  <div class="xinxi jibenxinxi_1" id="jibenxinxi_1" style="display:block">
+                                  <div id="xgcgaaa" style="display:none" class="xiugaitishi1">
+									<div class="close">
+										<a id="close2a" href="javascript:void(0)"></a>
+									</div>
+									<p></p>
+									</div>
+                                        <div class="xinxi jibenxinxi_1">
+   											<div class="sethead">
+   												<div class="xuanze">
+													<span>
+														<form enctype="multipart/form-data" method="POST" action="{:U('User/setHead')}" name="file_upload_prile">
+																<input type="hidden" id="x1" name="x1">
+																<input type="hidden" id="y1" name="y1">
+																<input type="hidden" id="x2" name="x2">
+																<input type="hidden" id="y2" name="y2">
+																<input type="hidden" id="w" name="w">
+																<input type="hidden" id="h" name="h">
+																<div class="u-file-btn">
+																	<input type="file"id="Member_headimg" name="Member_headeimg"/>
+																</div>
+														</form>
+													</span>
+													<p id='upload_error'>支持JPG、GIF、PNG，且图片大小不超过3M。</p>
+													<div class="clear"></div>
+												</div>
+												
+												<div class="touxiang" >
+													<img name="showimg300" class="showimg" width=300 height=300 src="{$Think.session.user_auth.uid|getFaceUrl=###,'300'}"/>
+													<div class="touleft" id="localImag" style="display:none;">
+														
+														<img id="preview" width=-1 height=-1 />
+													</div>
+													<div class="touright" id="show_img">
+															<div style="height:120px;width:120px;border:1px solid #ccc;overflow:hidden;">
+															<div id="big_img"style="height:120px;width:120px;overflow:hidden;">
+																<img name="showimg120" width=120 height=120  src="{$Think.session.user_auth.uid|getFaceUrl=###,'120'}"/>
+																<img id="big_photo" width=-1 height=-1  style="diplay:none;margin:0px;"/>
+															</div>
+															</div>
+															<!-- <p>大头像</p> -->
+															<p>120x120</p>
+														    
+														    
+															<div style="height:90px;width:90px;border:1px solid #ccc;overflow:hidden;margin-top:10px;">
+															<div id="small_img"style="height:90px;width:90px;overflow:hidden;">
+															<img name="showimg90" width=90 height=90  src="{$Think.session.user_auth.uid|getFaceUrl=###,'90'}"/>
+															<img id="small_photo" width=-1 height=-1  style="diplay:none;margin:0px;"/>
+															</div>
+														    </div>
+														    <!-- <p>小头像</p> -->
+														    <p>90x90</p>
+														    
+														    
+														    <div style="height:30px;width:30px;border:1px solid #ccc;overflow:hidden;margin-top:10px;">
+															<div id="small_img1"style="height:30px;width:30px;overflow:hidden;">
+															<img name="showimg30" width=30 height=30  src="{$Think.session.user_auth.uid|getFaceUrl=###,'30'}"/>
+															<img id="small_photo1" width=-1 height=-1  style="diplay:none;margin:0px;"/>
+															</div>
+														    </div>
+														   <!--  <p>小头像</p> -->
+														    <p>30x30</p>
+													</div>
+													<div class="clear"></div>
+												</div>
+												
+												<div class="save">
+														<a style="display:none;" id="tjxg" class="tj" href="javascript:void(0)" onclick="savehead();">提交头像</a>
+												</div>
+   											</div>
+   												
+   												
+   												
+										</div>
+                                  </div>  
+                                 
+                                  
+                      			</div>
+            			 </div>
+            </div>
+    </div>
+         <include file="Public/ucfooter" />
+    <div id="page_bottom_self">
+  <div class="cntv_footer_ftc"><b></b></div>
+</div>  </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+/*
+* setImagePreview()
+* @param fileObj Strimg 表示上传域的ID
+* @param previewObj String 表示显示图片的ID
+* @param localImg String 表示显示图片外层的div的ID
+* @param width 表示显示图片的宽
+* @param height 表示显示图片的高
+*/
+$(function(){
+	remove_div();
+})
+function setImagePreview(fileObj, previewObj, localImg,width,height)
+{
+	var docObj=document.getElementById(fileObj);
+	var imgObjPreview=document.getElementById(previewObj);
+	if(docObj.files && docObj.files[0]){
+		//火狐下，直接设img属性
+		imgObjPreview.style.display = 'block';
+		imgObjPreview.style.width = width+'px';
+		imgObjPreview.style.height = height+'px';
+		//imgObjPreview.src = docObj.files[0].getAsDataURL();
+		//火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+		imgObjPreview.src =window.URL.createObjectURL(docObj.files[0]);
+	}else{
+		//IE下，使用滤镜
+		docObj.select();
+		docObj.blur();
+		var imgSrc = document.selection.createRange().text;
+		var localImagId = document.getElementById(localImg);
+		console.log(localImg);
+		//必须设置初始大小
+		localImagId.style.width = width+'px';
+		localImagId.style.height = height+'px';
+		//图片异常的捕捉，防止用户修改后缀来伪造图片
+		try{
+			localImagId.style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+			localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+		}catch(e){
+			alert("您上传的图片格式不正确，请重新选择!");
+			return false;
+		} 
+		imgObjPreview.style.display ='none';
+		document.selection.empty();
+	  }
+	  return true;
+}
+$(function(){
+//给上传区添加onchang事件，掉用函数setImagePreview()
+	$("#Member_headimg").change(function() {
+		var obj = $(this);
+		var error_id = 'upload_error';
+		var filesize = 3*1024*1024;
+		if(!check_img(obj,error_id,filesize)){
+			return false;
+		}
+		setImagePreview('Member_headimg','preview','localImag',300,300);
+		setImagePreview('Member_headimg','small_photo','small_img',90,90);
+		setImagePreview('Member_headimg','big_photo','big_img',120,120);
+		setImagePreview('Member_headimg','small_photo1','small_img1',30,30);
+		$("[name='showimg300']").hide();
+		$("[name='showimg120']").hide();
+		$("[name='showimg90']").hide();
+		$("[name='showimg30']").hide();
+		$("#localImag").show();
+		$("#tjxg").show();
+	})
+//调用截图插件需用的
+	$("#localImag").imgAreaSelect({
+		aspectRatio:'1:1', //选中区域是正方形
+		handles:true,
+		fadeSpeed:300, //出来效果
+		onSelectChange:set //执行选择后执行的函数
+	});
+	function set(img,selection)
+	{
+			if($("#Member_headimg").val()){
+				//alert($("#Member_headimg").val());
+				show();
+			}
+			if (!selection.width || !selection.height)
+				return;
+			var scaleX = 100/selection.width;
+			var scaleY = 100/selection.height;
+			$('#x1').val(selection.x1);
+			$('#y1').val(selection.y1);
+			$('#x2').val(selection.x2);
+			$('#y2').val(selection.y2);
+			$('#w').val(selection.width);
+			$('#h').val(selection.height);
+			if (window.navigator.userAgent.indexOf("MSIE") >= 1) {
+				$('#big_img').css({
+					width: Math.round(scaleX * 300*12/10),
+					height: Math.round(scaleY * 300*12/10),
+					marginLeft: -Math.round(scaleX * selection.x1),
+					marginTop: -Math.round(scaleY * selection.y1)
+				});
+				$('#small_img').css({
+					width: Math.round(scaleX * 300*9/10),
+					height: Math.round(scaleY * 300*9/10),
+					marginLeft: -Math.round(scaleX *selection.x1*9/10),
+					marginTop: -Math.round(scaleY * selection.y1*9/10)
+				});
+				$('#small_img1').css({
+					width: Math.round(scaleX * 300*3/10),
+					height: Math.round(scaleY * 300*3/10),
+					marginLeft: -Math.round(scaleX *selection.x1*3/10),
+					marginTop: -Math.round(scaleY * selection.y1*3/10)
+				});
+			}else{
+				$('#big_photo').css({
+					width: Math.round(scaleX * 300 *12/10),
+					height: Math.round(scaleY * 300 *12/10),
+					marginLeft: -Math.round(scaleX * selection.x1),
+					marginTop: -Math.round(scaleY * selection.y1)
+				});
+				$('#small_photo').css({
+					width: Math.round(scaleX * 300*9/10),
+					height: Math.round(scaleY * 300*9/10),
+					marginLeft: -Math.round(scaleX *selection.x1*9/10),
+					marginTop: -Math.round(scaleY * selection.y1*9/10)
+				});
+				$('#small_photo1').css({
+					width: Math.round(scaleX * 300*3/10),
+					height: Math.round(scaleY * 300*3/10),
+					marginLeft: -Math.round(scaleX *selection.x1*3/10),
+					marginTop: -Math.round(scaleY * selection.y1*3/10)
+				});
+			}
+	}
+})
+
+
+function savehead(){
+	$("[name='file_upload_prile']").submit();
+}
+function remove_div(){
+	$(".imgareaselect-selection").remove();
+	$(".imgareaselect-selection").parent().remove();
+	$(".imgareaselect-border1").remove();
+	$(".imgareaselect-border2").remove();
+	$(".imgareaselect-border3").remove();
+	$(".imgareaselect-border4").remove();
+	$(".imgareaselect-handle").remove();
+	$(".imgareaselect-outer").remove();
+}
+function show_display(){
+	$(".imgareaselect-selection").hide();
+	$(".imgareaselect-selection").parent().hide();
+	$(".imgareaselect-border1").hide();
+	$(".imgareaselect-border2").hide();
+	$(".imgareaselect-border3").hide();
+	$(".imgareaselect-border4").hide();
+	$(".imgareaselect-handle").hide();
+	$(".imgareaselect-outer").hide();
+	$("#preview").hide();
+	$("#big_photo").hide();
+	$("#small_photo").hide();
+	var url300 = "{$Think.session.user_auth.uid|getFaceUrl=###,'300'}";
+	var url120 = "{$Think.session.user_auth.uid|getFaceUrl=###,'120'}";
+	var url90 = "{$Think.session.user_auth.uid|getFaceUrl=###,'90'}";
+	var url30 = "{$Think.session.user_auth.uid|getFaceUrl=###,'30'}";
+	$("[name='showimg300']").attr('src',url300).show();
+	$("[name='showimg120']").attr('src',url120).show();
+	$("[name='showimg90']").attr('src',url90).show();
+	$("[name='showimg30']").attr('src',url30).show();
+}
+function show(){
+	$(".imgareaselect-selection").show();
+	$(".imgareaselect-selection").parent().show();
+	$(".imgareaselect-border1").show();
+	$(".imgareaselect-border2").show();
+	$(".imgareaselect-border3").show();
+	$(".imgareaselect-border4").show();
+	$(".imgareaselect-handle").show();
+	$(".imgareaselect-outer").show();
+}
+function in_array(needle, haystack) { 
+    var type = typeof needle;  
+    if(type == 'string' || type =='number') {  
+        for(var i in haystack) {  
+            if(haystack[i] == needle) {  
+                return true;  
+            }  
+        }  
+    }  
+    return false;  
+}  
+function check_img(obj,error_id,filesize){
+	var Member_path=obj.val();
+	var extStart = Member_path.lastIndexOf(".")+1;
+	var ext = Member_path.substring(extStart, Member_path.length).toUpperCase();
+	var rightFileType = new Array("JPG", "GIF", "PNG","JPEG");
+	var type = typeof ext;
+	if (!in_array(ext,rightFileType)) {
+		$('#'+error_id).html('上传的文件类型不对，只支持JPG、GIF、PNG，且图片大小不超过3M').attr('style','color:red;');
+		return false;
+	}
+	/*
+	if(type == 'string' || type=='number'){
+		for(var i in rightFileType){
+			if(rightFileType[i] == ext){
+				break;
+			}else{
+				$('#'+error_id).html('上传的文件类型不对，只支持JPG、GIF、PNG，且图片大小不超过3M').attr('style','color:red;');
+				return false;
+			}
+		}
+	}*/
+    file=obj.get(0).files[0];
+    filsize = filesize;
+	if(file.size>filsize){
+		$('#'+error_id).html('上传图片超过3M。').attr('style','color:red;');
+		return false;
+	}
+	$('#'+error_id).html(Member_path).attr('style','');
+	return true;
+}
+</script>
+</body></html>

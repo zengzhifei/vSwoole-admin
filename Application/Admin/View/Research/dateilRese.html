@@ -1,0 +1,255 @@
+<include file="Public/head" />
+<include file="Public/top" />
+<div class="clearfix">
+	<div class="page-container">
+	<include file="Public/left" />
+	
+	    <div class="page-content-wrapper">
+<!--图片上传需要引入的js-->
+<!-- BEGIN CONTAINER -->
+<!-- <div class="page-container"> -->
+	<!-- <div class="page-content-wrapper"> -->
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							 Widget settings form goes here
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn blue">Save changes</button>
+							<button type="button" class="btn default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE HEADER-->
+			<!-- BEGIN PAGE HEAD -->
+			<!-- <div class="page-head">
+				BEGIN PAGE TITLE
+				<div class="page-title">
+					<h1>Form Validation <small>form validation</small></h1>
+				</div>
+			</div> -->
+			<!-- END PAGE HEAD -->
+			<!-- BEGIN PAGE BREADCRUMB -->
+			<!-- <ul class="page-breadcrumb breadcrumb">
+				<li>
+					<a href="index.html">Home</a>
+					<i class="fa fa-circle"></i>
+				</li>
+				<li>
+					<a href="#">Form Stuff</a>
+					<i class="fa fa-circle"></i>
+				</li>
+				<li>
+					<a href="#">Form Validation</a>
+				</li>
+			</ul> -->
+			<!-- END PAGE BREADCRUMB -->
+			<!-- END PAGE HEADER-->
+			<!-- BEGIN PAGE CONTENT-->
+			<!-- <ul class="page-breadcrumb breadcrumb">
+				<li>
+					<a href="index.html">首页</a>
+					<i class="fa fa-circle"></i>
+				</li>
+				<li>
+					<a href="{:addons_url('Research://Research/index')}">微调研</a>
+					<i class="fa fa-circle"></i>
+				</li>
+				<li>
+					<a href="#">调研详情</a>
+				</li>
+			</ul> -->
+			<div class="row">
+				<div class="col-md-12">
+					<!-- BEGIN VALIDATION STATES-->
+					<div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-gift"></i>调研信息
+							</div>
+							<div class="tools">
+								<!-- <a href="javascript:;" class="collapse">
+								</a>
+								<a href="#portlet-config" data-toggle="modal" class="config">
+								</a>
+								<a href="javascript:;" class="reload">
+								</a>
+								<a href="javascript:;" class="remove">
+								</a> -->
+								<button class="btn btn-default" onclick="history.go(-1)" type="button">返回</button>
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<!-- BEGIN FORM-->
+							<form  id="form_sample_1"  class="form-horizontal">
+								<div class="form-body">
+								
+								<div class="form-group">
+										<label class="control-label col-md-3">调研名称</label>
+										<div class="col-md-9">
+											<input type="text" name="title" disabled="" placeholder="调研名称" class="form-control input-inline input-medium" value="{$reseinfo.title}">
+										</div>
+								</div> 
+								<div class="form-group">
+										<label class="control-label col-md-3">调研时间</label>
+										<div class="col-md-9">
+											<div style="float:left" class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+												<input type="text" class="form-control" name="from" value="{$reseinfo.starttime|date='d/m/y',###}"  disabled="">
+												<span class="input-group-addon">到</span>
+												<input type="text" class="form-control" name="to" value="{$reseinfo.endtime|date='d/m/y',###}"  disabled="">
+											</div>
+										</div>
+								</div> 
+								<div class="form-group ">
+										<label class="control-label col-md-3">关键词</label>
+										<div class="col-md-9">
+											<input type="text" placeholder="关键词" disabled="" class="form-control input-inline input-medium" name="keyword" value="{$reseinfo.keyword}">
+										</div>
+								</div>
+									<div class="form-group">
+										<label class="control-label col-md-3">图文封面</label>
+										<div class="col-md-9">
+										   <div class="upload-img-box" id="litpic_show" style="float:left;padding-right:1px;">
+										   <if condition="$rimginfo">
+										   ' <img width="200" height="120" src="{$rimginfo.path}"/>
+										   </if>
+										   </div>   
+										</div>
+								   </div> 
+									
+									<div class="form-group">
+										<label class="col-md-3 control-label">调研说明</label>
+										<div class="col-md-9">
+											<textarea rows="3" disabled="" class="form-control input-inline input-medium" name="remark">{$reseinfo.remark}</textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">结束说明</label>
+										<div class="col-md-9">
+											<textarea rows="3" disabled="" class="form-control input-inline input-medium" name="endremark">{$reseinfo.remark}</textarea>
+										</div>
+									</div>
+									<style>
+									.huodonglist{display:none;width:430px;height:30px;border-bottom: 1px dashed #BBBBBB;margin-bottom:5px;}
+									</style>
+									<div class="form-group">
+										<label class="col-md-3 control-label">结束调转</label>
+										<div class="col-md-9">
+										    <div class="huodonglist" id="huodong" <if condition="$huodonginfo.id">style="display:block"</if>>
+										    	<div class="huodonglist_wenzi" style="float:left">{$huodonginfo.title}</div>
+										        <span class="glyphicon glyphicon-remove" style="float:right;cursor:pointer"></span>
+										    </div>
+										</div>
+									</div>
+								<div class="form-group">
+										<label class="control-label col-md-3" style="height:100px;line-height:98px;">调研样式</label>
+										<div class="col-md-9">
+											<select disabled="" class="form-control input-inline input-medium" name="style">
+												<foreach name="template" item="v">
+												   <if condition="$v[code] eq $reseinfo[style]">
+													    <option selected value="{$v.code}" rel="{$key}">{$v.title}</option>
+													<else />
+													    <option  value="{$v.code}" rel="{$key}">{$v.title}</option>
+													</if>
+												</foreach>
+											</select>
+											<foreach name="template" item="vo">
+											  <if condition="$v[code] eq $reseinfo[style]">
+												  <img name="icon_{$vo.code}" src="{$vo.icon}" width=55 height=100>
+												<else />
+												   <img name="icon_{$vo.code}" src="{$vo.icon}" style="display:none" width=55 height=100>
+												</if>
+											</foreach>
+										</div>
+									</div>
+									<!-- <div class="form-group">
+										<label class="col-md-3 control-label">投票分享后是否抽奖</label>
+										<div class="col-md-9">
+											<div class="radio-list">
+												<label class="radio-inline">
+												<input type="radio" name="is_lucky" id="optionsRadios30" value="1" <if condition="$voteinfo.is_lucky eq 1"> checked</if>>是</label>
+												<label class="radio-inline">
+												<input type="radio" name="is_lucky" id="optionsRadios31" value="2" <if condition="$voteinfo.is_lucky eq 2"> checked</if>>否</label>	
+											</div>
+										</div>
+									</div> -->
+									<div class="form-group">
+										<label class="col-md-3 control-label">是否强制用户注册后投票</label>
+										<div class="col-md-9">
+											<div class="radio-list">
+												<label class="radio-inline">
+												<input type="radio" disabled="" name="is_register" id="optionsRadios32" value="1" <if condition="$reseinfo.is_register eq 1"> checked</if>>是</label>
+												<label class="radio-inline">
+												<input type="radio" disabled="" name="is_register" id="optionsRadios33" value="2" <if condition="$reseinfo.is_register eq 2"> checked</if>>否</label>	
+											</div>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-md-3 control-label">微调研题目列表</label>
+										<div class="col-md-9">
+											<table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+												<thead>
+													<tr>
+														<th>题目名称</th>
+														<th>题目选项</th>
+														<th>最多选中项</th>
+								
+													</tr>
+												</thead>
+												<tbody>
+												   <foreach name="topiclist" item="vo" key='key'>
+													<tr>
+														<td>{$vo.title}</td>
+														<td>
+															<foreach name="vo.optionlist" item="v" key='k'>
+																{$ABC.$k} : {$v.title}</br>
+															</foreach>
+														</td>
+														<td>{$vo.answer_number}</td>
+													</tr>
+													</foreach>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								<!-- </div> -->
+								<!-- <div class="form-actions">
+									<div class="row">
+										<div class="col-md-offset-3 col-md-9">
+											<button type=button class="btn green" onclick="formsubmit()">保存并设置题目</button>
+											<button type="button" class="btn default">取消</button>
+										</div>
+									</div>
+								</div> -->
+							</form>
+							<!-- END FORM-->
+						</div>
+					</div>
+					<!-- END VALIDATION STATES-->
+				</div>
+			</div>
+			<!-- END PAGE CONTENT-->
+		</div>
+	<!-- </div> -->
+	</div>
+	</div>
+	</div>
+	<!-- END CONTENT -->
+<!-- </div> -->
+
+
+
+<include file="Public/footer" />

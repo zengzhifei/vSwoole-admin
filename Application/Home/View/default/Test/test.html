@@ -1,0 +1,52 @@
+<include file="Pub/head" />
+
+<div id="testit">123</div>
+选项1：<input type="text" name="litpic" id="tip_1"  value="" />
+		<input type="hidden" name="op[]" id="tip_url_1"  value="" />
+		选项2：<input type="text" name="litpic" id="tip_2"  value="" />
+		<input type="hidden" name="op[]" id="tip_url_1"  value="" />
+		图片路径：<input type="text" name="litpic" id="litpic"  value="" />
+		图片显示：<input type="hidden" name="pic_id" id="pic_id"  value="" />
+<script type="text/javascript">
+
+
+
+
+
+$(function () {
+
+	$('#BrowerPicture').click(function(){
+		$.jBox("iframe:{:U('Public/browseFile', array('stype' => 'picture'))}",{
+					title:'XYHCMS',
+					width: 650,
+		   			height: 350,
+		    		buttons: { '关闭': true }
+		   			}
+				);
+
+		
+	});	
+	$.ajax({
+	    type: "GET",
+	    url: "{:U('Home/Public/atlas',array('uid'=>'132654','op'=>''))}",  
+	    data:{},
+	    dataType: "html",
+	    success: function (result){
+	      $("#testit").html(result);
+	    }
+	  });
+
+});
+
+
+function selectPicture(sfile) {
+	$.jBox.tip("选择文件成功");
+	$.jBox.close(true);
+	$("#litpic").val(sfile);
+	$('#litpic_show').html("<img src='"+sfile+"' width='120'>");
+}
+
+
+
+</script>
+<include file="Pub/footer" />

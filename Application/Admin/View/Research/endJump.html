@@ -1,0 +1,93 @@
+<include file="Public/head" />
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="portlet-config" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							 Widget settings form goes here
+						</div>
+						<div class="modal-footer">
+							<button class="btn blue" type="button">Save changes</button>
+							<button data-dismiss="modal" class="btn default" type="button">Close</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+
+			<div class="page-head">
+		
+			
+            <div class="row">
+				<div class="col-md-12">
+					<!-- BEGIN EXAMPLE TABLE PORTLET-->
+					<div class="portlet box">
+					    
+						<div class="portlet-body">
+						<div class="form-group">
+							<div class="col-md-1">
+							   活动类型：
+								<select class="form-control input-inline input-small" name="lucky_type">
+								    <foreach name="jumpinfo" item="vo">
+										<option value="{$vo.type}" <if condition="$lucky_type eq $vo.type">selected</if>>{$vo.title}</option>
+									</foreach>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+						  <div class="col-md-12">
+							<div class="col-md-5 col-sm-12" style="float:left;">
+									<div class="dataTables_info" id="sample_editable_1_info" role="status" aria-live="polite">
+									    当前是第 {$p} 页  总页数 {$totalpage}
+									</div>
+								</div>
+								<div class="col-md-5 col-sm-12">
+									<div class="dataTables_paginate paging_simple_numbers" id="sample_editable_1_paginate">
+									{$page}
+									 </div>
+								</div>
+								</div>
+							</div>
+							<table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+							<thead>
+							<tr>
+                               <th>选择</th>
+								<th>标题</th>
+							</tr>
+							</thead>
+							<tbody>
+							<foreach name="list" item="vo">
+							<tr>
+							   <td><input type="radio" name="xuanze" value="{$vo.id}" rel="{$vo.lucky_title}"></td>
+								<td>{$vo.lucky_title}</td>
+							</tr>
+							</foreach>
+							</tbody>
+							</table>
+							
+						</div>
+					</div>
+					<!-- END EXAMPLE TABLE PORTLET-->
+				</div>
+			</div>
+            
+			<!-- END PAGE CONTENT-->
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$("[name='lucky_type']").change(function(){
+				var lucky_type = $(this).val();
+				var url = "{:U('Research/endJump')}";
+				    url = url.replace(".html","")
+				    url = url+"/lucky_type/"+lucky_type;
+				    location.href=url;
+			});
+		});
+	</script>

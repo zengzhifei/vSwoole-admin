@@ -1,0 +1,168 @@
+<include file="Public/uchead" />
+<link href="__PUBLIC__/Home/userloginnew_files/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#page_body{background:#fff;}
+</style>
+<div class="bg_top_h_tile">
+  <div class="bg_top_owner">
+<div id="page_head_lt31">
+    <div class="yonghuzhongxin10764A_ind01">
+    <div class="yonghuzhongxin10764A_ind01_nr">
+    <div class="left_1"><a href=""><img src="__PUBLIC__/Home/userloginnew_files/youxiang_1.jpg" title="" height="71"></a></div>
+    <div class="right_1"></div>
+    <div class="clear"></div>
+    </div>
+    
+    
+    </div>  
+     
+    </div>
+
+		
+
+
+    <div id="page_body">
+    <div class="main" style="height:600px;">
+
+      <div class="yonghuzhongxin10764A_ind03">
+      <div class="yonghuzhongxin10764A_ind03_nr">
+      <div class="left_1">
+      <div class="ind03_left_nr">
+      <form id="loginFormOfReg" method="post"> 
+	  <!-- <input id="from" name="from" value="http://reg.cntv.cn/login/login.jsp" type="hidden"> -->
+	  <input id="service" name="service" value="http://my.cntv.cn" type="hidden">
+      <div class="top_nr">
+      <h3>登录，享受精彩服务</h3>
+      <div class="vspace"></div><div class="vspace"></div><div class="vspace"></div><div class="vspace"></div>
+      <div class="ss">
+      <span>用户名</span>
+      <input style="color: rgb(153, 153, 153);" name="username"  value="用户名" class="inp_1" onfocus="if(this.value==this.defaultValue){this.value='';}this.style.color='#000';" onblur="if(this.value==''){this.value=this.defaultValue;};"  tabindex="1" type="text">
+	  <img id="namefalse" src="__PUBLIC__/Home/userloginnew_files/errer_03.jpg" class="img_2" style="display:none" height="13" width="13"> 
+      <span class="sp_er" style="display:none" id="tishi_usrid"></span> 
+      
+      </div>
+      <div class="vspace"></div><div class="vspace"></div>
+      <div class="ss">
+      <span>密&nbsp;&nbsp;码</span>
+      <input name="password" class="psw_1"   tabindex="2" type="password">
+      <!-- <img id="passtrue" src="__PUBLIC__/Home/userloginnew_files/true_03.jpg" class="img_1" style="display:none;" height="13" width="13">
+      <img id="passfalse" src="__PUBLIC__/Home/userloginnew_files/errer_03.jpg" class="img_2" style="display:none;" height="13" width="13">
+      <span class="sp_er" id="tishi_password"></span> -->
+      
+      </div>
+      <div class="vspace"></div><div class="vspace"></div><div class="vspace"></div><div class="vspace"></div>
+      
+      
+      <div class="clear"></div>
+      
+      <div class="vspace"></div><div class="vspace"></div>
+      <a href="javascript:void(0)" id='login' class="sub" tabindex="3">登录</a>
+ 
+      </div>
+      </form>
+      <div class="vspace"></div><div class="vspace"></div><div class="vspace"></div><div class="vspace"></div><div class="vspace"></div><div class="vspace"></div><div class="vspace"></div>
+      
+      
+      
+      
+      
+      
+      </div>
+      
+      </div>
+      <div class="right_1">
+      <h3>还没有帐号?</h3>
+      <div style="height:45px;"></div>
+      <a href="{:U('User/register')}" class="zc" tabindex="4">立即注册</a>
+      <div style="height:80px;"></div>
+      <div class="images"><img src="__PUBLIC__/Home/userloginnew_files/yonghuzhongxin10764A_ind03_img_03.jpg" title="" height="22" width="233"></div>
+      <div style="height:40px;"></div>
+      <p>多屏互通、断点续播，悦享云端体验传<br>视频、写微博，与网友一起笑傲江湖</p>
+      </div>
+      </div>
+      <div class="clear"></div>
+      
+      </div>
+      
+        
+    
+    </div>
+    </div>
+    
+    <!--页脚-->
+  </div>
+</div>
+<include file="Public/ucfooter" />
+
+
+<script type="text/javascript">
+$("#login").click(function(){
+	var username = $("[name='username']").val();
+	var password = $("[name='password']").val();
+	//var checked  = $("[name='jizhu']").attr('checked');
+	/*if(checked == 'checked'){
+		var jizhu = 'jizhu';
+	}else{
+		var jizhu = 'none';
+	}*/
+	var url= window.location.href;
+	    url= url.split('&from/');
+	    callback= decodeURIComponent(url[1]);
+	$.ajax({
+		url:"{:U('User/login')}",
+		type: "post",
+		async: false, 
+		data:{username:username,password:password,from:callback},
+		dataType:'json',
+		success:function(json){
+			if(json.status == "success"){
+				/*var callbackurl = getUrlParam("callbackurl");
+				if(callbackurl != "" && callbackurl != null){
+					var newurl=decodeURIComponent(decodeURIComponent(callbackurl));
+					var uid=json.userinfo.uid;
+					setCookie("uid",uid,1*24*3600);
+					setCookie("loginstatus",1,1*24*3600);
+					newurl=newurl+"?uid="+uid;
+					window.location.href=newurl;
+					return;
+				}
+				var uid =json.userinfo.uid;
+				setCookie("user_"+uid,1,1*24*3600);
+				url="{:U('Index/showindex')}";*/
+				//url= url.replace(/.html/, "")+"/uid/"+json.userinfo.uid;
+				if(callback != 'undefined'){
+					url = callback;
+				}else{
+					url="{:U('Index/index')}";
+				}
+				window.location.href=url;
+			}else{
+				$('#namefalse').show();
+				$('#tishi_usrid').show().html(json.msg);
+				return false;
+			}
+			
+		}
+	});
+});
+/* function getUrlParam(name)
+{
+var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+if (r!=null) return unescape(r[2]); return null; //返回参数值
+} */
+//写cookies
+/* function setCookie(name,value,time)
+{
+    var Days = time;
+    var exp = new Date();
+    exp.setTime(exp.getTime() + Days*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+document.getElementById("username1").focus(); */
+</script>
+
+
+
+
+</div></body></html>

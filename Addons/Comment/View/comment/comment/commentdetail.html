@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+        <meta content="eric.wu" name="author">
+        <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+        <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+        <meta content="no-cache" http-equiv="pragma">
+        <meta content="0" http-equiv="expires">
+        <meta content="telephone=no, address=no" name="format-detection">
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/sns/main.css">
+        <link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/sns/dialog.css">
+        <script src="http://stc.weimob.com/src/sns/jquery_min.js"></script>
+        <script src="http://stc.weimob.com/src/sns/main.js"></script>
+        <script src="http://stc.weimob.com/src/sns/dialog_min.js"></script>
+        <style>
+            .nav_footer>ul a.a_collect.on{
+                color: #ff0000;
+            }
+            .nav_footer>ul a.on span.icons_love {
+            background-position: center -608px;
+            }
+            
+            .list_article>article>section>*{
+                padding-left:10px;
+                padding-right:10px;
+            }
+        </style>
+        <script>
+            function showOperate(type, thi, evt){
+                var pop_operate = document.getElementById("pop_operate");
+                if(type){
+                    var btns = thi.innerHTML;
+                    pop_operate.querySelectorAll("div.pop_container")[0].innerHTML = btns;
+                    pop_operate.classList.add("on");
+                }else{
+                    pop_operate.classList.remove("on");
+                }
+            }
+        </script>
+    </head><iframe id="__WeixinJSBridgeIframe_SetResult" style="display: none;"></iframe><iframe id="__WeixinJSBridgeIframe" style="display: none;"></iframe>
+    <body onselectstart="return true;" ondragstart="return false;" class="discuss_detail">
+        <div id="container" class="container">
+            <header></header>
+            <div class="body pt_5">
+                <div id="" class="list_article">
+                    <article>
+                        <section>
+                                <h5>{$topicinfo.topicname}</h5>
+                                <h6>
+                                    <small>{$topicinfo.createtime|date="Y-m-d H:i",###}</small>
+                                </h6>
+                                                                <figure data-count="1张图片">
+                                    <div>
+                                            
+                                            <img src="__ROOT__{$topicinfo.topicimgpath}" data-gid="g7528" onload="preViewImg(this, event);">
+                                                                            
+                                    </div>
+                                </figure>
+                        <div>{$topicinfo.topicinfo}</div>
+                        </section>
+                        <footer>
+                            <ul class="box">
+                                <li>
+                                    <a href="javascript:;" class="a_collect"><span class="number"></span>评论</a>
+                                </li>
+                            
+                            </ul>
+                            
+                        </footer>
+                    </article>
+                </div>
+
+                <div>
+                                    <ul id="list_comment" class="list_comment">
+<if condition="$commentlist gt 0">
+    <foreach name="commentlist" item="v" >
+                                        
+                        <li>
+                            <dl class="tbox">
+                                <dd>
+                                    <span class="head_img">
+                                                                            <img src="{$v.user_head}">
+                                                                        </span>
+                                </dd>
+                                <dd>
+                                <if condition="$v.parent_commentinfo gt 0">
+                                                                <h7>{$v.user_name} 回复 {$v.parent_commentinfo.user_name}</h7>
+                                <else/>
+                                                                <h7>{$v.user_name}</h7>
+                                </if>
+                                                                <p>{$v.comment_content}</p>
+                                    <time>
+                                    {$v.commenttime|date="Y-m-d H:i",###}      
+                                    <if condition="$v.is_praise eq 1">
+                                    <span id="praise{$uid}" style="color:blue">赞 <label>{$v.praise}</label></span>
+                                    <else/>
+                                    <span id="praise{$uid}">赞 <label>{$v.praise}</label></span>
+                                    </if>
+                                    </time>
+                                </dd>
+                                <dd>
+                                    <span class="icons icons_op" onclick="showOperate(true, this, event);">
+                                    <if condition="$v.uid eq $uid">
+                                        <a href="javascript:;" onclick="delcomment({$v.comment_id} , {$uid})" class="btn">删除</a>
+                                        <a href="#" class="btn calcel">取消</a>
+                                    <else/>
+                                            <a href="javascript:;" onclick="comment({$tid} , {$v.uid} , {$v.comment_id} )" class="btn">回复</a>
+                                        <if condition="$v.is_praise eq 1">
+                                            <a href="javascript:;" flag="0" onclick="praise( this , {$uid} , {$v.comment_id})" class="btn">取消赞</a>
+                                        <else/>
+                                            <a href="javascript:;" flag="1" onclick="praise( this , {$uid} , {$v.comment_id})" class="btn">赞</a>
+                                        </if>
+                                        <a href="#" class="btn calcel">取消</a>
+                                    </if>
+                                    </span>
+                                </dd>
+                            </dl>
+                        </li>
+    </foreach>
+<else/>
+<li>暂无数据</li>
+</if>
+                                                            </ul>
+                                </div>
+            </div>
+            <footer>
+                <section class="nav_footer">
+                    <ul class="box">
+                        <li>
+                            <a href="#">
+                                <span class="icons_back">&nbsp;</span>
+                                <label>返回</label>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" onclick="comment({$tid} , 0 , 0)">
+                                <span class="icons_comment">&nbsp;</span>
+                                <label>评论</label>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </section>
+            </footer>
+        </div>
+    <section id="pop_operate" class="pop_operate">
+        <div class="pop_container" onclick="showOperate(false);">
+        </div>
+        <div class="pop_masker"></div>
+    </section>
+    <script>
+        function comment(tid , to_uid , tocommentid){
+            var str = "{:addons_url('Comment://User/comment')}";
+            var url = str.replace(".html","")
+            url = url+"/tid/"+tid+"/to_uid/"+to_uid+"/to_comment_id/"+tocommentid;
+            location.href=url;
+        }
+        function praise( obj , uid , commentid ){
+        	$.post("{:addons_url('Comment://User/praise')}",{uid:uid , commentid:commentid}, function(data) {
+        		if(data.status == 'succ'){
+        			var str = "{:addons_url('Comment://User/commentdetail')}";
+                    var url = str.replace(".html","")
+                    url = url+"/tid/"+{$tid};
+                    location.href=url;
+        		}else{
+                    alert(data.info||"失败", 1500);
+        		}
+        	},'json');
+        }
+        function delcomment(commentid , uid){
+        	$.post("{:addons_url('Comment://User/delcomment')}",{comment_id:commentid , userid:uid}, function(data) {
+                if(data.status == 'succ'){
+                    var str = "{:addons_url('Comment://User/commentdetail')}";
+                    var url = str.replace(".html","")
+                    url = url+"/tid/"+{$tid};
+                    location.href=url;
+                }else{
+                    alert(data.info||"失败", 1500);
+                }
+            },'json');
+        }
+    </script>
+</body></html>

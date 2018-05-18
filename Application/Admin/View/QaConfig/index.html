@@ -1,0 +1,644 @@
+<include file="Public/head"/>
+<include file="Public/top"/>
+<div class="clearfix">
+    <div class="page-container">
+        <include file="Public/left"/>
+
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="portlet-config"
+                     class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+                                <h4 class="modal-title">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                                Widget settings form goes here
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn blue" type="button">Save changes</button>
+                                <button data-dismiss="modal" class="btn default" type="button">Close</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+                <!-- BEGIN PAGE HEADER-->
+                <!-- BEGIN PAGE HEAD -->
+                <div class="page-head">
+                    <!-- BEGIN PAGE TITLE -->
+                    <!-- END PAGE TITLE -->
+                    <!-- BEGIN PAGE TOOLBAR -->
+                    <!--<div class="page-toolbar">
+                         BEGIN THEME PANEL
+                        <div class="btn-group btn-theme-panel">
+                            <a data-toggle="dropdown" class="btn dropdown-toggle" href="javascript:;">
+                            <i class="icon-settings"></i>
+                            </a>
+                            <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <h3>THEME</h3>
+                                        <ul class="theme-colors">
+                                            <li data-theme="default" class="theme-color theme-color-default active">
+                                                <span class="theme-color-view"></span>
+                                                <span class="theme-color-name">Dark Header</span>
+                                            </li>
+                                            <li data-theme="light" class="theme-color theme-color-light">
+                                                <span class="theme-color-view"></span>
+                                                <span class="theme-color-name">Light Header</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12 seperator">
+                                        <h3>LAYOUT</h3>
+                                        <ul class="theme-settings">
+                                            <li>
+                                                 Theme Style
+                                                <select class="layout-style-option form-control input-small input-sm">
+                                                    <option selected="selected" value="square">Square corners</option>
+                                                    <option value="rounded">Rounded corners</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Layout
+                                                <select class="layout-option form-control input-small input-sm">
+                                                    <option selected="selected" value="fluid">Fluid</option>
+                                                    <option value="boxed">Boxed</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Header
+                                                <select class="page-header-option form-control input-small input-sm">
+                                                    <option selected="selected" value="fixed">Fixed</option>
+                                                    <option value="default">Default</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Top Dropdowns
+                                                <select class="page-header-top-dropdown-style-option form-control input-small input-sm">
+                                                    <option value="light">Light</option>
+                                                    <option selected="selected" value="dark">Dark</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Sidebar Mode
+                                                <select class="sidebar-option form-control input-small input-sm">
+                                                    <option value="fixed">Fixed</option>
+                                                    <option selected="selected" value="default">Default</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Sidebar Menu
+                                                <select class="sidebar-menu-option form-control input-small input-sm">
+                                                    <option selected="selected" value="accordion">Accordion</option>
+                                                    <option value="hover">Hover</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Sidebar Position
+                                                <select class="sidebar-pos-option form-control input-small input-sm">
+                                                    <option selected="selected" value="left">Left</option>
+                                                    <option value="right">Right</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Footer
+                                                <select class="page-footer-option form-control input-small input-sm">
+                                                    <option value="fixed">Fixed</option>
+                                                    <option selected="selected" value="default">Default</option>
+                                                </select>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         END THEME PANEL
+                    </div> -->
+                    <!-- END PAGE TOOLBAR -->
+                </div>
+                <!-- END PAGE HEAD -->
+                <!-- BEGIN PAGE BREADCRUMB -->
+                <!-- <ul class="page-breadcrumb breadcrumb">
+                    <li>
+                        <a href="#">竞猜</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                </ul> -->
+                <!-- END PAGE BREADCRUMB -->
+                <!-- END PAGE HEADER-->
+                <!-- BEGIN PAGE CONTENT-->
+                <!-- 注释 查询开始  -->
+                <!-- 注释 查询结束  -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-edit"></i>问答配置
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <!--<button style="margin-bottom:5px;" class="btn blue" type="button" id="qa-monitor-process-add">添加进程</button>-->
+                                <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                    <tbody>
+                                    <tr>
+                                        <td>清除系统数据</td>
+                                        <td style="float: left;">
+                                            <input type="text" name="qa-clear-data" class="form-control input-large" placeholder="系统口令(60s有效)" style="display: inline-block;">
+                                            <button class="btn blue" type="button" qa-clear-key="{$data['QA_CLEAR_DATA']}" id="qa-clear-cache-data">确定</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>APP ID接口验证</td>
+                                        <td style="float: left;">
+                                            <input type="checkbox" config-key="CHECK_APP_USER_ID" config-val="{$data['CHECK_APP_USER_ID']}" class="switch" checked/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>短信通知手机号</td>
+                                        <td style="float: left;">
+                                            <input type="text" name="qa-sms-phones" class="form-control input-large" value="{$data['QA_SMS_PHONES']}" placeholder="多个手机号以英文','隔开" style="display: inline-block;">
+                                            <button class="btn blue" type="button" id="set-sms-phones">确定</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>系统异常短信通知</td>
+                                        <td style="float: left;">
+                                            <input type="checkbox" config-key="QA_SMS_NOTICE" config-val="{$data['QA_SMS_NOTICE']}" class="switch" checked/>
+                                            <span>(剩余条数：{$data['QA_SMS_TOTAL']})</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>定时服务器项目地址</td>
+                                        <td style="float: left;">
+                                            <input type="text" name="qa-server-path" class="form-control input-large" value="{$data['QA_SERVER_TIME_PATH']}" placeholder="以项目名结尾" style="display: inline-block;">
+                                            <button class="btn blue" type="button" qa-server-type="{$data['QA_SERVER_TIME']}" id="set-server-path">确定</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>系统偏移量设置</td>
+                                        <td style="float: left;">
+                                            <input type="text" name="qa-push-offset" class="form-control input-small" value="{$data['QA_PUSH_OFFSET']}" placeholder="整秒数" style="display: inline-block;">
+                                            <button class="btn blue" type="button" id="setQaPushOffsetByHand" style="display: inline-block;">手动设置</button>
+                                            <input type="text" name="active-start-time" class="form-control input-medium" placeholder="节目开始时间" style="display: inline-block;">
+                                            <button class="btn blue" type="button" id="setQaPushOffsetByAuto" style="display: inline-block;">自动设置</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>期参与人数基数设置</td>
+                                        <td style="float: left;">
+                                            <span>{$column['column_name']}-{$stage['stage_name']}：</span>
+                                            <input type="text" name="qa-stage-user-base-number" class="form-control input-small" value="{$data['QA_STAGE_USER_JOIN_BASE']}" placeholder="整数" style="display: inline-block;">
+                                            <button class="btn blue" type="button" stage_id="{$stage['stage_id']}" id="set-qa-stage-user-base">确定</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>轮参与人数基数设置</td>
+                                        <td style="float: left;">
+                                            <span>{$column['column_name']}-{$stage['stage_name']}-</span>
+                                            <select class="form-control input-inline input-small" name="qa-set-group-user-base-select-group">
+                                                <option value="">选择分组</option>
+                                                <foreach name="group" item="item" key="key">
+                                                    <option value="{$item.id}">{$item.group_title}</option>
+                                                </foreach>
+                                            </select>：
+                                            <input type="text" name="qa-group-user-base-number" class="form-control input-small" placeholder="整数" style="display: inline-block;">
+                                            <button class="btn blue" type="button" id="set-qa-group-user-base">确定</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>题目时间校准</td>
+                                        <td style="float: left;">
+                                            <span>{$column['column_name']}-{$stage['stage_name']}：</span>
+                                            <input type="text" name="qa-time-check-start" class="form-control input-medium qa-check-time" placeholder="初始时间" style="display: inline-block;">到
+                                            <input type="text" name="qa-time-check-end" class="form-control input-medium qa-check-time" placeholder="目标时间" style="display: inline-block;">
+                                            <button class="btn blue" type="button" stage_id="{$stage['stage_id']}" id="checkQaTime">确定</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END EXAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+
+                <!-- END PAGE CONTENT-->
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        //开关
+        $(".switch").bootstrapSwitch({
+            state: false,
+            onText: '开启',
+            offText: '关闭',
+            onInit: function () {
+                var $this = $(this);
+                var default_config_val = $(this).attr('config-val') && $(this).attr('config-val') == 'true' ? true : false;
+                setTimeout(function () {
+                    $this.bootstrapSwitch('state', default_config_val, true);
+                    $this.parents('.checker').removeClass("checker");
+                }, 100);
+            },
+            onSwitchChange: function (e, data) {
+                var config_key = $(this).attr('config-key');
+                var config_val = data;
+                $.ajax({
+                    url: "{:U('QaConfig/setConfig')}",
+                    type: 'POST',
+                    data: {config_key: config_key, config_val: config_val},
+                    dataType: 'JSON',
+                    context: this,
+                    success: function (res) {
+                        console.log(res);
+                        if (res.status != 1) {
+                            $.confirm({
+                                title: res.msg,
+                                level: 'danger',
+                                buttons: {
+                                    "确定": {
+                                        class: "blue"
+                                    }
+                                }
+                            })
+                            $(this).bootstrapSwitch('toggleState', true);
+                        }
+                    },
+                    error: function (e) {
+                        alert(e.statusText);
+                        location.reload();
+                    }
+                })
+            }
+        });
+        //手动设置题目推送时间偏移量
+        $("input[name='active-start-time']").daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 1,
+            timePicker24Hour: true,
+            timePickerSeconds: true,
+            linkedCalendars: false,
+            singleDatePicker: true,
+            locale: {
+                applyLabel: '确定',
+                cancelLabel: '取消',
+                format: 'YYYY/MM/DD HH:mm:ss',
+            },
+        });
+        $("#setQaPushOffsetByHand,#setQaPushOffsetByAuto").on('click', function () {
+            if ($(this).attr('id') == 'setQaPushOffsetByHand') {
+                var offset = $("input[name='qa-push-offset']").val();
+            } else {
+                var start_time = $("input[name='active-start-time']").val();
+                if (!start_time) {
+                    $.confirm({
+                        title: '自动设置，节目开始时间不能为空',
+                        level: 'warning',
+                        buttons: {
+                            "确定": {
+                                class: "blue"
+                            }
+                        }
+                    })
+                    return false;
+                }
+                var is_auto = 1;
+            }
+            $.ajax({
+                url: "{:U('QaConfig/setQaPushOffset')}",
+                data: {is_auto: is_auto, start_time: start_time, offset: offset},
+                type: 'post',
+                dataType: 'json',
+                context: this,
+                beforeSend: function () {
+                    // 禁用按钮防止重复提交
+                    $(this).attr({disabled: "disabled"});
+                    $.refreshWindow.open("请稍后...");
+                },
+                complete: function () {
+                    $(this).attr({disabled: false});
+                    $.refreshWindow.close();
+                },
+                success: function (msg) {
+                    $.confirm({
+                        title: msg.info,
+                        level: 'success',
+                        buttons: {
+                            "确定": {
+                                class: "blue",
+                                action: function () {
+                                    location.reload();
+                                }
+                            }
+                        }
+                    })
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+        });
+        //设置期答题人数基数
+        $("#set-qa-stage-user-base").on('click', function () {
+            var count = $("input[name='qa-stage-user-base-number']").val();
+            var stage_id = $(this).attr('stage_id');
+            $.ajax({
+                url: "{:U('QaConfig/setStageUserBaseNumber')}",
+                data: {count: count, stage_id: stage_id},
+                type: 'post',
+                dataType: 'json',
+                context: this,
+                beforeSend: function () {
+                    // 禁用按钮防止重复提交
+                    $(this).attr({disabled: "disabled"});
+                    $.refreshWindow.open("请稍后...");
+                },
+                complete: function () {
+                    $(this).attr({disabled: false});
+                    $.refreshWindow.close();
+                },
+                success: function (msg) {
+                    $.confirm({
+                        title: msg.info,
+                        level: 'success',
+                        buttons: {
+                            "确定": {
+                                class: "blue",
+                                action: function () {
+                                    location.reload();
+                                }
+                            }
+                        }
+                    })
+                }
+            });
+        });
+        //设置轮答题人数基数
+        $("#set-qa-group-user-base").on('click', function () {
+            var count = $("input[name='qa-group-user-base-number']").val();
+            var group_id = $("select[name='qa-set-group-user-base-select-group']").val();
+            $.ajax({
+                url: "{:U('QaConfig/setGroupUserBaseNumber')}",
+                data: {count: count, group_id: group_id},
+                type: 'post',
+                dataType: 'json',
+                context: this,
+                beforeSend: function () {
+                    // 禁用按钮防止重复提交
+                    $(this).attr({disabled: "disabled"});
+                    $.refreshWindow.open("请稍后...");
+                },
+                complete: function () {
+                    $(this).attr({disabled: false});
+                    $.refreshWindow.close();
+                },
+                success: function (msg) {
+                    $.confirm({
+                        title: msg.info,
+                        level: 'success',
+                        buttons: {
+                            "确定": {
+                                class: "blue",
+                                action: function () {
+                                    location.reload();
+                                }
+                            }
+                        }
+                    })
+                }
+            });
+        });
+        $("select[name='qa-set-group-user-base-select-group']").on('change', function () {
+            var group_id = $(this).val();
+            $.ajax({
+                url: "{:U('QaConfig/getGroupUserBaseNumber')}",
+                data: {group_id: group_id},
+                type: 'post',
+                dataType: 'json',
+                context: this,
+                success: function (res) {
+                    if (res.status == 1) {
+                        $("input[name='qa-group-user-base-number']").val(res.data);
+                    } else {
+                        $("input[name='qa-group-user-base-number']").val('');
+                    }
+                }
+            })
+        });
+        //答题时间校准
+        $(".qa-check-time").daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 1,
+            timePicker24Hour: true,
+            timePickerSeconds: true,
+            linkedCalendars: false,
+            singleDatePicker: true,
+            locale: {
+                applyLabel: '确定',
+                cancelLabel: '取消',
+                format: 'YYYY/MM/DD HH:mm:ss',
+            },
+        });
+        $("#checkQaTime").on('click', function () {
+            var start_time = $("input[name='qa-time-check-start']").val();
+            var end_time = $("input[name='qa-time-check-end']").val();
+            var stage_id = $(this).attr('stage_id');
+            if (stage_id && start_time && end_time) {
+                $.ajax({
+                    url: "{:U('QaConfig/setQaTimeCheck')}",
+                    data: {start_time: start_time, end_time: end_time, stage_id: stage_id},
+                    type: 'post',
+                    dataType: 'json',
+                    context: this,
+                    beforeSend: function () {
+                        // 禁用按钮防止重复提交
+                        $(this).attr({disabled: "disabled"});
+                        $.refreshWindow.open("请稍后...");
+                    },
+                    complete: function () {
+                        $(this).attr({disabled: false});
+                        $.refreshWindow.close();
+                    },
+                    success: function (msg) {
+                        $.confirm({
+                            title: msg.info,
+                            level: 'success',
+                            buttons: {
+                                "确定": {
+                                    class: "blue",
+                                    action: function () {
+                                        location.reload();
+                                    }
+                                }
+                            }
+                        })
+                    }
+                });
+            } else {
+                $.confirm({
+                    title: '初始时间和目标时间不能为空',
+                    level: 'warning',
+                    buttons: {
+                        "确定": {
+                            class: "blue"
+                        }
+                    }
+                })
+            }
+        });
+        //设置服务器地址
+        $("#set-server-path").on('click', function () {
+            var server_type = $(this).attr('qa-server-type');
+            var server_path = $(this).parents('td').find("input[name='qa-server-path']").val();
+            if (server_type && server_path) {
+                $.ajax({
+                    url: "{:U('QaConfig/setQaServerPath')}",
+                    data: {server_type: server_type, server_path: server_path},
+                    type: 'post',
+                    dataType: 'json',
+                    context: this,
+                    beforeSend: function () {
+                        // 禁用按钮防止重复提交
+                        $(this).attr({disabled: "disabled"});
+                        $.refreshWindow.open("请稍后...");
+                    },
+                    complete: function () {
+                        $(this).attr({disabled: false});
+                        $.refreshWindow.close();
+                    },
+                    success: function (msg) {
+                        $.confirm({
+                            title: msg.info,
+                            level: 'success',
+                            buttons: {
+                                "确定": {
+                                    class: "blue",
+                                }
+                            }
+                        })
+                    }
+                });
+            } else {
+                $.confirm({
+                    title: '服务器地址和类型不能为空',
+                    level: 'warning',
+                    buttons: {
+                        "确定": {
+                            class: "blue"
+                        }
+                    }
+                })
+            }
+        });
+
+        //设置短信通知号码
+        $("#set-sms-phones").on('click', function () {
+            var sms_phones = $(this).parents('td').find("input[name='qa-sms-phones']").val();
+            if (sms_phones) {
+                $.ajax({
+                    url: "{:U('QaConfig/setQaSmsPhones')}",
+                    data: {sms_phones: sms_phones},
+                    type: 'post',
+                    dataType: 'json',
+                    context: this,
+                    beforeSend: function () {
+                        // 禁用按钮防止重复提交
+                        $(this).attr({disabled: "disabled"});
+                        $.refreshWindow.open("请稍后...");
+                    },
+                    complete: function () {
+                        $(this).attr({disabled: false});
+                        $.refreshWindow.close();
+                    },
+                    success: function (msg) {
+                        $.confirm({
+                            title: msg.info,
+                            level: 'success',
+                            buttons: {
+                                "确定": {
+                                    class: "blue",
+                                }
+                            }
+                        })
+                    }
+                });
+            } else {
+                $.confirm({
+                    title: '手机号不能为空',
+                    level: 'warning',
+                    buttons: {
+                        "确定": {
+                            class: "blue"
+                        }
+                    }
+                })
+            }
+        });
+
+        //清除系统数据
+        $("#qa-clear-cache-data").on('click', function () {
+            var key = $(this).attr('qa-clear-key');
+            var data = $(this).parents('td').find("input[name='qa-clear-data']").val();
+            $.confirm({
+                title: "确定后，会清除系统录入的所有数据，是否确定？\n（*录入正式数据后，切勿点击）",
+                level: 'warning',
+                buttons: {
+                    "确定": {
+                        class: "blue",
+                        action:function () {
+                            $.ajax({
+                                url: "{:U('QaConfig/clearCacheData')}",
+                                data: {data: data, key: key},
+                                type: 'post',
+                                dataType: 'json',
+                                context: this,
+                                beforeSend: function () {
+                                    // 禁用按钮防止重复提交
+                                    $(this).attr({disabled: "disabled"});
+                                    $.refreshWindow.open("正在验证，请稍后...");
+                                },
+                                complete: function () {
+                                    $(this).attr({disabled: false});
+                                    $.refreshWindow.close();
+                                },
+                                success: function (msg) {
+                                    $.confirm({
+                                        title: msg.info,
+                                        level: 'success',
+                                        buttons: {
+                                            "确定": {
+                                                class: "blue",
+                                            }
+                                        }
+                                    })
+                                },
+                                error: function (e) {
+                                    alert(e.statusText);
+                                }
+                            });
+                        }
+                    },
+                    "取消": {
+                        "class": "green",
+                        "action": function () {
+                        }
+                    }
+                }
+            })
+        });
+    })
+</script>
+
+<include file="Public/footer"/>

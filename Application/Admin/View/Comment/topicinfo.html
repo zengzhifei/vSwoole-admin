@@ -1,0 +1,270 @@
+<include file="Public/head" />
+<include file="Public/top" />
+<div class="clearfix">
+    <div class="page-container">
+    <include file="Public/left" />
+    
+        <div class="page-content-wrapper">
+<link href="__PUBLIC__/Home/static/theme/assets/global/plugins/font-awesome/css/font-googleapis.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Home/static/theme/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Home/static/theme/assets/admin/pages/css/blog.css" rel="stylesheet" type="text/css"/>
+<div class="page-content">
+	<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+	<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+		tabindex="-1" id="portlet-config" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button aria-hidden="true" data-dismiss="modal" class="close"
+						type="button"></button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body">Widget settings form goes here</div>
+				<div class="modal-footer">
+					<button class="btn blue" type="button">Save changes</button>
+					<button data-dismiss="modal" class="btn default" type="button">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+	<!-- BEGIN PAGE HEADER-->
+	<!-- BEGIN PAGE HEAD -->
+	<div class="page-head">
+		<!-- BEGIN PAGE TITLE -->
+		<!-- END PAGE TITLE -->
+		<!-- BEGIN PAGE TOOLBAR -->
+		<!-- END PAGE TOOLBAR -->
+	</div>
+	<!-- END PAGE HEAD -->
+	<!-- BEGIN PAGE BREADCRUMB -->
+	<!-- END PAGE BREADCRUMB -->
+	<!-- END PAGE HEADER-->
+	<!-- BEGIN PAGE CONTENT-->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="portlet box"><div class="portlet-body form">
+                        <div calss="col-md-offset-3 form-body" style="line-height:5">
+                            <a  style="margin-left:20px" class="btn btn-default btn-primary" data-toggle="modal"  href="{:U('Comment/index')}">评论管理</a>
+                            <a  class="btn btn-default" data-toggle="modal"  href="{:U('Comment/user')}">用户管理</a>
+                            <a  class="btn btn-default" data-toggle="modal"  href="{:U('Comment/counttable')}">统计信息</a>
+                            <a  class="btn btn-default" data-toggle="modal"  href="{:U('Comment/commentsettings')}">留言设置</a>
+                        </div></div>
+			</div>
+		</div>
+	</div>
+
+	<!--COMMENT START-->
+<div class="portlet box blue">
+ <div class="portlet-title">
+     <div class="caption">
+         <i class="fa fa-gift"></i> 评论详情
+     </div>
+ </div>
+	<div class="portlet light">
+		<div class="portlet-body">
+					<div class="row">
+						<div class="col-md-offset-2 col-md-8 article-block blog-page">
+
+							<h3 style="margin-top:0;">{$topicinfo.topicname}</h3>
+							<div class="blog-tag-data">
+								<img src="__ROOT__{$topicinfo.topicimgpath}" class="img-responsive" alt="">
+								<div class="row">
+									<div class="col-md-6">
+										
+									</div>
+									<div class="col-md-6 blog-tag-data-inner">
+										<ul class="list-inline">
+											<li>
+												<i class="fa fa-calendar"></i>
+												<a href="javascript:;">
+												{$topicinfo.createtime|date="y-m-d",###}</a>
+											</li>
+											<li>
+												<i class="fa fa-comments"></i>
+												<a href="javascript:;">
+												{$count} 评论 </a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!--end news-tag-data-->
+							<div>
+								<p>
+									 {$topicinfo.topicinfo}
+								</p>
+							</div>
+							<hr>
+                            <h3>评论详情</h3>
+                            <if condition="$commentlist gt 0">
+                            <foreach name="commentlist" item="v" >
+								<div class="media">
+									<a href="javascript:;" class="pull-left">
+									   <img alt="" src="{$v.user_head}" class="media-object">
+									</a>
+									<div class="media-body">
+										<h4 class="media-heading">{$v.user_name}<span>
+										{$v.commenttime|date="y-m-d",###}
+										</span>
+										</h4>
+										<if condition="$v.parent_commentinfo gt 0">
+											<!-- <p> -->
+		                                    <div class="top-news" class="col-md-10">
+		                                        <p class="btn default">
+		                                            <span>
+		                                            回复:{$v.parent_commentinfo.user_name} </span>
+		                                            <em>评论时间:{$v.parent_commentinfo.commenttime|date="y-m-d",###}</em>
+		                                        </p>
+		                                    </div>
+		                                    <!-- </p> -->
+		                                </if>
+										<p>
+											 {$v.comment_content}
+										</p>
+										<div class="portlet light" style="margin-bottom: 0">
+											<div class="portlet-title" style="border: none;min-height:39px">
+												<div class="actions" style="padding: 6px 0">
+													<div class="btn-group dropup">
+														<a href="javascript:;" class="btn btn-default btn-sm" data-toggle="dropdown">
+														<i class="fa fa-user"></i> <if condition="$v.status  eq 1">通过审核<else />未通过审核</if> <i class="fa fa-angle-down"></i>
+														</a>
+														<ul class="dropdown-menu bottom-up" role="menu">
+															<li style="height:30px;font-size: 13px;">
+																<a href="javascript:;" onclick="changestatus(this,{$v.comment_id},1)">
+																<i class="fa fa-check"></i> 通过 </a>
+															</li>
+															<li style="height:30px;font-size: 13px;">
+																<a href="javascript:;" onclick="changestatus(this,{$v.comment_id},0)">
+																<i class="fa fa-ban"></i> 不通过 </a>
+															</li>
+														</ul>
+														<a href="javascript:;" class="btn btn-default btn-sm" style="border-left: none">
+														<i class="fa fa-thumbs-o-up"></i> 点赞({$v.praise}) </a>
+														
+                                        <if condition="$v.uid neq $uid">
+														<a href="javascript:;" onclick='answer("{$v.comment_id}","{$v.user_name}","{$v.uid}")' class="btn btn-default btn-sm">
+														<i class="fa fa fa-comments-o"></i> 回复 </a>
+                                        </if>
+														<a href="javascript:;" sid="{$sid}" tid="{$tid}" commentid="{$v.comment_id}" class="btn btn-default btn-sm deletecomment">
+														<i class="fa fa-trash-o"></i> 删除 </a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<hr style="margin:0 !important;">
+									</div>
+								</div>
+							</foreach>
+							<else />
+                                暂无数据
+                            </if>
+							<hr>
+							<div class="post-comment" style="display:none">
+								<form role="form" action="{:U('Comment/adminanswer')}" method="post">
+									<div class="form-group">
+										<label class="control-label">
+										</label>
+										<input type="hidden" name="topicid" value="{$tid}"/>
+										<input type="hidden" name="uid" value="{$uid}"/>
+										<input class="to_comment_id" type="hidden" name="to_comment_id" value=""/>
+                                        <input class="to_uid" type="hidden" name="to_uid" value=""/>
+                                        <input type="hidden" name="sid" value="{$sid}"/>
+										<textarea name="comment_content" class="col-md-10 form-control" rows="8"></textarea>
+									</div>
+									<input class="margin-top-20 btn blue" type="submit" value="提交回复"/>
+								</form>
+							</div>
+						</div>
+						<!--end col-md-9-->
+					</div>
+		</div>
+	</div>
+	
+</div>
+	<!--COMMENT END-->
+
+	<!-- END PAGE CONTENT-->
+</div></div></div></div>
+<script>
+function changestatus(obj,comment_id , statusval){
+	$.post("{:U('Comment/changestatus')}",{comment_id:comment_id , status:statusval}, function(data) {
+        if (data.status == 'succ') {
+        	if(statusval){
+        	    $(obj).parent().parent().parent().children().first().html('<i class="fa fa-user"> </i>通过审核<i class="fa fa-angle-down"></i>');
+            }else{
+            	$(obj).parent().parent().parent().children().first().html('<i class="fa fa-user"> </i>未通过审核<i class="fa fa-angle-down"></i>');
+            }
+        }else{
+        	Metronic.alert({
+                container: "", // alerts parent container(by default placed after the page breadcrumbs)
+                place: "append", // append or prepent in container 
+                type: "info",  // alert's type
+                message: '修改失败,请刷新重试',  // alert's message
+                close: false, // make alert closable
+                reset: true, // close all previouse alerts first
+                focus: true, // auto scroll to the alert after shown
+                closeInSeconds: 2, // auto close after defined seconds
+                width:"col-md-offset-3 col-md-3",
+                fixed:"fixed",
+                icon: "" // put icon before the message
+            });
+        }
+    },'json');
+}
+
+$('.deletecomment').on('click',function (e) {
+    var obj = this;
+    e.preventDefault();
+    bootbox.confirm({
+         buttons: {  
+            confirm: {  
+                label: '确认',  
+                className: 'btn-myStyle'  
+            },  
+            cancel: {  
+                label: '取消',  
+                className: 'btn-default'  
+            }  
+        },  
+        message: '评论删除时会连同它的回复也一起删除,确认删除吗？',  
+        callback: function(result) {  
+            if(result) {
+            	$.post("{:U('Comment/delcomment')}",{comment_id:$(obj).attr("commentid") , sid:$(obj).attr("sid") , tid:$(obj).attr("tid")}, function(data) {
+                    if (data.status == 'succ') {
+                        var str = "{:U('Comment/topicinfo')}";
+                        var url = str.replace(".html","")
+                        url = url+"/sid/"+$(obj).attr("sid")+"/tid/"+$(obj).attr("tid");
+                        location.href=url;
+                    }else{
+                        Metronic.alert({
+                            container: "", // alerts parent container(by default placed after the page breadcrumbs)
+                            place: "append", // append or prepent in container 
+                            type: "info",  // alert's type
+                            message: '删除评论失败,请刷新重试',  // alert's message
+                            close: false, // make alert closable
+                            reset: true, // close all previouse alerts first
+                            focus: true, // auto scroll to the alert after shown
+                            closeInSeconds: 2, // auto close after defined seconds
+                            width:"col-md-offset-3 col-md-3",
+                            fixed:"fixed",
+                            icon: "" // put icon before the message
+                        });
+                    }
+            	},'json');
+            }
+        }
+    });
+});
+
+function answer(comment_id , user_name , uid){
+	$(".post-comment").find('.control-label').html('回复<span class="required">'+user_name+'</span>');
+	$(".post-comment").find('.to_comment_id').val(comment_id);
+	$(".post-comment").find('.to_uid').val(uid);
+	$(".post-comment").show()
+}
+</script>
+<include file="Public/footer" />

@@ -1,0 +1,484 @@
+<include file="Public/head" />
+<include file="Public/top" />
+<div class="clearfix">
+	<div class="page-container">
+	<include file="Public/left" />
+	
+	    <div class="page-content-wrapper">
+<!--图片上传需要引入的js-->
+<script type="text/javascript" src="__PUBLIC__/static/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js?v=1437043712"></script>
+
+<link id="skin" rel="stylesheet" href="__PUBLIC__/static/jq_plugins/jBox/Skins2/Blue/jbox.css" />
+<script type="text/javascript" src="__PUBLIC__/static/jq_plugins/jBox/jquery.jBox-2.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/jq_plugins/jBox/i18n/jquery.jBox-zh-CN.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/interact/js/common.js"></script>
+<!-- BEGIN CONTAINER -->
+<!-- <div class="page-container"> -->
+	<!-- <div class="page-content-wrapper"> -->
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							 Widget settings form goes here
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn blue">Save changes</button>
+							<button type="button" class="btn default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE HEADER-->
+			<!-- BEGIN PAGE HEAD -->
+			<!-- <div class="page-head">
+				BEGIN PAGE TITLE
+				<div class="page-title">
+					<h1>Form Validation <small>form validation</small></h1>
+				</div>
+			</div> -->
+			<!-- END PAGE HEAD -->
+			<!-- BEGIN PAGE BREADCRUMB -->
+			<!-- <ul class="page-breadcrumb breadcrumb">
+				<li>
+					<a href="index.html">Home</a>
+					<i class="fa fa-circle"></i>
+				</li>
+				<li>
+					<a href="#">Form Stuff</a>
+					<i class="fa fa-circle"></i>
+				</li>
+				<li>
+					<a href="#">Form Validation</a>
+				</li>
+			</ul> -->
+			<!-- END PAGE BREADCRUMB -->
+			<!-- END PAGE HEADER-->
+			<!-- BEGIN PAGE CONTENT-->
+			<!-- <ul class="page-breadcrumb breadcrumb">
+				<li>
+					<a href="index.html">首页</a>
+					<i class="fa fa-circle"></i>
+				</li>
+				<li>
+					<a href="{:addons_url('Research://Research/index')}">微调研</a>
+					<i class="fa fa-circle"></i>
+				</li>
+				<li>
+					<a href="#">编辑调研</a>
+				</li>
+			</ul> -->
+			<div class="row">
+				<div class="col-md-12">
+					<!-- BEGIN VALIDATION STATES-->
+					<div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-gift"></i>调研设置
+							</div>
+							<div class="tools">
+								<!-- <a href="javascript:;" class="collapse">
+								</a>
+								<a href="#portlet-config" data-toggle="modal" class="config">
+								</a>
+								<a href="javascript:;" class="reload">
+								</a>
+								<a href="javascript:;" class="remove">
+								</a> -->
+								<button class="btn btn-default" onclick="goback()" type="button">返回</button>
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<!-- BEGIN FORM-->
+							<form  id="form_sample_1"  class="form-horizontal">
+								<input type="hidden" name="uid" value="{$reseinfo.uid}">
+								<input type="hidden" name="id" value="{$reseinfo.id}">
+								<div class="form-body">
+									<div class="alert alert-danger display-hide">
+										<button class="close" data-close="alert"></button>
+										您填写的表单信息有误，请检查一下！
+									</div>
+									<div class="alert alert-success display-hide">
+										<button class="close" data-close="alert"></button>
+										信息无误，验证通过！
+									</div>
+								
+								<div class="form-group" style="margin-top:10px;">
+										<label class="control-label col-md-3">调研名称</label>
+										<div class="col-md-9">
+											<input type="text" name="title" placeholder="调研名称" class="form-control input-inline input-medium" value="{$reseinfo.title}">
+											<span class="required" style="color:red">* </span>
+											<span class="help-inline">
+											不能超过18个字</span>
+										</div>
+								</div> 
+								<div class="form-group">
+										<label class="control-label col-md-3">调研时间</label>
+										<div class="col-md-9">
+											<div style="float:left" class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+												<input type="text" class="form-control" name="from" value="{$reseinfo.starttime|date='m/d/Y',###}">
+												<span class="input-group-addon">到</span>
+												<input type="text" class="form-control" name="to" value="{$reseinfo.endtime|date='m/d/Y',###}">
+											</div>
+											<span class="required" style="color:red;margin-left:5px;">* </span>
+											<span class="help-inline">
+											起始时间不能大于结束时间</span>
+										</div>
+								</div> 
+								<div class="form-group ">
+										<label class="control-label col-md-3">关键词</label>
+										<div class="col-md-9">
+											<input type="text" placeholder="关键词" class="form-control input-inline input-medium" name="keyword" value="{$reseinfo.keyword}">
+											<span class="required" style="color:red">* </span>
+											<span class="help-inline">
+											活动的关键词不能重复，且不建议包含标点符号 多个关键词用空格分开</span>
+										</div>
+								</div>
+									<div class="form-group">
+										<label class="control-label col-md-3">图文封面</label>
+										<div class="col-md-9">
+										   <div class="upload-img-box" id="litpic_show" style="float:left;padding-right:1px;">
+										   <if condition="$rimginfo">
+										   ' <img width="120" height="120" src="{$rimginfo.path}"/>
+										   </if>
+										   </div>
+											<div class="controls uploadrow" title="点击修改图片" style="width:100px;height:32px;background:url(__PUBLIC__/Home/interact/images/shangchuan.png) no-repeat;float:left;overflow:hidden">
+                            					<input type="file" id="upload_picture_picurl">
+                            					<input type="hidden" name="picurl" id="cover_id_picurl"/>
+                          					</div>
+                          					<input type="hidden" name="pic_id" id="pic_id"  value="{$rimginfo.id}" />
+                          					<!-- <input name="voteimgurl" type="hidden" id="voteimgurl_pid" > -->
+                          					<script type="text/javascript">
+												//上传图片
+							    				/* 初始化上传插件 */
+
+												$("#upload_picture_picurl").uploadify({
+							        				"height"          : 32,
+							        				"swf"             : "__PUBLIC__/static/uploadify/uploadify.swf",
+							        				"fileObjName"     : "download",
+							        				"buttonText"      : "",
+							        				"uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+							        				"width"           : 100,
+							        				'removeTimeout'	  : 1,
+							        				'fileTypeExts'	  : '*.jpg; *.png; *.gif;',
+							        				"onUploadStart"   : function(file){
+							        					var element = {};
+							        					element.uid = {$reseinfo.uid};
+							        					/*
+							        					 element.uname = 'xxx';
+							        					*/
+							        					$("#upload_picture_picurl").uploadify('settings','formData',element);
+							        				},
+							        				"onUploadSuccess" : uploadPicturepicurl
+							        			});
+												function uploadPicturepicurl(file, data){
+													var data = eval("(" + data +")");
+													//console.log(testdata);
+							    					//var data = $.parseJSON(data);
+							    					var src = '';
+							        				if(data.status){
+							        					$("#cover_id_picurl").val(data.id);
+							        					src = data.url || '__ROOT__' + data.path;
+							        					/*$("#cover_id_picurl").parent().find('.upload-img-box').show().html(
+							        						'<div class="upload-pre-item"><img width="120" height="120" src="' + src + '"/></div>'
+							        					);*/
+							        					$("#litpic_show").show().html('<img width="120" height="120" src="' + src + '"/>');
+														$("#pic_id").val(data.id);
+							        					$('.weixin-cover-pic').attr('src',src);
+							        				} else {
+							        					$(".alert-danger").show().html(
+							        						'<button class="close" data-close="alert"></button>'+data.info+'请重新选择图片'	
+							        					)
+							        					/*updateAlert(data.info);
+							        					setTimeout(function(){
+							                				$('#top-alert').find('button').click();
+							               					$(that).removeClass('disabled').prop('disabled',false);
+							            					},1500);*/
+							        				}
+							    			    }
+												</script>    
+											<button  class="btn btn-default BrowerPicture" data-toggle="modal"  type="button" rel="{$reseinfo.uid}" style="margin-left:5px;">选择站内图片</button>	        
+											<span class="required" style="color:red">* </span>
+											<span class="help-inline">
+											建议尺寸:宽540像素,高300像素或等比图片</span>
+										</div>
+								   </div> 
+									
+									<div class="form-group">
+										<label class="col-md-3 control-label">调研说明</label>
+										<div class="col-md-9">
+											<textarea rows="3" class="form-control input-inline input-medium" name="remark">{$reseinfo.remark}</textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">结束说明</label>
+										<div class="col-md-9">
+											<textarea rows="3" class="form-control input-inline input-medium" name="endremark">{$reseinfo.remark}</textarea>
+										</div>
+									</div>
+										<style>
+									.huodonglist{display:none;width:430px;height:30px;border-bottom: 1px dashed #BBBBBB;margin-bottom:5px;}
+									</style>
+									<div class="form-group">
+										<label class="col-md-3 control-label">结束调转</label>
+										<div class="col-md-9">
+										    <input type="hidden" name="huodongid" value="{$huodonginfo.id}">
+										    <input type="hidden" name="huodongtitle" value="{$huodonginfo.title}">
+										    <div class="huodonglist" id="huodong" <if condition="$huodonginfo.id neq ''">style="display:block"</if>>
+										    	<div class="huodonglist_wenzi" style="float:left">{$huodonginfo.title}</div>
+										        <span class="glyphicon glyphicon-remove" style="float:right;cursor:pointer" onclick="remove_huodong()"></span>
+										    </div>
+											<button  class="btn btn-default" type="button" data-target="#stack1" data-toggle="modal">添加活动</button>
+											<span class="help-inline">这里添加您的活动将作为结束跳转页面(<span style="color:red">只能选择一个活动</span>)</span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3" style="height:100px;line-height:98px;">调研样式</label>
+										<div class="col-md-9">
+											<select class="form-control input-inline input-medium" name="style">
+												<foreach name="template" item="v">
+												   <if condition="$v[code] eq $reseinfo[style]">
+													    <option selected value="{$v.code}" rel="{$key}" sou="{$v.source}">{$v.title}</option>
+													<else />
+													    <option  value="{$v.code}" rel="{$key}" sou="{$v.source}">{$v.title}</option>
+													</if>
+												</foreach>
+											</select>
+											<foreach name="template" item="vo">
+											  <if condition="$v[code] eq $reseinfo[style]">
+												  <img name="icon_{$vo.code}" src="{$vo.icon}" width=55 height=100>
+												<else />
+												   <img name="icon_{$vo.code}" src="{$vo.icon}" style="display:none" width=55 height=100>
+												</if>
+											</foreach>
+											<input type="hidden" name="source" id="source" value="{$template[0]['source']}"/>
+										</div>
+									</div>
+									<!-- <div class="form-group">
+										<label class="col-md-3 control-label">投票分享后是否抽奖</label>
+										<div class="col-md-9">
+											<div class="radio-list">
+												<label class="radio-inline">
+												<input type="radio" name="is_lucky" id="optionsRadios30" value="1" <if condition="$voteinfo.is_lucky eq 1"> checked</if>>是</label>
+												<label class="radio-inline">
+												<input type="radio" name="is_lucky" id="optionsRadios31" value="2" <if condition="$voteinfo.is_lucky eq 2"> checked</if>>否</label>	
+											</div>
+										</div>
+									</div> -->
+									<div class="form-group">
+										<label class="col-md-3 control-label">是否强制用户注册后投票</label>
+										<div class="col-md-9">
+											<div class="radio-list">
+												<label class="radio-inline">
+												<input type="radio" name="is_register" id="optionsRadios32" value="1" <if condition="$reseinfo.is_register eq 1"> checked</if>>是</label>
+												<label class="radio-inline">
+												<input type="radio" name="is_register" id="optionsRadios33" value="2" <if condition="$reseinfo.is_register eq 2"> checked</if>>否</label>	
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-actions">
+									<div class="row">
+										<div class="col-md-offset-4 col-md-7">
+											<button type="submit" class="btn blue">保存并设置题目</button>
+											<button type="reset" class="btn default">重置</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							
+							
+							<div id="stack1" class="modal fade" tabindex="-1" data-width="400">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<div class="interact_close" ><a class="interact_remove" data-dismiss="modal"></a></div>
+											<h4 class="modal-title"><i class="fa fa-reorder"></i>&nbsp;选择活动</h4>
+										</div>
+										<div class="modal-body">
+											<iframe name="huodonglist" src="{:U('Research/endJump')}" height="330" width="560" frameborder=0  marginheight=0 marginwidth=0 scrolling=no ></iframe>
+										</div>
+										<div class="modal-footer">
+											<button type="button" onclick="getIframValue();" class="btn blue">确认</button>
+											<button type="button" data-dismiss="modal" class="btn">关闭</button>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							<!-- END FORM-->
+						</div>
+					</div>
+					<!-- END VALIDATION STATES-->
+				</div>
+			</div>
+			<!-- END PAGE CONTENT-->
+		</div>
+	<!-- </div> -->
+	</div>
+	</div>
+	</div>
+	<!-- END CONTENT -->
+<!-- </div> -->
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<script type="text/javascript" src="__PUBLIC__/Home/static/theme/assets/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+<!-- END PAGE LEVEL STYLES -->
+<script>
+	function formsubmit(){
+		var data=$("#form_sample_1").serialize();
+		$.ajax({
+			url:"{:U('Research/saveRese')}",
+			data:data,
+			type:"POST",
+			dataType:"json",
+			success:function(msg){
+				if(msg.status == 1){
+					var msg = msg.info+",页面在三秒后自动跳转!!!";
+					$.confirm({title:msg,modal: true, level:"success",buttons: {  
+						   "确定": {
+							   "class":"green",
+							   "action":function() {
+								   jumpurl();
+							   }
+						   }
+					   }  
+					});
+					setTimeout("jumpurl()",3000);
+				}else{
+					var msg=msg.info+"请重新提交";
+					$.confirm({title:msg,modal: true, level:"danger",buttons: {  
+						   "确定": {
+							   "class":"green",
+							   "action":function() {
+							   }
+						   }
+					   }  
+					});
+				}
+			}
+		});
+		return false;
+	}
+	function jumpurl(){
+		var str = "{:U('Research/topicList')}";
+		var url = str.replace(".html","")
+			url = url+"/researchid/"+{$reseinfo.id};
+			location.href=url;
+	}
+	function goback(){
+		var str = "{:U('Research/index')}";
+			location.href=str;
+	}
+	
+	
+	jQuery(document).ready(function(){
+		var form2 = $('#form_sample_1');
+        var error2 = $('.alert-danger', form2);
+        var success2 = $('.alert-success', form2);
+        form2.validate({
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-inline', // default input error message class
+            focusInvalid: false, // do not focus the last invalid input
+            ignore: "",
+            rules: {
+            	title: {
+                    minlength: 1,
+                    maxlength: 55,
+                    required: true
+                },
+                keyword: {
+                	minlength: 1,
+                    maxlength: 200,
+                    required: true,
+                },
+                from: {
+                    required: true,
+                    date: true
+                },
+                to: {
+                    required: true,
+                    date: true
+                },
+                pic_id: {
+                    required: true,
+                },
+            },
+            invalidHandler: function (event, validator) { //display error alert on form submit              
+                success2.hide();
+                error2.show();
+            },
+
+            errorPlacement: function (error, element) { // render error placement for each input type
+                var icon = $(element).parent('.input-icon').children('i');
+                icon.removeClass('fa-check').addClass("fa-warning");  
+                icon.attr("data-original-title", error.text()).tooltip({'container': 'body'});
+            },
+
+            highlight: function (element) { // hightlight error inputs
+                $(element).closest('.form-group').addClass('has-error'); // set error class to the control group   
+            },
+
+            unhighlight: function (element) { // revert the change done by hightlight
+                
+            },
+
+            success: function (label, element) {
+                var icon = $(element).parent('.input-icon').children('i');
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success'); // set success class to the control group
+                icon.removeClass("fa-warning").addClass("fa-check");
+            },
+
+            submitHandler: function (form) {
+                success2.show();
+                error2.hide();
+                formsubmit();
+            }
+        });
+        return false;
+	});
+	
+	function getIframValue(){
+		var object = $(window.frames["huodonglist"].document).find("[name='xuanze']").attr("checked","true");
+		var huodongid = object.val();
+		var huodongtitle = object.attr("rel");
+		if(huodongtitle!=''){
+			$("[name='huodongid']").val(huodongid);
+			$("[name='huodongtitle']").val(huodongtitle);
+			$("#huodong").show();
+			$(".huodonglist_wenzi").html(huodongtitle);
+			$(".in").hide();
+			$("#stack1").hide();
+		}
+	}
+	
+	function remove_huodong(){
+		$("#huodong").hide();
+		$(".huodonglist_wenzi").html('');
+		$("[name='huodongid']").val('');
+		$("[name='huodongtitle']").val('');
+	}
+	jQuery(document).ready(function(){
+		$("[name='style']").change(function(){
+			var source = $("[name='style']").find("option:selected").attr("sou");
+			$("#source").val(source);
+			var code = $(this).val();
+			$(this).parent().find('img').hide();
+			$("[name='icon_"+code+"']").show();
+		})
+	})
+</script>
+
+
+
+<include file="Public/footer" />

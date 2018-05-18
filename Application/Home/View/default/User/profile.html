@@ -1,0 +1,107 @@
+<include file="Public/uchead"/>
+<div class="bg_top_h_tile">
+  <div class="bg_top_owner">
+    <div id="page_body">
+    				<div class="column_wrapper">
+           				 <div class="col_w1000">
+                   	   <div class="logo"><img src="__PUBLIC__/Home/updatepasswd_files/youxiang_1.jpg" height="86" width="990"></div>
+                       <div class="zt">
+                            <div class="left_nav">
+                                    <div class="tp"><img src="{$Think.session.user_auth.uid|getFaceUrl=###,'120'}" onerror="javascript:this.src='__PUBLIC__/Home/yonghuzhongxinindex_files/youxiang_2_120.jpg'" height="120" width="120"></div>
+                                    <div class="vspace" style="height:53px"></div>
+                                    <div class="nav">
+										<include file="Index/zjleft" />
+									</div>
+                            </div>
+                            <div class="right_nr">
+                                  <h3>个人设置</h3>
+                                  <ul id="dell">
+                                        <li><a href="{:U('User/userProfile')}">基本信息</a></li>
+                                        <li class="cur"><a href="#">修改密码 </a></li>
+                                        <li><a href="{:U('User/setHead')}">设置头像</a></li>
+                                  </ul>
+                                
+                                  <div class="xinxi jibenxinxi_1" id="jibenxinxi_1" style="display:block">
+                                  <div id="xgcgaaa" style="display:none" class="xiugaitishi1">
+									<div class="close">
+										<a id="close2a" href="javascript:void(0)"></a>
+									</div>
+									<p></p>
+									</div>
+                                        <div class="xinxi jibenxinxi_1">
+   
+<div class="vspace" style="height:30px;"></div>
+<table cellpadding="0" cellspacing="0" width="90%">
+      <tbody>
+      <tr height="50">
+            <td style="text-align:right" width="90">原密码:&nbsp;</td>
+            <td><input id="old" name="old" type="password"></td>
+      </tr>
+      <tr height="50">
+            <td style="text-align:right" width="90">新密码:&nbsp;</td>
+            <td><input id="password" name="password" type="password"></td>
+            <td><p>密码由6-20个英文字母、数字或特殊字符组成。</p></td>
+      </tr>
+      <tr height="50">	
+            <td style="text-align:right" width="90">确认新密码:&nbsp;</td>
+            <td><input id="repassword" name="repassword" type="password"></td>
+            <td></td>
+      </tr>
+      <tr height="50">
+            <td></td>
+            <td colspan="2"><a href="javascript:void(0)" class="tj" id="tjxg2">提交修改</a></td>
+      </tr>
+</tbody></table>
+</div>
+                                  </div>  
+                                 
+                                  
+                      			</div>
+<script type="text/javascript">
+$("#close2a").click(function(){
+	$("#xgcgaaa").hide().find('p').html('');
+});
+$("#tjxg2").click(function(){
+	if($("#old").val() == "" || $("#password").val() == "" || $("#repassword").val()==""){
+		$("#xgcgaaa").show().find('p').html("信息不能为空，请输入信息");return false;
+	}
+	if($("#password").val() === $("#repassword").val()){
+		var password = $("#password").val();
+		var old = $("#old").val();
+		var repassword = $("#repassword").val();
+		$.ajax({
+			url:"{:U('User/profile')}",
+			type: "POST",
+			async: false, 
+			data:{old:old,password:password,repassword:repassword},
+			success:function(json){
+				if(json.status == "success"){
+					url="{:U('Index/index')}";
+					window.location.href=url;
+				}else{
+					alert(json.msg);
+				}
+			}
+		});
+	}else{
+		$("#xgcgaaa").show().find('p').html("两次密码不一致，请重新输入");return false;
+	}
+});
+function getUrlParam(name)
+{
+var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+if (r!=null) return unescape(r[2]); return null; //返回参数值
+}
+</script>
+            			 </div>
+            </div>
+    </div>
+         <include file="Public/ucfooter" />
+    <div id="page_bottom_self">
+  <div class="cntv_footer_ftc"><b></b></div>
+</div>  </div>
+  </div>
+</div>
+
+</body></html>

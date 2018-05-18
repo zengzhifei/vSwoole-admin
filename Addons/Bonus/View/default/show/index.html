@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>摇一摇</title>
+<link rel="stylesheet" href="{$link}css/style.css" />
+<script src="{$link}js/jquery-1.4.1.min.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+<div id="main">
+   <div class="yaoyiyao_first_boxs" <if condition="($user_status eq 0 || !$bonusid)">style="display: none;"</if>>
+		<div class="top_font_bg"><img src="{$link}css/img/yaoyaofont_bg20151115.png" /></div>
+		<div class="caidai_bg"><img src="{$link}css/img/caidai_bg20151112.png" /></div>
+		<!--<div id="hand" class="hand hand-animate"></div>-->
+		<div class="yuanbeijing01"><img src="{$link}css/img/yuan01.png" /></div>
+		<div id="shoushi_bg">
+			<img src="{$link}css/img/shouji_bg20151112.png"/>
+		</div>
+		<div class="zhongguo_font_box">
+			<p>CCTV摇红包<br />懂中国，看央视</p>
+		</div>
+		<!--<div class="jingcai_font"><img src="img/font_bgimg.png" /></div>-->
+		<div id="div_htmlId"></div>
+	<audio style="display:none" id="musicBox" preload="metadata"  controls
+		autoplay="false"></audio>
+   </div>
+<div class="yaoyiyao_second_boxs" style="display: none;">
+<div class="baiguang"></div>
+	<div class="yuanbeijing"><img src="{$link}css/img/yuan02.png" /></div>
+	<div class="result_font"></div>
+	<div class="shuoming_font">请尽快领取</div>
+	<div class="btn_boxs">
+		<button onclick="WeixinJSBridge.call('closeWindow');" class="btn_confirm">确定</button>
+		
+	</div>
+</div>
+<!--不是场内参与者-->
+<div class="yaoyiyao_third_boxs" <if condition="$user_status eq 1">style="display: none;"</if>>
+<div class="yuanbeijing"><img src="{$link}css/img/yuan02.png" /></div>
+	<div class="result_font01">活动仅限于场内观众</div>
+	<div class="btn_boxs">
+        <button onclick="WeixinJSBridge.call('closeWindow');" class="btn_confirm">确定</button>
+        
+    </div>
+</div>
+<!--没有开始的活动-->
+<div class="yaoyiyao_third_boxs" <if condition="$bonusid">style="display: none;"</if>>
+<div class="yuanbeijing"><img src="{$link}css/img/yuan02.png" /></div>
+    <div class="result_font01">活动未开始,敬请期待</div>
+    <div class="btn_boxs">
+        <button onclick="WeixinJSBridge.call('closeWindow');" class="btn_confirm">确定</button>
+        
+    </div>
+</div>
+
+<!-- 抢红包提示框  -->
+<div class="yaoyiyao_third_boxs error" style="display: none;">
+<div class="yuanbeijing"><img src="{$link}css/img/yuan02.png" /></div>
+    <div class="result_font01"></div>
+    <div class="btn_boxs">
+        <button onclick="WeixinJSBridge.call('closeWindow');" class="btn_confirm">确定</button>
+        
+    </div>
+</div>
+
+</div>
+<script>
+var pageUrl = window.location.href;
+var  media;
+var openId = "{$openId}";
+var bonusid = "{$bonusid}";
+var user_status = "{$user_status}";
+var userinfo = new Array();
+var bonusflag = 1;
+$(function(){
+	$.ajax({
+        url: "http://gl-1118.cctv.com/weixin-studio/interact/showUInteract",
+        dataType: "jsonp",
+        jsonp:"callback",
+        async:false,
+        data: {ids:openId},
+        success: function(data){
+        	userinfo.push(openId);
+        	userinfo.push(data.rows[0].headimgurl);
+        	userinfo.push(data.rows[0].nickname);
+        	//userinfo = JSON.stringify(userinfo);
+        }
+    });
+});
+//function initValue(){
+//	if (pageUrl.indexOf("openId=") != -1){
+//		openIdstr = pageUrl.substr(pageUrl.indexOf("openId=")+7,pageUrl.length);
+//		if (openIdstr.indexOf("&") != -1){
+//			openId = openIdstr.substr(0,openIdstr.indexOf("&"))
+//			
+//		}else{
+//			openId = openIdstr
+//		}
+//	}
+//}
+	var SHAKE_THRESHOLD = 3000;
+	var last_update = 0;
+	var x = y = z = last_x = last_y = last_z = 0;
+	//var num=0;
+	
+	var result = document.getElementById("div_htmlId");
+	result.className = "result";
+	function init() {
+		last_update = new Date().getTime();
+		media = document.getElementById("musicBox");
+		if (window.DeviceMotionEvent) {
+			window.addEventListener('devicemotion', deviceMotionHandler, false);
+		} else {
+
+			alert("不支持手机事件！");
+		}
+	}
+
+
+	function _animate(){
+		
+		var up=document.getElementById("shoushi_bg");
+		//var down=document.getElementById("down");
+		var offset=50;
+		up.style.webkitTransform="translatex("+(-offset)+"px)";
+		//down.style.webkitTransform="translateY("+(offset)+"px)";
+		
+		setTimeout(function(){
+			up.style.webkitTransform="";
+			//down.style.webkitTransform="";
+		},500)
+	}
+
+	function deviceMotionHandler(eventData) {
+		
+		//accelerationIncludingGravity(含重力的加速度)和acceleration(加速度)，后者排除了重力的影响。
+		var acceleration = eventData.accelerationIncludingGravity; 
+
+		var curTime = new Date().getTime();
+		if ((curTime - last_update) > 100) {
+			var diffTime = curTime - last_update;
+			last_update = curTime;
+			x = acceleration.x;
+			y = acceleration.y;
+			z = acceleration.z;
+			var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+			if (speed > SHAKE_THRESHOLD) {
+				if (!media.src) {
+					media.src = "mp3/weixin_yaoyiyao.mp3";
+				}
+				media.load();
+				media.play();
+				shakeEventDidOccur();
+				//_animate();
+				//num++;
+				
+				//document.getElementById("num").innerHTML=num;
+			}
+			last_x = x;
+			last_y = y;
+			last_z = z;
+		}
+	}
+	function setOut_div (){
+		//$(".yaoyiyao_first_boxs").hide();
+		//$(".yaoyiyao_second_boxs").show();
+	}
+	//101.129.1.223    218.241.129.64
+	function shakeEventDidOccur () {
+		setTimeout(setOut_div(),3000);
+		//		alert("感谢参与！");
+		if(user_status &&  bonusid && bonusflag){ //如果不是场内观众或者尚未有开始的活动,则屏蔽
+            bonusflag = 0;
+			$.ajax({
+		        type: "post",
+		        url: "{:addons_url('Bonus://Userlottery/checkbonus')}",
+		        data: {userinfo:userinfo , bonusid:bonusid},
+		        dataType: "json",
+		        success: function(data){
+		            if(data.success == 1){
+		            	$(".yaoyiyao_second_boxs").show();
+		            	$(".yaoyiyao_second_boxs").find(".result_font").html("您获得金额"+data.number);
+		            	$(".yaoyiyao_first_boxs").hide();
+		            }else{
+		            	$(".yaoyiyao_second_boxs").hide();
+		            	$(".yaoyiyao_first_boxs").hide();
+		            	$(".yaoyiyao_third_boxs").hide();
+		            	$(".error").find(".result_font01").html(data.info);
+		            	$(".error").show();
+		            }
+		        },
+		        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert('服务器君已经被摇晕了');
+                }
+		    });
+		}
+	}
+	window.onload=init;
+</script>
+<!--<input type="button" value="关闭本窗口" onclick="WeixinJSBridge.call('closeWindow');" />-->
+</body>
+</html>

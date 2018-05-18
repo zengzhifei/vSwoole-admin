@@ -1,0 +1,80 @@
+<include file="Public/head" />
+<include file="Public/top" />
+<div class="clearfix">
+	<div class="page-container">
+	<include file="Public/left" />
+	    <div class="page-content-wrapper">
+		<div class="page-content">
+			<div class="row">
+				<div class="col-md-12">
+					<!-- BEGIN VALIDATION STATES-->
+					<div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-gift"></i>投票结果
+							</div>
+							<div class="tools">
+								<button class="btn btn-default" onclick='javascript:location.href="{:U("Vote/index")}"' type="button">返回</button>
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<!-- BEGIN FORM-->
+							<form  id="form_sample_1"  class="form-horizontal">
+								<div class="form-body">
+								 <button class="btn btn-default" style="margin:10px;" onclick='javascript:location.href="{:U("Vote/exportVote",array('voteid'=>$voteinfo['id']))}"' type="button">导出数据</button>
+								  <div class="row">
+								    <div class="col-md-8">
+										<div class="dashboard-stat2">
+											<div class="display">
+												<div class="number">
+													<small style="font-size:16px;">{$voteinfo.title}</small>
+												</div>
+												
+											</div>
+											<div class="display" style="padding-bottom:10px;padding-top:10px;">
+												<div class="number">
+													<small><if condition="$voteinfo.optioned_type eq 1">单选<else/>多选</if>投票，共有{$voteinfo.count}人参与投票</small>
+												</div>
+												
+											</div>
+											<foreach name="optionlist" item="vo">
+											<div class="display" style="padding-top:10px;">
+												<div class="number">
+													<small>{$vo.title}</small>
+												</div>
+											</div>
+											<div class="progress-info">
+												<div class="progress">
+													<span class="progress-bar progress-bar-success green-sharp" style="width: {$vo.count_bafen};">
+													<!-- <span class="sr-only">76% progress</span> -->
+													</span>
+												</div>
+												<div class="status">
+													<div class="status-number">
+														 {$vo.count_bafen} ({$vo.count})人
+													</div>
+												</div>
+											</div>
+											</foreach>
+										</div>
+									</div>
+								 </div>
+							</form>
+							<!-- END FORM-->
+						</div>
+					</div>
+					<!-- END VALIDATION STATES-->
+				</div>
+			</div>
+			<!-- END PAGE CONTENT-->
+		</div>
+	<!-- </div> -->
+	</div>
+	</div>
+	</div>
+	<!-- END CONTENT -->
+<!-- </div> -->
+
+
+
+<include file="Pub/footer" />

@@ -1,0 +1,338 @@
+<include file="Public/head" />
+<include file="Public/top" />
+<div class="clearfix">
+	<div class="page-container">
+	<include file="Public/left" />	
+	    <div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+				<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+					tabindex="-1" id="portlet-config" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button aria-hidden="true" data-dismiss="modal" class="close"
+									type="button"></button>
+								<h4 class="modal-title">Modal title</h4>
+							</div>
+							<div class="modal-body">Widget settings form goes here</div>
+							<div class="modal-footer">
+								<button class="btn blue" type="button">Save changes</button>
+								<button data-dismiss="modal" class="btn default" type="button">Close</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+				<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+				<!-- BEGIN PAGE HEADER-->
+				<!-- BEGIN PAGE HEAD -->
+				<div class="page-head">
+					<!-- BEGIN PAGE TITLE -->
+					<!-- END PAGE TITLE -->
+					<!-- BEGIN PAGE TOOLBAR -->
+					<!-- END PAGE TOOLBAR -->
+				</div>
+				<!-- END PAGE HEAD -->
+				<!-- BEGIN PAGE BREADCRUMB -->
+				<!-- END PAGE BREADCRUMB -->
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="portlet box"><div class="portlet-body form">
+                        <div calss="col-md-offset-3 form-body" style="line-height:5">
+                            <a  style="margin-left:20px" class="btn btn-default btn-primary" data-toggle="modal"  href="{:U('Comment/index')}">评论管理</a>
+                            <a  class="btn btn-default" data-toggle="modal"  href="{:U('Comment/user')}">用户管理</a>
+                            <a  class="btn btn-default" data-toggle="modal"  href="{:U('Comment/counttable')}">统计信息</a>
+                            <a  class="btn btn-default" data-toggle="modal"  href="{:U('Comment/commentsettings')}">留言设置</a>
+                        </div></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN EXAMPLE TABLE PORTLET-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+	                                 <i class="fa fa-edit"></i>话题列表
+	                            </div>
+	                            <div class="tools">
+	                                
+	                            </div>
+							</div>
+							<div class="portlet-body">
+                                <a style="margin-bottom:5px;" class="btn btn-default" data-toggle="modal"  href="{:U('Comment/addtopic')}">创建话题</a>
+								<table class="table table-striped table-hover table-bordered">
+									<thead>
+										<tr>
+											<th style="text-align:center">发布时间</th>
+											<th style="text-align:center">话题名称</th>
+											<th style="text-align:center">话题LOGO</th>
+											<th style="text-align:center">操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<if condition="$total gt 0"> 
+											<foreach name="topiclist" item="v">
+											<tr>
+												<td class="ctime" style="text-align:center">{$v.updatetime|date="Y-m-d",###}</td>
+												<td class="tname">{$v.topicname}</td>
+												<td class="timages" style="text-align:center">
+													<img class="timage" src="__ROOT__{$v.path}" style="width:35px;height:35px"/>
+												</td>
+												<td style="text-align:center">
+													<!-- <button class="btn btn-default showinfo" type="button"
+													onclick="location.href='{$v.info}'" utime="{$v.updatetime|date="Y-m-d",###}">查看</button>
+													<button class="btn btn-default is_top" type="button" i="{$v.tid}" it="{$v.is_top}">
+														<if condition="$v.is_top eq 1">取消置顶<else />置顶</if>
+													</button>
+													<button class="btn btn-default deletetopic" type="button" data-toggle="modal" data-target="#stack3" i="{$v.tid}">删除</button>
+												    -->
+												    <a><i onclick="location.href='{$v.info}'" utime="{$v.updatetime|date="Y-m-d",###}" i="{$v.tid}" class="glyphicon glyphicon-eye-open showinfo" title="查看"></i></a>
+												    
+												    
+												    <!-- <button class="btn btn-default is_top" type="button" i="{$v.tid}" it="{$v.is_top}">
+                                                        <if condition="$v.is_top eq 1">取消置顶<else />置顶</if>
+                                                    </button> -->
+                                                    <a><i i="{$v.tid}" it="{$v.is_top}" <if condition="$v.is_top eq 1"> class="icon-pin font-green-sharp is_top" title="取消该话题置顶"<else /> class="icon-pin is_top" title="置顶该话题"</if>  ></i></a>
+                                                    
+                                                    
+                                                    
+                                                    <a><i data-toggle="modal" data-target="#stack3" i="{$v.tid}" class="glyphicon glyphicon-trash deletetopic" title="删除"></i></a>
+                                                    <a><i data-toggle="modal" data-target="#stack4" i="{$v.tid}" titlename="{$v.topicname}" class="icon-calendar" title="文章评论API"></i></a>
+												</td>
+											</tr>
+											</foreach>
+										<else />
+											<tr>
+												<td colspan="4">暂无数据</td>
+											</tr>
+										</if>
+									</tbody>
+								</table>
+								 <div class="row">
+							
+								<div class="col-md-5 col-sm-12">
+									<div class="dataTables_info" id="sample_editable_1_info" role="status" aria-live="polite">
+									    当前是第 {$p} 页  总页数 {$totalpage}
+									</div>
+								</div>
+								<div class="col-md-7 col-sm-12">
+									<div class="dataTables_paginate paging_simple_numbers" id="sample_editable_1_paginate">
+										  {$page}
+									 </div>
+								</div>
+							</div>
+								<div id="stack1" class="modal fade" tabindex="-1" data-width="400">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+												<h4 class="modal-title">基本信息</h4>
+											</div>
+											<div class="modal-body">
+												<div class="row">
+													<div class="col-md-12">
+														<!-- <h4>基本信息</h4> -->
+														<form role="form" class="form-horizontal">
+															<div class="form-body">												
+
+																<div class="form-group">
+																	<label class="col-md-3 control-label">话题名称</label>
+																	<div class="col-md-7">
+																		<input type="text" readonly class="form-control" id="tname">
+																	</div>
+																</div>												
+															
+																<div class="form-group">
+																	<label class="col-md-3 control-label">话题LOGO</label>
+																	<div class="col-md-7">
+																		<img src="" id="tlogo">
+																	</div>
+																</div>												
+															
+																<div class="form-group">
+																	<label class="col-md-3 control-label">添加时间</label>
+																	<div class="col-md-7">
+																		<input type="text" readonly class="form-control" id="ctime">
+																	</div>
+																</div>												
+															
+																<div class="form-group">
+																	<label class="col-md-3 control-label">更新时间</label>
+																	<div class="col-md-7">
+																		<input type="text" readonly class="form-control" id="utime">
+																	</div>
+																</div>												
+															
+																<div class="form-group">
+																	<label class="col-md-3 control-label">是否置顶</label>
+																	<div class="col-md-7">
+																		<input type="text" readonly class="form-control" id="it">
+																	</div>
+																</div>
+																
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" data-dismiss="modal" class="btn">关闭</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							
+								<div id="stack3" class="modal fade" tabindex="-1" data-width="400">
+									<div class="modal-dialog modal-sm">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+												<h4 class="modal-title">提示信息</h4>
+											</div>
+											<div class="modal-body">
+												<div class="row">
+													<div class="col-md-12">
+													<h4>你确定要删除这条信息吗？</h4>
+														<form role="form" class="form-horizontal">
+															<div class="form-body">
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" data-dismiss="modal" class="btn">取消</button>
+												<button type="button" class="btn red" i='0' id="delbtn" data-dismiss="modal">确定</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div id="stack4" class="modal fade" tabindex="-1" data-width="600">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                            <h4 class="modal-title">该文章评论API代码:</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h4></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+
+							</div>
+						</div>
+						<!-- END EXAMPLE TABLE PORTLET-->
+					</div>
+				</div>
+				<!-- END PAGE CONTENT-->
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+    $(function(){
+        //展示
+        $(".showinfo").each(function() {
+            var that = $(this);
+            that.click(function() {
+                var id = that.attr('i');
+                var ut = that.attr('utime');
+                var it = that.siblings('.is_top').attr('it');
+                var ct = that.parent().siblings('.ctime').html();
+                var tn = that.parent().siblings('.tname').html();
+                var ti = that.parent().siblings('.timages').children('.timage').attr('src');
+                var ist;
+                if (it == 1) {
+                	ist = '是';
+                }else{
+                	ist = '否';
+                }
+                $("#tname").val(tn);
+                $("#utime").val(ut);
+                $("#ctime").val(ct);
+                $("#tlogo").attr('src',ti);
+                $("#it").val(ist);
+            });
+        });
+
+        //删除
+        $(".deletetopic").each(function() {
+            var that = $(this);
+            var handle = "{:U('Comment/deltopic')}";
+            that.click(function() {
+                var i = that.attr('i');
+                $("#delbtn").click(function() {
+	                $.post(handle,{tid:i}, function(data) {
+	                    if (data.status == 1) {
+	                    	$("#stack3").hide();
+	                        that.parent().parent().remove();
+	                    }else if(data.status == -1) {
+	                        alert(data.msg);
+	                    }
+	                },'json');
+                });
+            });
+        });
+
+        //置顶
+        $(".is_top").each(function() {
+            var that = $(this);
+            var handle = "{:U('Comment/settop')}";
+            that.click(function() {
+                var i = that.attr('i');
+                var it = that.attr('it');
+                var is_top;
+                if (it == 0) {
+                    is_top = 1;
+                }else{
+                    is_top = 0;
+                };
+                $.post(handle,{tid:i,is_top:is_top}, function(data) {
+                    if (data.status == 1) {
+                        alert(data.msg);
+                        that.attr('it','0');
+                        that.attr("class",'icon-pin ist_op');
+                        that.attr("title",'置顶');
+                    }else if(data.status == 2) {
+                        alert(data.msg);
+                        that.attr('it','1');
+                        that.attr("class",'icon-pin font-green-sharp ist_op');
+                        that.attr("title",'取消置顶');
+                    }else if(data.status == -1) {
+                        alert(data.msg);
+                    }
+                },'json');
+            });
+        });
+        
+        //评论API
+        $(".icon-calendar").each(function(){
+        	var that = $(this);
+        	var handle = "{:U('Comment/commentapi')}";
+        	that.click(function() {
+                var i = that.attr('i');
+                var titlename = that.attr('titlename');
+	        	$.post(handle, function(data) {
+	        		$("#stack4").find(".col-md-12").html("<h4></h4>");
+	        		commentapi = data.commentapicode.replace('var articleid=""','var articleid="'+i+'"');
+                    commentapi = commentapi.replace('var title=""','var title="'+titlename+'"');
+	        		$("#stack4").find(".col-md-12").html("<h4><textarea style='width:550px;height:600px'>"+commentapi+"</textarea></h4>");
+	        	},'json');
+        	});
+        })
+    })
+</script>
+
+<include file="Public/footer" />
