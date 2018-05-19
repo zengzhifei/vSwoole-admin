@@ -312,24 +312,30 @@
     }
 
     var Interact = {
-        success_report: function (message) {
+        success_report: function (message, callback) {
             $.confirm({
                 title: message,
                 level: 'success',
                 buttons: {
                     "确定": {
-                        class: "blue"
+                        class: "blue",
+                        action: function () {
+                            callback && callback();
+                        }
                     }
                 }
             })
         },
-        error_report: function (message) {
+        error_report: function (message, callback) {
             $.confirm({
                 title: message,
                 level: 'danger',
                 buttons: {
                     "确定": {
-                        class: "blue"
+                        class: "blue",
+                        action: function () {
+                            callback && callback();
+                        }
                     }
                 }
             })

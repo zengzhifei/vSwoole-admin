@@ -163,7 +163,7 @@
                                                 </foreach>
                                             </select>
                                             <input type="text" name="ws-config-close-user" class="form-control"
-                                                   placeholder="客户端连接ID" style="display: inline-block;width: 390px;">
+                                                   placeholder="客户端连接ID" style="display: inline-block;width: 400px;">
                                             <button class="btn blue" type="button" id="ws-config-close-user-btn">确定
                                             </button>
                                         </td>
@@ -176,13 +176,13 @@
                                                    class="switch" checked/>
                                             <input type="text" name="ws-config-check-host" class="form-control"
                                                    value="{$configs.CHECK-HOST}"
-                                                   placeholder="域名地址" style="display: inline-block;width: 525px;">
+                                                   placeholder="域名地址" style="display: inline-block;width: 535px;">
                                             <button class="btn blue" type="button" id="ws-config-check-host-btn">确定
                                             </button>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>IP验证</td>
+                                        <td>IP黑名单</td>
                                         <td style="float: left;">
                                             <input type="checkbox" name="ws-config-check-ip-switch"
                                                    config-val="{$configs.ENABLE-CHECK-IP}"
@@ -286,7 +286,7 @@
             var host_switch = $("[name='ws-config-check-host-switch']").attr('ws-config-switch');
             var host = $("[name='ws-config-check-host']").val();
             if (host && !(new RegExp(/^[a-zA-Z]+:\/\/[^\s\/]*$/)).test(host)) {
-                Interact.error_report('域名格式不正确')
+                Interact.error_report('域名格式不正确');
             } else {
                 $.ajax({
                     url: "{:U('WebSocket/checkHost')}",

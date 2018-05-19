@@ -139,7 +139,7 @@
                                 }
                             </style>
                             <div class="portlet-body">
-                                <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                <table class="table table-striped table-hover table-bordered">
                                     <tbody>
                                     <tr>
                                         <td style="vertical-align: middle;">归档ID</td>
@@ -154,6 +154,17 @@
                                     </tbody>
                                 </table>
                                 <div id="server-count" style="width: 100%;height:400px;"></div>
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th width="100px;">序号</th>
+                                        <th>IP</th>
+                                        <th>在线人数</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="server-list">
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <!-- END EXAMPLE TABLE PORTLET-->
@@ -306,6 +317,33 @@
                     }
                 })
             }
+        }
+
+        getServers();
+
+        function getServers() {
+            $.ajax({
+                url: "{:U('WebSocket/getServers')}",
+                type: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res);
+                    var html = '';
+                    if (res.status === 1) {
+                        $.each(res.data, function (k, v) {
+                            html += '<tr>';
+                            html += '<td>' + (k + 1) + '</td>';
+                            html += '<td>' + v.server_ip + '</td>';
+                            html += '<td>' + v.server_online + '</td>';
+                            html += '</tr>';
+                        })
+                    }
+                    $(".server-list").html(html);
+                },
+                error: function (e) {
+                    console.log(e.statusText);
+                }
+            })
         }
     })
 </script>

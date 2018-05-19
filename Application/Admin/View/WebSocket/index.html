@@ -139,23 +139,53 @@
                                 }
                             </style>
                             <div class="portlet-body">
-                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="server-reload-all">全部重载
+                                <button style="margin-bottom:5px;" class="btn blue" type="button"
+                                        id="server-reload-all">全部重载
                                 </button>
-                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="server-close-all">全部关闭
+                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="server-close-all">
+                                    全部关闭
+                                </button>
+                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="server-clear-all">
+                                    清除异常
                                 </button>
                                 <table class="table table-striped table-hover table-bordered">
                                     <thead>
                                     <tr>
                                         <th width="100px;">序号</th>
                                         <th>IP</th>
-                                        <th>在线人数</th>
+                                        <th>状态</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody class="server_ips">
-                                    <tr>
-                                        <td colspan="24" class="text-center"> aOh! 没有启动WebSocket的服务器!</td>
-                                    </tr>
+                                    <if condition="$server_list">
+                                        <foreach name="server_list" key="k" item="v">
+                                            <tr>
+                                                <td>{$k + 1}</td>
+                                                <td class="server_ip">{$v['server_ip']}</td>
+                                                <td class="server_online">{$v['server_status'] == 1 ? '正常' : '异常'}</td>
+                                                <td>
+                                                    <if condition="$v['server_status'] == 1">
+                                                        <a><a class="glyphicon glyphicon-refresh server-reload"
+                                                              title="重载"></a></a>
+                                                        <a><a class="glyphicon glyphicon-off server-close"
+                                                              title="关闭"></a></a>
+                                                        <else/>
+                                                        <a><a style="pointer-events: none"
+                                                              class="glyphicon glyphicon-refresh server-reload"
+                                                              title="重载"></a></a>
+                                                        <a><a style="pointer-events: none"
+                                                              class="glyphicon glyphicon-off server-close"
+                                                              title="关闭"></a></a>
+                                                    </if>
+                                                </td>
+                                            </tr>
+                                        </foreach>
+                                        <else/>
+                                        <tr>
+                                            <td colspan="24" class="text-center"> aOh! 没有启动WebSocket的服务器!</td>
+                                        </tr>
+                                    </if>
                                     </tbody>
                                 </table>
                             </div>
@@ -170,39 +200,20 @@
 </div>
 <script>
     $(function () {
-        getServers();
-
-        function getServers() {
+        function clearServers() {
             $.ajax({
-                url: "{:U('WebSocket/getServers')}",
+                url: "{:U('WebSocket/clearServers')}",
                 type: 'GET',
                 dataType: 'json',
-                complete: function () {
-                    setTimeout(function () {
-                        getServers();
-                    }, 3000);
-
-                },
                 success: function (res) {
-                    let html = '';
+                    console.log(res);
                     if (res.status === 1) {
-                        $.each(res.data, function (k, v) {
-                            html += `<tr>
-                                         <td>${k + 1}</td>
-                                         <td class="server_ip">${v['server_ip']}</td>
-                                         <td class="server_online">${v['server_online']}</td>
-                                         <td>
-                                            <a><i class="glyphicon glyphicon-refresh server-reload" title="重载"></i></a>
-                                            <a><i class="glyphicon glyphicon-off server-close" title="关闭"></i></a>
-                                        </td>
-                                      </tr>`;
+                        Interact.success_report('清除成功',function () {
+                            location.reload();
                         });
                     } else {
-                        html = `<tr>
-                                        <td colspan="24" class="text-center"> aOh! 没有启动WebSocket的服务器!</td>
-                                    </tr>`;
+                        Interact.error_report('清除失败');
                     }
-                    $(".server_ips").html(html);
                 },
                 error: function (e) {
                     console.log(e.statusText);
@@ -221,7 +232,7 @@
                     if (res.status === 1) {
                         Interact.success_report('服务重载成功');
                     } else {
-                        Interact.success_report('服务重载失败');
+                        Interact.error_report('服务重载失败');
                     }
                 },
                 error: function (e) {
@@ -239,9 +250,11 @@
                 success: function (res) {
                     console.log(res);
                     if (res.status === 1) {
-                        Interact.success_report('服务关闭成功');
+                        Interact.success_report('服务关闭成功',function () {
+                            location.reload();
+                        });
                     } else {
-                        Interact.success_report('服务关闭失败');
+                        Interact.error_report('服务关闭失败');
                     }
                 },
                 error: function (e) {
@@ -250,11 +263,14 @@
             })
         }
 
-        $("#server-reload-all").on('click',function () {
+        $("#server-reload-all").on('click', function () {
             reloadServer(null);
         });
-        $("#server-close-all").on('click',function () {
-            Interact.warning_report('确认关闭所有服务?',function () {
+        $("#server-clear-all").on('click', function () {
+            clearServers();
+        });
+        $("#server-close-all").on('click', function () {
+            Interact.warning_report('确认关闭所有服务?', function () {
                 shutdownServer(null);
             });
         });

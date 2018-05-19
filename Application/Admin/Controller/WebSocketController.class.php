@@ -12,6 +12,11 @@ class WebSocketController extends AdminController
      */
     public function index()
     {
+        $curl = new Curl();
+        $server_list = $curl->get(C('WebSocket.Get_Servers'));
+        if (($server_list = json_decode($server_list, true)) && $server_list['status'] == 1) {
+            $this->assign('server_list', $server_list['data']);
+        }
         $this->display();
     }
 
@@ -21,7 +26,7 @@ class WebSocketController extends AdminController
     public function count()
     {
         $curl = new Curl();
-        $ranges = $curl->get('http://10.4.0.101/demo/vSwoole/public/client.php?s=WebSocket/getRanges');
+        $ranges = $curl->get(C('WebSocket.Get_Ranges'));
         if (($ranges = json_decode($ranges, true)) && $ranges['status'] == 1) {
             $this->assign('ranges', $ranges['data']);
         }
@@ -34,7 +39,7 @@ class WebSocketController extends AdminController
     public function config()
     {
         $curl = new Curl();
-        $ranges = $curl->get('http://10.4.0.101/demo/vSwoole/public/client.php?s=WebSocket/getRanges');
+        $ranges = $curl->get(C('WebSocket.Get_Ranges'));
         if (($ranges = json_decode($ranges, true)) && $ranges['status'] == 1) {
             foreach ($ranges['data'] as $key => $range) {
                 $_ranges[$key]['range_id'] = $range;
@@ -42,7 +47,7 @@ class WebSocketController extends AdminController
             }
             $this->assign('ranges', $_ranges ?? []);
         }
-        $configs = $curl->get('http://10.4.0.101/demo/vSwoole/public/client.php?s=WebSocket/getConfigs');
+        $configs = $curl->get(C('WebSocket.Get_Configs'));
         if (($configs = json_decode($configs, true)) && $configs['status'] == 1) {
             $this->assign('configs', $configs['data'] ?? []);
         }
@@ -63,7 +68,7 @@ class WebSocketController extends AdminController
     public function getServers()
     {
         $curl = new Curl();
-        $data = $curl->post('http://10.4.0.101/demo/vSwoole/public/client.php?s=WebSocket/getServerOnline', [], 'POST');
+        $data = $curl->post(C('WebSocket.Get_Server_Online'));
         if (($data = json_decode($data, true)) && $data['status'] == 1) {
             $servers = [];
             foreach ($data['data'] as $ip => $count) {
@@ -75,13 +80,27 @@ class WebSocketController extends AdminController
     }
 
     /**
+     * 清理异常服务器
+     */
+    public function clearServers()
+    {
+        $curl = new Curl();
+        $res = $curl->get(C('WebSocket.Clear_Servers'));
+        if (($res = json_decode($res, true)) && $res['status'] == 1) {
+            $this->ajaxReturn(['status' => 1, 'msg' => 'success']);
+        } else {
+            $this->ajaxReturn(['status' => 0, 'msg' => 'fail']);
+        }
+    }
+
+    /**
      * 重载服务
      */
     public function reloadServer()
     {
         $server_ip = I('server_ip', null);
         $curl = new Curl();
-        $res = $curl->get('http://10.4.0.101/demo/vSwoole/public/client.php?s=WebSocket/reload', ['server_ip' => $server_ip]);
+        $res = $curl->get(C('WebSocket.Reload_Server'), ['server_ip' => $server_ip]);
         if (($res = json_decode($res, true)) && $res['status'] == 1) {
             $this->ajaxReturn(['status' => 1, 'msg' => 'success']);
         } else {
@@ -96,7 +115,7 @@ class WebSocketController extends AdminController
     {
         $server_ip = I('server_ip', null);
         $curl = new Curl();
-        $res = $curl->get('http://10.4.0.101/demo/vSwoole/public/client.php?s=WebSocket/shutdown', ['server_ip' => $server_ip]);
+        $res = $curl->get(C('WebSocket.ShutDown_Server'), ['server_ip' => $server_ip]);
         if (($res = json_decode($res, true)) && $res['status'] == 1) {
             $this->ajaxReturn(['status' => 1, 'msg' => 'success']);
         } else {
@@ -112,7 +131,7 @@ class WebSocketController extends AdminController
         $range_id = I('range_id', null);
         if ($range_id) {
             $curl = new Curl();
-            $res = $curl->get('http://10.4.0.101/demo/vSwoole/public/client.php?s=WebSocket/getRangeOnline', ['range_id' => $range_id]);
+            $res = $curl->get(C('WebSocket.Get_Range_Online'), ['range_id' => $range_id]);
             if (($res = json_decode($res, true)) && $res['status'] == 1) {
                 $this->ajaxReturn(['status' => 1, 'msg' => 'success', 'data' => $res['data']]);
             } else {
@@ -132,7 +151,7 @@ class WebSocketController extends AdminController
         $message = I('message', '', 'json_filter');
         if ($range_id && $message) {
             $curl = new Curl();
-            $res = $curl->post("http://10.4.0.101/demo/vSwoole/public/client.php?s=WebSocket/send", ['range_id' => $range_id, 'message' => $message]);
+            $res = $curl->post(C('WebSocket.Push_Message'), ['range_id' => $range_id, 'message' => $message]);
             if (($res = json_decode($res, true)) && $res['status'] == 1) {
                 $this->ajaxReturn(['status' => 1, 'msg' => 'success']);
             } else {
@@ -152,7 +171,7 @@ class WebSocketController extends AdminController
         $user_id = I('user_id', null);
         if ($range_id && $user_id) {
             $curl = new Curl();
-            $res = $curl->get("http://10.4.0.101/demo/vSwoole/public/client.php?s=WebSocket/close", ['range_id' => $range_id, 'user_id' => $user_id]);
+            $res = $curl->get(C('WebSocket.Close_Connect'), ['range_id' => $range_id, 'user_id' => $user_id]);
             if (($res = json_decode($res, true)) && $res['status'] == 1) {
                 $this->ajaxReturn(['status' => 1, 'msg' => 'success']);
             } else {
@@ -171,7 +190,7 @@ class WebSocketController extends AdminController
         $host = I('host', '');
         $switch = $host ? I('switch', false) : false;
         $curl = new Curl();
-        $res = $curl->post("http://10.4.0.101/demo/vSwoole/public/client.php?s=WebSocket/config", ['config' => ['ENABLE-CHECK-HOST' => $switch, 'CHECK-HOST' => $host]]);
+        $res = $curl->post(C('WebSocket.Set_Configs'), ['config' => ['ENABLE-CHECK-HOST' => $switch, 'CHECK-HOST' => $host]]);
         if (($res = json_decode($res, true)) && $res['status'] == 1) {
             $this->ajaxReturn(['status' => 1, 'msg' => 'success']);
         } else {
@@ -187,7 +206,7 @@ class WebSocketController extends AdminController
         $ips = trim(I('ip', ''), ',');
         $switch = I('switch', false);
         $curl = new Curl();
-        $res = $curl->post("http://10.4.0.101/demo/vSwoole/public/client.php?s=WebSocket/config", ['config' => ['ENABLE-CHECK-IP' => $switch, 'CHECK-IP' => $ips]]);
+        $res = $curl->post(C('WebSocket.Set_Configs'), ['config' => ['ENABLE-CHECK-IP' => $switch, 'CHECK-IP' => $ips]]);
         if (($res = json_decode($res, true)) && $res['status'] == 1) {
             $this->ajaxReturn(['status' => 1, 'msg' => 'success']);
         } else {

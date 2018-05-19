@@ -47,5 +47,5 @@ return array(
     'MEMCACHE_PORT'=>'12000',
     'MEMCACHE_EXPIRE'=>3600, //缓存时间3600
 
-	'LOAD_EXT_CONFIG' => 'db,redis,url', // 加载扩展配置文件
+	'LOAD_EXT_CONFIG' => 'db,redis,url,server', // 加载扩展配置文件
 );
