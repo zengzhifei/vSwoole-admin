@@ -1,0 +1,512 @@
+<include file="Public/head"/>
+<include file="Public/top"/>
+<div class="clearfix">
+    <div class="page-container">
+        <include file="Public/left"/>
+
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="portlet-config"
+                     class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+                                <h4 class="modal-title">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                                Widget settings form goes here
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn blue" type="button">Save changes</button>
+                                <button data-dismiss="modal" class="btn default" type="button">Close</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+                <!-- BEGIN PAGE HEADER-->
+                <!-- BEGIN PAGE HEAD -->
+                <div class="page-head">
+                    <!-- BEGIN PAGE TITLE -->
+                    <!-- END PAGE TITLE -->
+                    <!-- BEGIN PAGE TOOLBAR -->
+                    <!--<div class="page-toolbar">
+                         BEGIN THEME PANEL
+                        <div class="btn-group btn-theme-panel">
+                            <a data-toggle="dropdown" class="btn dropdown-toggle" href="javascript:;">
+                            <i class="icon-settings"></i>
+                            </a>
+                            <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <h3>THEME</h3>
+                                        <ul class="theme-colors">
+                                            <li data-theme="default" class="theme-color theme-color-default active">
+                                                <span class="theme-color-view"></span>
+                                                <span class="theme-color-name">Dark Header</span>
+                                            </li>
+                                            <li data-theme="light" class="theme-color theme-color-light">
+                                                <span class="theme-color-view"></span>
+                                                <span class="theme-color-name">Light Header</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12 seperator">
+                                        <h3>LAYOUT</h3>
+                                        <ul class="theme-settings">
+                                            <li>
+                                                 Theme Style
+                                                <select class="layout-style-option form-control input-small input-sm">
+                                                    <option selected="selected" value="square">Square corners</option>
+                                                    <option value="rounded">Rounded corners</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Layout
+                                                <select class="layout-option form-control input-small input-sm">
+                                                    <option selected="selected" value="fluid">Fluid</option>
+                                                    <option value="boxed">Boxed</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Header
+                                                <select class="page-header-option form-control input-small input-sm">
+                                                    <option selected="selected" value="fixed">Fixed</option>
+                                                    <option value="default">Default</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Top Dropdowns
+                                                <select class="page-header-top-dropdown-style-option form-control input-small input-sm">
+                                                    <option value="light">Light</option>
+                                                    <option selected="selected" value="dark">Dark</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Sidebar Mode
+                                                <select class="sidebar-option form-control input-small input-sm">
+                                                    <option value="fixed">Fixed</option>
+                                                    <option selected="selected" value="default">Default</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Sidebar Menu
+                                                <select class="sidebar-menu-option form-control input-small input-sm">
+                                                    <option selected="selected" value="accordion">Accordion</option>
+                                                    <option value="hover">Hover</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Sidebar Position
+                                                <select class="sidebar-pos-option form-control input-small input-sm">
+                                                    <option selected="selected" value="left">Left</option>
+                                                    <option value="right">Right</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                 Footer
+                                                <select class="page-footer-option form-control input-small input-sm">
+                                                    <option value="fixed">Fixed</option>
+                                                    <option selected="selected" value="default">Default</option>
+                                                </select>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         END THEME PANEL
+                    </div> -->
+                    <!-- END PAGE TOOLBAR -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-edit"></i>计划任务管理
+                                </div>
+                            </div>
+                            <style>
+                                .table-bordered th {
+                                    text-align: center
+                                }
+                            </style>
+                            <div class="portlet-body">
+                                <button style="margin-bottom:5px;" class="btn blue" type="button"
+                                        id="crontab-add-task" data-target="#add-task-html" data-toggle="modal">添加任务
+                                </button>
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>任务分组</th>
+                                        <th>任务名称</th>
+                                        <th>任务命令</th>
+                                        <th>任务地址</th>
+                                        <th>任务执行时间</th>
+                                        <th>任务并发数</th>
+                                        <th>任务创建时间</th>
+                                        <th>任务状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <if condition="$task_list">
+                                        <foreach name="task_list" key="k" item="v">
+                                            <tr>
+                                                <td>{$v['task_group']}</td>
+                                                <td>{$v['task_name']}</td>
+                                                <td>{$v['task_cmd']}</td>
+                                                <td>{$v['task_url']}</td>
+                                                <td>{$v['task_time']}</td>
+                                                <td>{$v['task_process_num']}</td>
+                                                <td>{$v['task_create_time']|date='Y-m-d H:i:s',###}</td>
+                                                <td>{$v['task_status'] == 1 ? '运行' : '暂停' }</td>
+                                                <td>
+                                                    <if condition="$v['task_status'] == 1">
+                                                        <a><a class="glyphicon glyphicon-stop task-playStop"
+                                                              title="暂停" data-task-id="{$v['task_id']}" data-task-status="{$v['task_status']}"></a></a>
+                                                        <else/>
+                                                        <a><a class="glyphicon glyphicon-play task-playStop"
+                                                              title=开始 data-task-id="{$v['task_id']}"  data-task-status="{$v['task_status']}"></a></a>
+                                                    </if>
+                                                    <a><a class="glyphicon glyphicon-edit task-edit"
+                                                          title="编辑" data-task-id="{$v['task_id']}"></a></a>
+                                                    <a><a class="glyphicon glyphicon-trash task-delete"
+                                                          title="删除" data-task-id="{$v['task_id']}"></a></a>
+                                                </td>
+                                            </tr>
+                                        </foreach>
+                                        <else/>
+                                        <tr>
+                                            <td colspan="24" class="text-center"> aOh! 没有任务哦!</td>
+                                        </tr>
+                                    </if>
+                                    </tbody>
+                                </table>
+
+                                <div id="add-task-html" class="modal fade" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog" style="width: 800px;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="interact_close">
+                                                    <a class="interact_remove" data-dismiss="modal"></a>
+                                                </div>
+                                                <h4 class="modal-title" name="modalTitle">
+                                                    <i class="fa fa-reorder" style="margin-right:5px;"></i>添加计划任务
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body" name="modelBody">
+                                                <form class="form-horizontal">
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">任务执行命令<span
+                                                                class="required">* </span></label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="crontab-task-cmd" value=""
+                                                                   placeholder="Crontab服务器任务命令(命令绝对路径:/usr/bin/curl)"
+                                                                   class="form-control input-inline input-xlarge"
+                                                                   style="width: 450px !important;"/>
+                                                            <span class="help-block" style="color: red;"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">任务执行地址<span
+                                                                class="required">* </span></label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="crontab-task-url" value=""
+                                                                   placeholder="目标任务路径(分开部署为接口地址，同一部署可为相对路径)"
+                                                                   class="form-control input-inline input-xlarge"
+                                                                   style="width: 450px !important;"/>
+                                                            <span class="help-block" style="color: red;"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">任务执行时间<span
+                                                                class="required">* </span></label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="crontab-task-time-seconds" value=""
+                                                                   placeholder="秒 ([ *|/|\,|0-59])"
+                                                                   class="form-control input-inline input-small"/>
+                                                            <input type="text" name="crontab-task-time-minutes" value=""
+                                                                   placeholder="分钟 ([ *|/|\,|0-59])"
+                                                                   class="form-control input-inline input-small"/>
+                                                            <input type="text" name="crontab-task-time-hours" value=""
+                                                                   placeholder="小时 ([ *|/|\,|0-23])"
+                                                                   class="form-control input-inline input-small"/>
+                                                            <input type="text" name="crontab-task-time-day" value=""
+                                                                   placeholder="日 ([ *|/|\,|1-31])"
+                                                                   class="form-control input-inline input-small"/>
+                                                            <input type="text" name="crontab-task-time-month" value=""
+                                                                   placeholder="月 ([ *|/|\,|1-12])"
+                                                                   class="form-control input-inline input-small"/>
+                                                            <input type="text" name="crontab-task-time-week" value=""
+                                                                   placeholder="周 ([ *|/|\,|0-6])"
+                                                                   class="form-control input-inline input-small"/>
+                                                            <span class="help-block" style="color: red;"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">任务执行并发<span
+                                                                class="required">* </span></label>
+                                                        <div class="col-md-9">
+                                                            <input type="number" name="crontab-task-process-num"
+                                                                   value="" placeholder="任务并发数(启用多进程数量，正整数，最小为1)"
+                                                                   class="form-control input-inline input-xlarge"
+                                                                   style="width: 450px !important;"/>
+                                                            <span class="help-block" style="color: red;"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">任务执行分组<span
+                                                                class="required">* </span></label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="crontab-task-group" value=""
+                                                                   placeholder="任务所属项目分组(列表依据分组排序)"
+                                                                   class="form-control input-inline input-xlarge"
+                                                                   style="width: 450px !important;"/>
+                                                            <span class="help-block" style="color: red;"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">任务执行命名<span
+                                                                class="required">* </span></label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="crontab-task-name" value=""
+                                                                   placeholder="任务显示名称"
+                                                                   class="form-control input-inline input-xlarge"
+                                                                   style="width: 450px !important;"/>
+                                                            <span class="help-block" style="color: red;"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <input type="hidden" name="crontab-task-id">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn blue" id="crontab-task-add-btn">添加
+                                                </button>
+                                                <button type="button" data-dismiss="modal" class="btn">返回</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END EXAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT-->
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#crontab-task-add-btn").on('click', function () {
+            let task_id = $("[name='crontab-task-id']").val();
+            let task_cmd = $("[name='crontab-task-cmd']").val();
+            let task_url = $("[name='crontab-task-url']").val();
+            let task_time_seconds = $("[name='crontab-task-time-seconds']").val();
+            let task_time_minutes = $("[name='crontab-task-time-minutes']").val();
+            let task_time_hours = $("[name='crontab-task-time-hours']").val();
+            let task_time_day = $("[name='crontab-task-time-day']").val();
+            let task_time_month = $("[name='crontab-task-time-month']").val();
+            let task_time_week = $("[name='crontab-task-time-week']").val();
+            let task_process_num = $("[name='crontab-task-process-num']").val();
+            let task_group = $("[name='crontab-task-group']").val();
+            let task_name = $("[name='crontab-task-name']").val();
+            if (!(new RegExp(/^\/[\w|\/]+[^\/]$/g)).test(task_cmd)) {
+                $("[name='crontab-task-cmd']").parent().find('.help-block').text('任务命令格式错误');
+                return false;
+            } else {
+                $("[name='crontab-task-cmd']").parent().find('.help-block').text('');
+            }
+            if (!task_url || (new RegExp(/^\s+$/g)).test(task_url)) {
+                $("[name='crontab-task-url']").parent().find('.help-block').text('任务地址格式错误');
+                return false;
+            } else {
+                $("[name='crontab-task-url']").parent().find('.help-block').text('');
+            }
+            if (!task_time_seconds || !(new RegExp(/((\*(\/[0-9]+)?)|[0-9\-\,\/]+)/g)).test(task_time_seconds)) {
+                $("[name='crontab-task-time-seconds']").parent().find('.help-block').text('任务执行时间秒格式错误');
+                return false;
+            } else {
+                $("[name='crontab-task-time-seconds']").parent().find('.help-block').text('');
+            }
+            if (!task_time_minutes || !(new RegExp(/((\*(\/[0-9]+)?)|[0-9\-\,\/]+)/g)).test(task_time_minutes)) {
+                $("[name='crontab-task-time-seconds']").parent().find('.help-block').text('任务执行时间分钟格式错误');
+                return false;
+            } else {
+                $("[name='crontab-task-time-seconds']").parent().find('.help-block').text('');
+            }
+            if (!task_time_hours || !(new RegExp(/((\*(\/[0-9]+)?)|[0-9\-\,\/]+)/g)).test(task_time_hours)) {
+                $("[name='crontab-task-time-seconds']").parent().find('.help-block').text('任务执行时间小时格式错误');
+                return false;
+            } else {
+                $("[name='crontab-task-time-seconds']").parent().find('.help-block').text('');
+            }
+            if (!task_time_day || !(new RegExp(/((\*(\/[0-9]+)?)|[0-9\-\,\/]+)/g)).test(task_time_day)) {
+                $("[name='crontab-task-time-seconds']").parent().find('.help-block').text('任务执行时间日格式错误');
+                return false;
+            } else {
+                $("[name='crontab-task-time-seconds']").parent().find('.help-block').text('');
+            }
+            if (!task_time_month || !(new RegExp(/((\*(\/[0-9]+)?)|[0-9\-\,\/]+)/g)).test(task_time_month)) {
+                $("[name='crontab-task-time-seconds']").parent().find('.help-block').text('任务执行时间月格式错误');
+                return false;
+            } else {
+                $("[name='crontab-task-time-seconds']").parent().find('.help-block').text('');
+            }
+            if (!task_time_week || !(new RegExp(/((\*(\/[0-6]+)?)|[0-6\-\,\/]+)/g)).test(task_time_week)) {
+                $("[name='crontab-task-time-seconds']").parent().find('.help-block').text('任务执行时间周格式错误');
+                return false;
+            } else {
+                $("[name='crontab-task-time-seconds']").parent().find('.help-block').text('');
+            }
+            if (!task_process_num || !(new RegExp(/^\d+$/g)).test(task_process_num)) {
+                $("[name='crontab-task-process-num']").parent().find('.help-block').text('任务执行并发数量格式错误');
+                return false;
+            } else {
+                $("[name='crontab-task-process-num']").parent().find('.help-block').text('');
+            }
+            if (!task_group || (new RegExp(/^\s+$/g)).test(task_group)) {
+                $("[name='crontab-task-group']").parent().find('.help-block').text('任务执行分组不能为空');
+                return false;
+            } else {
+                $("[name='crontab-task-group']").parent().find('.help-block').text('');
+            }
+            if (!task_name || (new RegExp(/^\s+$/g)).test(task_name)) {
+                $("[name='crontab-task-name']").parent().find('.help-block').text('任务执行名称不能为空');
+                return false;
+            } else {
+                $("[name='crontab-task-name']").parent().find('.help-block').text('');
+            }
+            let data = {
+                task_id: task_id ? $.trim(task_id) : null,
+                task_cmd: $.trim(task_cmd),
+                task_url: $.trim(task_url),
+                task_time: $.trim(task_time_seconds) + ' ' + $.trim(task_time_minutes) + ' ' + $.trim(task_time_hours) + ' ' + $.trim(task_time_day) + ' ' + $.trim(task_time_month) + ' ' + $.trim(task_time_week),
+                task_process_num: $.trim(task_process_num),
+                task_group: task_group,
+                task_name: task_name
+            }
+            addTask(data);
+        });
+
+        function addTask(data) {
+            $.ajax({
+                url: "{:U('Crontab/addTask')}",
+                type: 'POST',
+                data: data,
+                dataType: 'JSON',
+                success: function (res) {
+                    console.log(res);
+                    if (res.status === 1) {
+                        Interact.success_report('添加成功', function () {
+                            location.reload();
+                        })
+                    } else {
+                        Interact.error_report('添加失败');
+                    }
+                },
+                error: function (e) {
+                    console.log(e.statusText);
+                }
+            })
+        }
+
+        $("#crontab-add-task").on('click', function (event) {
+            if (!event.isTrigger) {
+                $("#add-task-html").find('input').val('');
+            }
+        })
+
+        $(".task-edit").on('click', function () {
+            let task_id = $(this).attr('data-task-id');
+            $.ajax({
+                url: "{:U('Crontab/getTask')}",
+                type: 'POST',
+                data: {task_id: task_id},
+                dataType: 'JSON',
+                success: function (res) {
+                    console.log(res);
+                    if (res.status === 1) {
+                        $("[name='crontab-task-id']").val(res['data']['task_id']);
+                        $("[name='crontab-task-cmd']").val(res['data']['task_cmd']);
+                        $("[name='crontab-task-url']").val(res['data']['task_url']);
+                        let task_time = res['data']['task_time'].split(/\s+/);
+                        $("[name='crontab-task-time-seconds']").val(task_time[0]);
+                        $("[name='crontab-task-time-minutes']").val(task_time[1]);
+                        $("[name='crontab-task-time-hours']").val(task_time[2]);
+                        $("[name='crontab-task-time-day']").val(task_time[3]);
+                        $("[name='crontab-task-time-month']").val(task_time[4]);
+                        $("[name='crontab-task-time-week']").val(task_time[5]);
+                        $("[name='crontab-task-process-num']").val(res['data']['task_process_num']);
+                        $("[name='crontab-task-group']").val(res['data']['task_group']);
+                        $("[name='crontab-task-name']").val(res['data']['task_name']);
+                        $("#crontab-add-task").click();
+                    }
+                },
+                error: function (e) {
+                    console.log(e.statusText);
+                }
+            })
+        })
+
+        $(".task-playStop").on('click', function () {
+            let task_id = $(this).attr('data-task-id');
+            let task_status = $(this).attr('data-task-status');
+            $.ajax({
+                url: "{:U('Crontab/startStopTask')}",
+                type: 'POST',
+                data: {task_id: task_id, task_status: task_status == 0 ? 1 : 0},
+                dataType: 'JSON',
+                success: function (res) {
+                    console.log(res);
+                    if (res.status === 1) {
+                       Interact.success_report('操作成功',function () {
+                           location.reload();
+                       });
+                    } else {
+                        Interact.error_report('操作失败');
+                    }
+                },
+                error: function (e) {
+                    console.log(e.statusText);
+                }
+            })
+        })
+
+        $(".task-delete").on('click', function () {
+            let task_id = $(this).attr('data-task-id');
+            $.ajax({
+                url: "{:U('Crontab/deleteTask')}",
+                type: 'POST',
+                data: {task_id: task_id},
+                dataType: 'JSON',
+                success: function (res) {
+                    console.log(res);
+                    if (res.status === 1) {
+                        Interact.success_report('删除成功',function () {
+                            location.reload();
+                        });
+                    } else {
+                        Interact.error_report('删除失败');
+                    }
+                },
+                error: function (e) {
+                    console.log(e.statusText);
+                }
+            })
+        })
+    })
+</script>
+
+<include file="Public/footer"/>
