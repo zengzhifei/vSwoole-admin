@@ -44,16 +44,38 @@ return [
         //清理服务器IP
         'Clear_Servers'   => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Crontab/clearServers',
         //添加任务
-        'Add_Task'   => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Crontab/addTask',
+        'Add_Task'        => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Crontab/addTask',
         //获取任务列表
         'Get_Task_List'   => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Crontab/getTaskList',
         //获取任务
-        'Get_Task'   => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Crontab/getTask',
+        'Get_Task'        => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Crontab/getTask',
         //开始任务
-        'Start_Task'   => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Crontab/startTask',
+        'Start_Task'      => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Crontab/startTask',
         //暂停任务
-        'Stop_Task'   => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Crontab/stopTask',
+        'Stop_Task'       => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Crontab/stopTask',
         //删除任务
-        'Delete_Task'   => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Crontab/deleteTask',
+        'Delete_Task'     => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Crontab/deleteTask',
+    ],
+    //Http
+    'Http'      => [
+        //获取服务器IP
+        'Get_Servers'     => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Http/getServerList',
+        //清理服务器IP
+        'Clear_Servers'   => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Http/clearServers',
+        //重载服务器
+        'Reload_Server'   => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Http/reload',
+        //关闭服务器
+        'ShutDown_Server' => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Http/shutdown',
+    ],
+    //Udp
+    'Udp'       => [
+        //获取服务器IP
+        'Get_Servers'     => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Udp/getServerList',
+        //清理服务器IP
+        'Clear_Servers'   => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Udp/clearServers',
+        //重载服务器
+        'Reload_Server'   => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Udp/reload',
+        //关闭服务器
+        'ShutDown_Server' => 'http://127.0.0.1/demo/vSwoole/public/client.php?s=Udp/shutdown',
     ]
 ];

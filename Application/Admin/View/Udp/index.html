@@ -124,60 +124,68 @@
                     </div> -->
                     <!-- END PAGE TOOLBAR -->
                 </div>
-                <!-- END PAGE HEAD -->
-                <!-- BEGIN PAGE BREADCRUMB -->
-                <!-- <ul class="page-breadcrumb breadcrumb">
-                    <li>
-                        <a href="#">竞猜</a>
-                        <i class="fa fa-circle"></i>
-                    </li>
-                </ul> -->
-                <!-- END PAGE BREADCRUMB -->
-                <!-- END PAGE HEADER-->
-                <!-- BEGIN PAGE CONTENT-->
-                <!-- 注释 查询开始  -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="portlet box">
-                            <div class="portlet-body form">
-                                <form role="form" class="form-horizontal">
-                                    <div class="form-body">
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">监控频率(s)：</label>
-                                            <div class="col-md-2">
-                                                <input type="text" name="monitor-process-time" class="form-control input-small" value="3">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- 注释 查询结束  -->
                 <div class="row">
                     <div class="col-md-12">
                         <!-- BEGIN EXAMPLE TABLE PORTLET-->
                         <div class="portlet box blue">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="fa fa-edit"></i>{$title}
+                                    <i class="fa fa-edit"></i>服务器管理
                                 </div>
                             </div>
+                            <style>
+                                .table-bordered th {
+                                    text-align: center
+                                }
+                            </style>
                             <div class="portlet-body">
-                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="qa-monitor-process-switch" switch="off">开启监控</button>
-                                <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                <!--<button style="margin-bottom:5px;" class="btn blue" type="button"
+                                        id="server-reload-all">全部重载
+                                </button>
+                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="server-close-all">
+                                    全部关闭
+                                </button>-->
+                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="server-clear-all">
+                                    清除异常
+                                </button>
+                                <table class="table table-striped table-hover table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>项目名</th>
-                                        <th>进程名</th>
-                                        <th>进程状态</th>
-                                        <th>监控状态</th>
-                                        <th>监控时间</th>
+                                        <th width="100px;">序号</th>
+                                        <th>IP</th>
+                                        <th>状态</th>
+                                        <!--<th>操作</th>-->
                                     </tr>
                                     </thead>
-                                    <tbody id="process-monitor">
+                                    <tbody class="server_ips">
+                                    <if condition="$server_list">
+                                        <foreach name="server_list" key="k" item="v">
+                                            <tr>
+                                                <td>{$k + 1}</td>
+                                                <td class="server_ip">{$v['server_ip']}</td>
+                                                <td class="server_online">{$v['server_status'] == 1 ? '正常' : '异常'}</td>
+                                                <!--<td>
+                                                    <if condition="$v['server_status'] == 1">
+                                                        <a><a class="glyphicon glyphicon-refresh server-reload"
+                                                              title="重载"></a></a>
+                                                        <a><a class="glyphicon glyphicon-off server-close"
+                                                              title="关闭"></a></a>
+                                                        <else/>
+                                                        <a><a style="pointer-events: none"
+                                                              class="glyphicon glyphicon-refresh server-reload"
+                                                              title="重载"></a></a>
+                                                        <a><a style="pointer-events: none"
+                                                              class="glyphicon glyphicon-off server-close"
+                                                              title="关闭"></a></a>
+                                                    </if>
+                                                </td>-->
+                                            </tr>
+                                        </foreach>
+                                        <else/>
+                                        <tr>
+                                            <td colspan="24" class="text-center"> aOh! 没有启动的Udp服务器!</td>
+                                        </tr>
+                                    </if>
                                     </tbody>
                                 </table>
                             </div>
@@ -185,7 +193,6 @@
                         <!-- END EXAMPLE TABLE PORTLET-->
                     </div>
                 </div>
-
                 <!-- END PAGE CONTENT-->
             </div>
         </div>
@@ -193,69 +200,88 @@
 </div>
 <script>
     $(function () {
-        var timer = null;
-        //开启关闭监控
-        $("#qa-monitor-process-switch").on('click', function () {
-            var monitorSwitch = $(this).attr('switch');
-            var time = $("input[name='monitor-process-time']").val();
-            time > 1 ? time : 3;
-            if (monitorSwitch == 'on') {
-                $(this).attr('switch', 'off').text('开启监控');
-                clearTimeout(timer);
-            } else if (monitorSwitch == 'off') {
-                $(this).attr('switch', 'on').text('关闭监控');
-                process_monitor(time);
-            }
-        })
-        $("#qa-monitor-process-switch").trigger('click');
-
-        function process_monitor(time) {
+        function clearServers() {
             $.ajax({
-                url: "{:U('QaMonitor/getProcessMonitor')}",
+                url: "{:U('Udp/clearServers')}",
                 type: 'GET',
-                dataType: 'JSON',
-                context: this,
-                complete: function () {
-                    timer = setTimeout(function () {
-                        process_monitor(time);
-                    }, time * 1000);
-                },
+                dataType: 'json',
                 success: function (res) {
-                    if (res.status == 1) {
-                        var html = [];
-                        $.each(res.data, function (k, v) {
-                            $.each(v, function (key, vo) {
-                                html.push('<tr>');
-                                html.push('<td>' + k + '</td>');
-                                html.push('<td>' + key + '</td>');
-                                html.push('<td>' + (vo.process_status == 1 ? "存在" : (vo.process_status == -1 ? '已重启' : "<span style='color: red;'>丢失</span>")) + '</td>');
-                                html.push('<td>' + (vo.exec_status == 1 ? "正常" : "<span style='color: red;'>异常</span>") + '</td>');
-                                html.push('<td>' + vo.monitor_time + '</td>');
-                                html.push('</tr>');
-                            })
-                        })
-                        html = html.join('');
-                        $("#process-monitor").html(html);
-                    } else if (res.status == -1) {
-                        $.confirm({
-                            title: res.msg,
-                            level: 'warning',
-                            buttons: {
-                                "确定": {
-                                    class: "blue"
-                                }
-                            }
-                        })
+                    console.log(res);
+                    if (res.status === 1) {
+                        Interact.success_report('清除成功',function () {
+                            location.reload();
+                        });
                     } else {
-                        var html = '<tr><td colspan="5">没有启用的进程</td></tr>';
-                        $("#process-monitor").html(html);
+                        Interact.error_report('清除失败');
                     }
                 },
                 error: function (e) {
-                    alert(e.statusText);
+                    console.log(e.statusText);
                 }
             })
         }
+
+        function reloadServer(server_ip) {
+            $.ajax({
+                url: "{:U('Udp/reloadServer')}",
+                type: 'GET',
+                data: {server_ip: server_ip},
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res);
+                    if (res.status === 1) {
+                        Interact.success_report('服务重载成功');
+                    } else {
+                        Interact.error_report('服务重载失败');
+                    }
+                },
+                error: function (e) {
+                    console.log(e.statusText);
+                }
+            })
+        }
+
+        function shutdownServer(server_ip) {
+            $.ajax({
+                url: "{:U('Udp/shutdownServer')}",
+                type: 'GET',
+                data: {server_ip: server_ip},
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res);
+                    if (res.status === 1) {
+                        Interact.success_report('服务关闭成功',function () {
+                            location.reload();
+                        });
+                    } else {
+                        Interact.error_report('服务关闭失败');
+                    }
+                },
+                error: function (e) {
+                    console.log(e.statusText);
+                }
+            })
+        }
+
+        $("#server-reload-all").on('click', function () {
+            reloadServer(null);
+        });
+        $("#server-clear-all").on('click', function () {
+            clearServers();
+        });
+        $("#server-close-all").on('click', function () {
+            Interact.warning_report('确认关闭所有服务?', function () {
+                shutdownServer(null);
+            });
+        });
+        $("body").on('click', ".server-reload", function () {
+            let server_ip = $(this).parents('tr').find('.server_ip').text();
+            reloadServer(server_ip);
+        });
+        $("body").on('click', ".server-close", function () {
+            let server_ip = $(this).parents('tr').find('.server_ip').text();
+            shutdownServer(server_ip);
+        });
     })
 </script>
 

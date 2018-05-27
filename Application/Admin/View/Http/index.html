@@ -124,25 +124,13 @@
                     </div> -->
                     <!-- END PAGE TOOLBAR -->
                 </div>
-                <!-- END PAGE HEAD -->
-                <!-- BEGIN PAGE BREADCRUMB -->
-                <!-- <ul class="page-breadcrumb breadcrumb">
-                    <li>
-                        <a href="#">投票</a>
-                        <i class="fa fa-circle"></i>
-                    </li>
-                </ul> -->
-                <!-- END PAGE BREADCRUMB -->
-                <!-- END PAGE HEADER-->
-                <!-- BEGIN PAGE CONTENT-->
-
                 <div class="row">
                     <div class="col-md-12">
                         <!-- BEGIN EXAMPLE TABLE PORTLET-->
                         <div class="portlet box blue">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="fa fa-edit"></i>模块列表
+                                    <i class="fa fa-edit"></i>服务器管理
                                 </div>
                             </div>
                             <style>
@@ -151,125 +139,150 @@
                                 }
                             </style>
                             <div class="portlet-body">
-                                <button style="margin-bottom:5px;" class="btn blue" id="module-add" type="button">注册模块</button>
-
-                                <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                <!--<button style="margin-bottom:5px;" class="btn blue" type="button"
+                                        id="server-reload-all">全部重载
+                                </button>
+                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="server-close-all">
+                                    全部关闭
+                                </button>-->
+                                <button style="margin-bottom:5px;" class="btn blue" type="button" id="server-clear-all">
+                                    清除异常
+                                </button>
+                                <table class="table table-striped table-hover table-bordered">
                                     <thead>
                                     <tr>
-                                        <th width="50px">序号</th>
-                                        <th width="100px">模块名称</th>
-                                        <th width="160px">模块代码</th>
-                                        <th width="160px">操作日期</th>
-                                        <th>操作</th>
+                                        <th width="100px;">序号</th>
+                                        <th>IP</th>
+                                        <th>状态</th>
+                                        <!--<th>操作</th>-->
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <notempty name="modules">
-                                        <foreach name="modules" item="vo" key="key">
+                                    <tbody class="server_ips">
+                                    <if condition="$server_list">
+                                        <foreach name="server_list" key="k" item="v">
                                             <tr>
-                                                <td>{$key + 1}</td>
-                                                <td>{$vo.module_name}</td>
-                                                <td>{$vo.module_code}</td>
-                                                <td>{$vo.operator_time|date="Y-m-d H:i:s",###}</td>
-                                                <td>
-                                                    <a><i module_id="{$vo.id}" class="glyphicon glyphicon-edit module-edit" title="编辑"></i></a>
-                                                    <a><i module_id="{$vo.id}" class="glyphicon glyphicon-trash module-delete" title="删除"></i></a>
-                                                </td>
+                                                <td>{$k + 1}</td>
+                                                <td class="server_ip">{$v['server_ip']}</td>
+                                                <td class="server_online">{$v['server_status'] == 1 ? '正常' : '异常'}</td>
+                                                <!--<td>
+                                                    <if condition="$v['server_status'] == 1">
+                                                        <a><a class="glyphicon glyphicon-refresh server-reload"
+                                                              title="重载"></a></a>
+                                                        <a><a class="glyphicon glyphicon-off server-close"
+                                                              title="关闭"></a></a>
+                                                        <else/>
+                                                        <a><a style="pointer-events: none"
+                                                              class="glyphicon glyphicon-refresh server-reload"
+                                                              title="重载"></a></a>
+                                                        <a><a style="pointer-events: none"
+                                                              class="glyphicon glyphicon-off server-close"
+                                                              title="关闭"></a></a>
+                                                    </if>
+                                                </td>-->
                                             </tr>
                                         </foreach>
                                         <else/>
-                                        <td colspan="5" class="text-center"> aOh! 暂时还没有内容!</td>
-                                    </notempty>
+                                        <tr>
+                                            <td colspan="24" class="text-center"> aOh! 没有启动的Http服务器!</td>
+                                        </tr>
+                                    </if>
                                     </tbody>
                                 </table>
-                                <div class="row">
-                                    <div class="col-md-5 col-sm-12">
-                                        <div class="dataTables_info" id="sample_editable_1_info" role="status"
-                                             aria-live="polite">
-                                            当前是第 {$data['page']['p']} 页 总页数 {$data['page']['totalPage']}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-7 col-sm-12">
-                                        <div class="dataTables_paginate paging_simple_numbers"
-                                             id="sample_editable_1_paginate">
-                                            {$data['page']['show']}
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <!-- END EXAMPLE TABLE PORTLET-->
                     </div>
                 </div>
-
                 <!-- END PAGE CONTENT-->
             </div>
         </div>
     </div>
 </div>
-
-<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
-
-<script type="text/javascript">
+<script>
     $(function () {
-        //注册模块
-        $("#module-add").on('click', function () {
-            var url = "{:U('Module/addEdit')}";
-            window.location.href = url;
-        })
-        //编辑
-        $(".module-edit").on('click', function () {
-            var module_id = $(this).attr('module_id');
-            var url = "{:U('Module/addEdit')}";
-            url = url + '&module_id=' + module_id;
-            window.location.href = url;
-        })
-        //删除
-        $(".module-delete").on('click', function () {
-            var $this = $(this);
-            var module_id = $(this).attr('module_id');
-            $.confirm({
-                title: '确认删除当前模块吗？',
-                level: 'warning',
-                buttons: {
-                    "确定": {
-                        class: "blue",
-                        action: function () {
-                            $.ajax({
-                                url: "{:U('Module/deleteModule')}",
-                                type: 'GET',
-                                data: {module_id:module_id},
-                                dataType: 'JSON',
-                                success: function (res) {
-                                    console.log(res);
-                                    if (res.status == 1) {
-                                        $this.parent().parent().parent().remove();
-                                    } else {
-                                        $.confirm({
-                                            title: res.msg,
-                                            level: 'warning',
-                                            buttons: {
-                                                "确定": {
-                                                    class: "blue"
-                                                }
-                                            }
-                                        })
-                                    }
-                                },
-                                error: function (e) {
-                                    alert(e.statusText);
-                                }
-                            })
-                        }
-                    },
-                    "取消": {
-                        "class":"green",
-                        "action":function() {}
+        function clearServers() {
+            $.ajax({
+                url: "{:U('Http/clearServers')}",
+                type: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res);
+                    if (res.status === 1) {
+                        Interact.success_report('清除成功',function () {
+                            location.reload();
+                        });
+                    } else {
+                        Interact.error_report('清除失败');
                     }
+                },
+                error: function (e) {
+                    console.log(e.statusText);
                 }
             })
-        })
-    });
+        }
+
+        function reloadServer(server_ip) {
+            $.ajax({
+                url: "{:U('Http/reloadServer')}",
+                type: 'GET',
+                data: {server_ip: server_ip},
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res);
+                    if (res.status === 1) {
+                        Interact.success_report('服务重载成功');
+                    } else {
+                        Interact.error_report('服务重载失败');
+                    }
+                },
+                error: function (e) {
+                    console.log(e.statusText);
+                }
+            })
+        }
+
+        function shutdownServer(server_ip) {
+            $.ajax({
+                url: "{:U('Http/shutdownServer')}",
+                type: 'GET',
+                data: {server_ip: server_ip},
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res);
+                    if (res.status === 1) {
+                        Interact.success_report('服务关闭成功',function () {
+                            location.reload();
+                        });
+                    } else {
+                        Interact.error_report('服务关闭失败');
+                    }
+                },
+                error: function (e) {
+                    console.log(e.statusText);
+                }
+            })
+        }
+
+        $("#server-reload-all").on('click', function () {
+            reloadServer(null);
+        });
+        $("#server-clear-all").on('click', function () {
+            clearServers();
+        });
+        $("#server-close-all").on('click', function () {
+            Interact.warning_report('确认关闭所有服务?', function () {
+                shutdownServer(null);
+            });
+        });
+        $("body").on('click', ".server-reload", function () {
+            let server_ip = $(this).parents('tr').find('.server_ip').text();
+            reloadServer(server_ip);
+        });
+        $("body").on('click', ".server-close", function () {
+            let server_ip = $(this).parents('tr').find('.server_ip').text();
+            shutdownServer(server_ip);
+        });
+    })
 </script>
 
 <include file="Public/footer"/>
